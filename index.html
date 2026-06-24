@@ -3035,7 +3035,13 @@ async function pushCollaboratorEdit(boardKey, ownerId, data) {
 
 // ── Board-level sharing (one invite = all lists) ──────────────────────────
 async function createBoardInvite() {
-  const userId = window.__lgAuth.user?.id;
+  let userId = window.__lgAuth.user?.id;
+  if (!userId && supa) {
+    try {
+      const { data: { session } } = await supa.auth.getSession();
+      if (session?.user) { window.__lgAuth.user = session.user; userId = session.user.id; }
+    } catch(_) {}
+  }
   if (!userId || !supa) return null;
   try {
     // Push every current list to shared_boards so collaborators can read them
@@ -5127,7 +5133,32 @@ function renderTabs(){
   const nav = document.getElementById('tabNav');
   nav.innerHTML = '';
 
-  // Home tab first
+  const onHome = state.viewingMatryoshkaHome || state.activeTab === 'home';
+
+  // Sidebar title + footer visibility change based on level
+  const sidebarTitle = document.querySelector('.sidebar-title');
+  if (sidebarTitle) sidebarTitle.textContent = onHome ? 'Boards' : 'Lists';
+  const sidebarFoot = document.querySelector('.sidebar-foot');
+  if (sidebarFoot) sidebarFoot.style.display = onHome ? 'none' : '';
+
+  if (onHome) {
+    // Home level: show boards list
+    listBoards().forEach(b => {
+      const btn = document.createElement('button');
+      btn.className = 'tab-btn' + (b.id === state.activeBoardId ? ' active' : '');
+      btn.innerHTML = `<span class="tab-icon-wrap"><span class="tab-icon" style="background:var(--lg-blue)"></span></span><span class="tab-label">${escapeHtml(b.title)}</span>`;
+      btn.addEventListener('click', () => {
+        if (b.id !== state.activeBoardId) switchBoard(b.id);
+        state.viewingMatryoshkaHome = false;
+        state.activeTab = 'home';
+        save(); render();
+      });
+      nav.appendChild(btn);
+    });
+    return;
+  }
+
+  // Board level: existing list tabs
   const homeBtn = document.createElement('button');
   homeBtn.className = 'tab-btn' + (state.activeTab==='home' ? ' active' : '');
   const totalCount = Object.keys(SCHEMAS).reduce((n,k)=>n+((state.rows[k]||[]).length), 0);
