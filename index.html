@@ -1392,6 +1392,9 @@ function withTimeout(promise, ms, label){
 async function validateSessionAndReveal(session){
   if (!session) return false;
   window.__lgAuth.user = session.user;
+  document.body.classList.remove('lg-gated');
+  document.body.classList.add('lg-authed');
+  window.__lgAuth.hideLogin();
   return true;
 }
 
