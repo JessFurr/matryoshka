@@ -5147,6 +5147,8 @@ function renderSection(){
     addBtn.style.display = 'none';
     const _addCol = document.getElementById('addColBtn');
     if (_addCol) _addCol.style.display = 'none';
+    const _shareBtn = document.getElementById('shareBtn');
+    if (_shareBtn) _shareBtn.style.display = 'none';
     if (host) host.innerHTML = '';
     document.body.classList.add('view-home');
     let homeHost = document.getElementById('homeHost');
@@ -5173,6 +5175,8 @@ function renderSection(){
     addBtn.style.display = 'none';
     const _addCol = document.getElementById('addColBtn');
     if (_addCol) _addCol.style.display = 'none';
+    const _shareBtn2 = document.getElementById('shareBtn');
+    if (_shareBtn2) _shareBtn2.style.display = 'none';
     document.body.classList.add('view-home');
     // home renders into the body, not into tableHost — use a separate host
     let homeHost = document.getElementById('homeHost');
