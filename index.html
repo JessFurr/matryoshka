@@ -1385,7 +1385,7 @@ document.getElementById('lgSignInBtn').addEventListener('click', () => {
 <div class="header">
   <span class="logo"><span class="doll">🪆</span>Matryoshka</span>
   <button class="title board-switcher" id="boardSwitcher" type="button"></button>
-  <button id="matryoshkaHomeBtn" type="button" title="Matryoshka Home — all boards at a glance">Home</button>
+  <button id="matryoshkaHomeBtn" type="button" title="Matryoshka Home — all boards at a glance" style="display:none">Home</button>
   <button id="skinPickerBtn" type="button" title="Change skin">Skins</button>
   <button class="sync-status" id="syncStatus" type="button" title="Click to pull the latest from the cloud">
     <span class="sync-dot"></span>
@@ -1508,6 +1508,14 @@ let supa = null;
   supa = client;
 })();
 
+// Preserve any invite token through the OAuth redirect so it survives the round-trip.
+// Must happen at page-load time — by the time bootAppForSession runs, the URL may
+// already be the clean post-OAuth URL with no ?invite= param.
+(function _saveInviteToken(){
+  const token = new URLSearchParams(location.search).get('invite');
+  if (token) sessionStorage.setItem('matryoshka_pending_invite', token);
+})();
+
 // Auth gate: returns true if we should proceed with the rest of the app.
 // Hides the tracker UI until a valid (allowlisted) session exists.
 function withTimeout(promise, ms, label){
@@ -1545,15 +1553,24 @@ async function bootAppForSession(session){
   // Load sharing state (boards shared with me, boards I've shared)
   await loadSharingState();
   subscribeSharedBoards();
-  // If there's an invite token in the URL, redeem it, then navigate to the shared board
-  const inviteToken = new URLSearchParams(location.search).get('invite');
+
+  // Check for an invite token — either in the URL (already-logged-in path) or in
+  // sessionStorage (post-OAuth path: token was saved before the OAuth redirect wiped it).
+  let inviteToken = new URLSearchParams(location.search).get('invite');
   if (inviteToken) {
-    const redeemed = await redeemInviteToken(inviteToken);
-    // Clean the token from the URL without a reload
+    // Clean the URL immediately regardless of redemption outcome
     const clean = location.pathname + (location.search.replace(/[?&]invite=[^&]*/,'').replace(/^&/,'?') || '');
     history.replaceState(null, '', clean);
+    sessionStorage.removeItem('matryoshka_pending_invite');
+  } else {
+    inviteToken = sessionStorage.getItem('matryoshka_pending_invite') || null;
+    if (inviteToken) sessionStorage.removeItem('matryoshka_pending_invite');
+  }
+  if (inviteToken) {
+    const redeemed = await redeemInviteToken(inviteToken);
     if (redeemed) {
-      // Find the board we just got access to and switch to it
+      // Reload sharing state so _sharedWithMe is populated, then navigate
+      await loadSharingState();
       const board = Object.values(_sharedWithMe)[0];
       if (board) { switchToSharedBoard(board.boardKey, board.ownerId); return; }
     }
@@ -5032,9 +5049,8 @@ function renderBoardSwitcher(){
   const btn = document.getElementById('boardSwitcher');
   if(!btn) return;
   const cur = state.boards?.[state.activeBoardId];
-  const onHome = state.activeTab === 'home' || state.viewingMatryoshkaHome;
-  btn.style.display = onHome ? 'none' : '';
-  btn.textContent = cur?.title || 'Untitled board';
+  btn.style.display = '';
+  btn.textContent = state.viewingMatryoshkaHome ? 'Home' : (cur?.title || 'Untitled board');
   if(!btn.dataset.wired){
     btn.dataset.wired = '1';
     btn.addEventListener('click', e => {
@@ -5050,6 +5066,21 @@ function openBoardMenu(anchor){
   const menu = document.createElement('div');
   menu.className = 'board-menu';
   menu.id = 'boardMenuFloat';
+
+  // Home item at top
+  const homeItem = document.createElement('div');
+  homeItem.className = 'board-menu-item' + (state.viewingMatryoshkaHome ? ' active' : '');
+  homeItem.innerHTML = `<span class="check">${state.viewingMatryoshkaHome ? '✓' : ''}</span><span class="name">Home</span>`;
+  homeItem.addEventListener('click', () => {
+    closeBoardMenu();
+    state.viewingMatryoshkaHome = true;
+    save(); render();
+  });
+  menu.appendChild(homeItem);
+  const homeSep = document.createElement('div');
+  homeSep.className = 'board-menu-sep';
+  menu.appendChild(homeSep);
+
   const boards = listBoards();
   boards.forEach(b => {
     const item = document.createElement('div');
