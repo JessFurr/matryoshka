@@ -1337,8 +1337,8 @@ const STORAGE_KEY = 'lg-firm-todo-v1';
    create policy "owner read log"   on app_state_log for select using (auth.uid() = user_id);
    create policy "owner insert log" on app_state_log for insert with check (auth.uid() = user_id);
    ────────────────────────────────────────────────────────────────────────── */
-const SUPABASE_URL      = 'https://YOUR_PROJECT_ID.supabase.co';
-const SUPABASE_ANON_KEY = 'YOUR_ANON_KEY';
+const SUPABASE_URL      = 'https://fbvssebpsnwjouayvlov.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZidnNzZWJwc253am91YXl2bG92Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIyOTE0OTEsImV4cCI6MjA5Nzg2NzQ5MX0.8hCrHiDRMVrTqqhe7DfTrzawGDIFZurb6xh3thflcLI';
 
 // Bump when push/merge/migration logic changes in a breaking way.
 const SCHEMA_VERSION = 1;
