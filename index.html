@@ -4309,6 +4309,7 @@ function wireSectionMenu(){
     const pop = document.createElement('div');
     pop.className = 'row-menu-pop floating-row-menu';
     pop.innerHTML = `
+      <button data-act="share">⇧ Share list…</button>
       <button data-act="rename">✎ Rename list</button>
       <button data-act="copy-to-ws">⎘ Copy to workspace…</button>
       <button data-act="export-word">⬇ Export to Word</button>
@@ -4329,7 +4330,9 @@ function wireSectionMenu(){
         ev.stopPropagation();
         const act = b.dataset.act;
         closeFloatingRowMenu();
-        if(act === 'rename'){
+        if(act === 'share'){
+          openShareModal(tab);
+        } else if(act === 'rename'){
           const sch = SCHEMAS[tab];
           const cur = state.titles[tab] || (sch ? sch.label : tab);
           const next = (prompt('Rename list:', cur) || '').trim();
