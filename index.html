@@ -553,7 +553,7 @@ body.view-home .board-canvas{min-height:calc(100vh - 47px)}
 .section-card #tableHost{padding:0}
 
 /* ── TABLE ── */
-.tbl{width:auto;min-width:100%;background:var(--card);border:1px solid rgba(0,0,0,.05);border-radius:10px;border-collapse:collapse;table-layout:fixed;box-shadow:0 1px 2px rgba(37,47,124,.04),0 6px 18px rgba(37,47,124,.06)}
+.tbl{width:auto;min-width:100%;background:transparent;border:none;border-radius:10px;border-collapse:separate;table-layout:fixed}
 .board-card-table-wrap{overflow-x:auto;overflow-y:visible}
 .board-card-table-wrap .tbl{border-radius:0;border:none}
 .tbl thead th{font-size:12.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#1a1a1a;text-align:left;padding:8px 12px;background:rgba(37,47,124,.03);border-bottom:1px solid var(--border);outline:none}
@@ -728,7 +728,17 @@ body[data-skin="dark-neon"] .tbl tbody tr.row-kbcursor > td:first-child{box-shad
 .kbhelp kbd{display:inline-block;min-width:16px;text-align:center;padding:2px 7px;margin:0 1px;border-radius:6px;background:rgba(37,47,124,.07);border:1px solid var(--border-strong,rgba(37,47,124,.18));box-shadow:0 1px 0 rgba(37,47,124,.12);font:600 12px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--text,#1a1a1a)}
 .kbhelp .kbhelp-foot{margin-top:14px;font-size:11.5px;color:var(--muted,#6f6b62);text-align:right}
 /* AGGRESSIVE row compaction — force everything tight */
-.tbl{line-height:1.15 !important;border-spacing:0}
+.tbl{line-height:1.15 !important;border-spacing:0 6px}
+/* ── Rows as draggable bars ── each row is a separated, filled bar you can grab
+   anywhere to drag (see onRowMouseDown). */
+.tbl tbody tr{cursor:grab}
+.tbl tbody tr.row-dragging{cursor:grabbing;opacity:.4}
+.tbl tbody td{background:#fff;border-top:1px solid rgba(37,47,124,.07);border-bottom:1px solid rgba(37,47,124,.07);box-shadow:0 1px 2px rgba(37,47,124,.04)}
+.tbl tbody tr td:first-child{border-left:1px solid rgba(37,47,124,.07);border-top-left-radius:9px;border-bottom-left-radius:9px}
+.tbl tbody tr td:last-child{border-right:1px solid rgba(37,47,124,.07);border-top-right-radius:9px;border-bottom-right-radius:9px}
+.tbl tbody tr:hover td{background:var(--row-hover,rgba(43,177,230,.06))}
+.tbl tbody tr.row-done > td{background:rgba(37,47,124,.05)}
+body[data-skin="dark-neon"] .tbl tbody td{background:rgba(255,255,255,.03);border-top-color:rgba(255,75,216,.10);border-bottom-color:rgba(255,75,216,.10);box-shadow:none}
 .tbl thead{display:none}
 /* Sub-page tables show the thead, styled subtly so it reads as part of the card header */
 .section-card .tbl thead{display:table-header-group;opacity:0;transition:opacity .18s}
@@ -7303,22 +7313,36 @@ document.addEventListener('click', e => {
 /* ── ROW DRAG (mouse-event based; HTML5 drag on <tr> is unreliable) ── */
 let rowDragState = null;
 
+let pendingRowDrag = null;
+
 function onRowMouseDown(e){
   if (e.button !== 0) return; // left-click only
-  // Drag-source: the dedicated .cell-handle (always), OR any non-interactive space
-  // on the row. Skip clicks on editable text, status/who/due chips, buttons, links,
-  // popovers, the row-collapse arrow, and the row checkbox — those have their own behavior.
-  const isInteractive = e.target.closest(
-    '.cell-edit, .status, .who, .who-wrap, .due, .chip, input, textarea, select, button, a, label, ' +
-    '.row-collapse-arrow, .cell-actions, .row-menu-pop, .pop, .floating-row-menu, [contenteditable="true"]'
+  // The WHOLE row is a drag handle. Only the interactive controls opt out — the
+  // checkbox, status/who/due/chip pickers, buttons, links, the collapse arrow,
+  // and open popovers keep their own click behavior.
+  const onControl = e.target.closest(
+    '.status, .who, .who-wrap, .due, .chip, input, textarea, select, button, a, label, ' +
+    '.row-collapse-arrow, .cell-actions, .row-menu-pop, .pop, .floating-row-menu, .row-check'
   );
-  const handle = e.target.closest('.cell-handle');
-  if (isInteractive && !handle) return;
-  const tr = (handle || e.target).closest('tr');
+  if (onControl) return;
+  const tr = e.target.closest('tr');
   if(!tr || !tr.dataset.rowId) return;
   const tbody = tr.parentElement;
   if(!tbody || tbody.tagName !== 'TBODY') return;
-  e.preventDefault();
+  // If the grab landed on editable text, keep it "soft": don't preventDefault, so a
+  // stationary click still focuses the editor; a >5px move promotes it to a drag.
+  const soft = !!e.target.closest('.cell-edit, [contenteditable="true"]');
+  pendingRowDrag = { tr, tbody, startX: e.clientX, startY: e.clientY, soft };
+  if (!soft) e.preventDefault();
+}
+
+// Build the floating ghost + arm rowDragState. Called once the 5px threshold is crossed.
+function _beginRowDrag(p){
+  const tr = p.tr, tbody = p.tbody;
+  if (p.soft){
+    const a = document.activeElement; if (a && a.blur) a.blur();
+    const sel = window.getSelection(); if (sel && sel.removeAllRanges) sel.removeAllRanges();
+  }
   tr.classList.add('row-dragging');
   // Drag group: this row + any contiguous deeper-indent children below it in the
   // natural state.rows order. Mark them all as dragging so the user sees what moves.
@@ -7369,8 +7393,8 @@ function onRowMouseDown(e){
     target: null,
     before: false,
     ghost: ghostTable,
-    offsetX: e.clientX - trRect.left,
-    offsetY: e.clientY - trRect.top,
+    offsetX: p.startX - trRect.left,
+    offsetY: p.startY - trRect.top,
   };
   // Update the ghost with a count badge when more than one row is moving.
   if (groupIds.length > 1){
@@ -7382,6 +7406,14 @@ function onRowMouseDown(e){
 }
 
 function onRowMouseMove(e){
+  // Promote a pending whole-row drag once the pointer crosses 5px.
+  if (pendingRowDrag && !rowDragState){
+    const dx = e.clientX - pendingRowDrag.startX, dy = e.clientY - pendingRowDrag.startY;
+    if (Math.abs(dx) <= 5 && Math.abs(dy) <= 5) return;
+    if (pendingRowDrag.soft) e.preventDefault();
+    _beginRowDrag(pendingRowDrag);
+    pendingRowDrag = null;
+  }
   if(!rowDragState) return;
   // move the ghost
   if(rowDragState.ghost){
@@ -7417,6 +7449,7 @@ function onRowMouseMove(e){
 }
 
 function onRowMouseUp(){
+  pendingRowDrag = null;
   if(!rowDragState) return;
   rowDragState.tr.classList.remove('row-dragging');
   rowDragState.tbody.querySelectorAll('tr.row-dragging-child')
