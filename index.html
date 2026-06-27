@@ -993,6 +993,10 @@ body.view-dashboard .back-to-dash{display:none}
 .board-card.dragging{z-index:50;opacity:.97;box-shadow:0 14px 36px rgba(37,47,124,.20);cursor:grabbing}
 /* Title row matches the sublist subpage's section-head: colored dot + bold title, padded. */
 .board-card-head{display:flex;align-items:center;gap:10px;padding:14px 16px 8px;background:transparent;margin-bottom:0}
+.board-canvas.grid .board-card-head,.board-canvas.stacked .board-card-head{cursor:grab}
+.board-card-min{background:transparent;border:none;color:var(--muted);cursor:pointer;font-size:12px;line-height:1;padding:3px 7px;border-radius:5px;font-family:inherit;flex-shrink:0;opacity:.6;transition:opacity .12s,background .12s,color .12s}
+.board-card-head:hover .board-card-min{opacity:1}
+.board-card-min:hover{color:var(--text);background:rgba(37,47,124,.1)}
 /* Collapsed/minimized board: removed from the canvas entirely; lives in #lgBoardDock at
    the bottom of the viewport as a clickable chip. Click the chip to restore. */
 .board-card.board-collapsed{display:none !important}
@@ -6009,6 +6013,42 @@ function mhomeAutoFit(){
   save(); render();
 }
 
+// Right-click menu for a list card in the board (grid) view: the list-level
+// actions that used to live in the top-right hover bar. Minimize stays as a
+// button next to the title; everything else is here.
+function openBoardCardMenu(x, y, tabKey){
+  closeFloatingRowMenu();
+  const pop = document.createElement('div');
+  pop.className = 'row-menu-pop floating-row-menu';
+  const hiddenList = getHiddenColumns(tabKey);
+  const restoreHtml = hiddenList.length
+    ? '<div class="sep"></div>' + hiddenList.map(c => `<button data-act="restore:${c.key}">↶ Restore "${escapeHtml(c.label)}"</button>`).join('')
+    : '';
+  pop.innerHTML = `
+    <button data-act="addrow">+ Add row</button>
+    <button data-act="addcol">+ Add column</button>
+    <button data-act="open">↗ Open list</button>${restoreHtml}
+    <div class="sep"></div>
+    <button data-act="delete" class="danger">× Delete list</button>`;
+  document.body.appendChild(pop);
+  const popW = pop.offsetWidth, popH = pop.offsetHeight;
+  let left = x, top = y;
+  if (left + popW > window.innerWidth - 8)  left = Math.max(8, window.innerWidth  - popW - 8);
+  if (top  + popH > window.innerHeight - 8) top  = Math.max(8, window.innerHeight - popH - 8);
+  pop.style.left = left + 'px';
+  pop.style.top  = top + 'px';
+  pop.querySelectorAll('button').forEach(b => b.addEventListener('click', ev => {
+    ev.stopPropagation();
+    const act = b.dataset.act;
+    closeFloatingRowMenu();
+    if (act === 'addrow') addRowTo(tabKey);
+    else if (act === 'addcol') addColumn(tabKey);
+    else if (act === 'open'){ state.activeTab = tabKey; save(); render(); }
+    else if (act === 'delete') deleteSubList(tabKey);
+    else if (act && act.startsWith('restore:')) restoreHiddenColumn(tabKey, act.slice('restore:'.length));
+  }));
+}
+
 function renderHome(host){
   // Board view layouts: 'grid' (default — tidy auto-arranged), 'stacked' (single
   // column), or legacy 'free' (manual pixel positioning, no longer offered in the
@@ -6045,55 +6085,31 @@ function renderHome(host){
     if(mode === 'free' && sz.w) card.style.width = sz.w + 'px';
     if(mode === 'free' && sz.h) card.style.height = sz.h + 'px';
 
+    const collapsed = !!(state.boardCollapsed && state.boardCollapsed[tabKey]);
+
     const head = document.createElement('div');
     head.className = 'board-card-head';
     head.innerHTML = `
       <span class="tab-icon ${sch.color}"></span>
       <div class="board-card-title" contenteditable="true" spellcheck="false">${escapeHtml(state.titles[tabKey])}</div>
+      <button class="board-card-min" title="${collapsed ? 'Expand list' : 'Minimize list'}">${collapsed ? '▸' : '▾'}</button>
       <div class="board-head-spacer"></div>
       <span class="board-card-count">${rows.length}</span>
-      <button class="board-card-add" title="Add row or column">+</button>
-      <button class="board-card-open" title="Open this list">Open →</button>
     `;
     head.querySelector('.board-card-title').addEventListener('input', (e) => {
       state.titles[tabKey] = e.target.textContent.trim() || sch.label;
       save(); renderTabs();
     });
-    head.querySelector('.board-card-open').addEventListener('click', (e) => {
+    head.querySelector('.board-card-min').addEventListener('click', (e) => {
       e.stopPropagation();
-      state.activeTab = tabKey; save(); render();
+      state.boardCollapsed = state.boardCollapsed || {};
+      state.boardCollapsed[tabKey] = !state.boardCollapsed[tabKey];
+      save(); render();
     });
-    head.querySelector('.board-card-add').addEventListener('click', (e) => {
-      e.stopPropagation();
-      closeFloatingRowMenu();
-      const btn = e.currentTarget;
-      const pop = document.createElement('div');
-      pop.className = 'row-menu-pop floating-row-menu';
-      const hiddenList = getHiddenColumns(tabKey);
-      const restoreHtml = hiddenList.length
-        ? '<div class="sep"></div>' + hiddenList.map(c => `<button data-act="restore:${c.key}">↶ Restore "${escapeHtml(c.label)}"</button>`).join('')
-        : '';
-      pop.innerHTML = `<button data-act="addrow">+ Add row</button><button data-act="addcol">+ Add column</button>${restoreHtml}`;
-      document.body.appendChild(pop);
-      const r = btn.getBoundingClientRect();
-      const popW = pop.offsetWidth, popH = pop.offsetHeight;
-      let top = r.bottom + 4;
-      if (top + popH > window.innerHeight - 8) top = Math.max(8, r.top - popH - 4);
-      let left = r.right - popW;
-      if (left < 8) left = 8;
-      if (left + popW > window.innerWidth - 8) left = window.innerWidth - popW - 8;
-      pop.style.top = top + 'px';
-      pop.style.left = left + 'px';
-      pop.querySelectorAll('button').forEach(b => {
-        b.addEventListener('click', ev => {
-          ev.stopPropagation();
-          const act = b.dataset.act;
-          closeFloatingRowMenu();
-          if (act === 'addrow') addRowTo(tabKey);
-          else if (act === 'addcol') addColumn(tabKey);
-          else if (act && act.startsWith('restore:')) restoreHiddenColumn(tabKey, act.slice('restore:'.length));
-        });
-      });
+    // Right-click the header for list actions (add row/column, open, delete).
+    head.addEventListener('contextmenu', (e) => {
+      e.preventDefault(); e.stopPropagation();
+      openBoardCardMenu(e.clientX, e.clientY, tabKey);
     });
 
     // accept ROW drops from a different tab to recategorize
@@ -6129,65 +6145,7 @@ function renderHome(host){
     // Allow the title bar to act as a drag handle (via threshold, see onBoardMouseDown)
     card.appendChild(nameTab);
 
-    const collapsed = !!(state.boardCollapsed && state.boardCollapsed[tabKey]);
     if (collapsed) card.classList.add('board-collapsed');
-    // Floating controls strip in the top-right of the card (drag handle, +, minimize, ×, open)
-    const ctrls = document.createElement('div');
-    ctrls.className = 'board-card-controls';
-    ctrls.innerHTML = `
-      <button class="ctl drag" title="Drag to move">⋮⋮</button>
-      <button class="ctl add" title="Add row or column">+</button>
-      <button class="ctl min" title="${collapsed ? 'Expand list' : 'Minimize list'}">${collapsed ? '▸' : '▾'}</button>
-      <button class="ctl del" title="Delete this list">×</button>
-      <button class="ctl open" title="Open this list">↗</button>
-    `;
-    ctrls.querySelector('.open').addEventListener('click', e => {
-      e.stopPropagation();
-      state.activeTab = tabKey; save(); render();
-    });
-    ctrls.querySelector('.min').addEventListener('click', e => {
-      e.stopPropagation();
-      state.boardCollapsed = state.boardCollapsed || {};
-      state.boardCollapsed[tabKey] = !state.boardCollapsed[tabKey];
-      save(); render();
-    });
-    ctrls.querySelector('.del').addEventListener('click', e => {
-      e.stopPropagation();
-      deleteSubList(tabKey);
-    });
-    ctrls.querySelector('.add').addEventListener('click', e => {
-      e.stopPropagation();
-      closeFloatingRowMenu();
-      const btn = e.currentTarget;
-      const pop = document.createElement('div');
-      pop.className = 'row-menu-pop floating-row-menu';
-      const hiddenList = getHiddenColumns(tabKey);
-      const restoreHtml = hiddenList.length
-        ? '<div class="sep"></div>' + hiddenList.map(c => `<button data-act="restore:${c.key}">↶ Restore "${escapeHtml(c.label)}"</button>`).join('')
-        : '';
-      pop.innerHTML = `<button data-act="addrow">+ Add row</button><button data-act="addcol">+ Add column</button>${restoreHtml}`;
-      document.body.appendChild(pop);
-      const r = btn.getBoundingClientRect();
-      const popW = pop.offsetWidth, popH = pop.offsetHeight;
-      let top = r.bottom + 4;
-      if (top + popH > window.innerHeight - 8) top = Math.max(8, r.top - popH - 4);
-      let left = r.right - popW;
-      if (left < 8) left = 8;
-      if (left + popW > window.innerWidth - 8) left = window.innerWidth - popW - 8;
-      pop.style.top = top + 'px';
-      pop.style.left = left + 'px';
-      pop.querySelectorAll('button').forEach(b => {
-        b.addEventListener('click', ev => {
-          ev.stopPropagation();
-          const act = b.dataset.act;
-          closeFloatingRowMenu();
-          if (act === 'addrow') addRowTo(tabKey);
-          else if (act === 'addcol') addColumn(tabKey);
-          else if (act && act.startsWith('restore:')) restoreHiddenColumn(tabKey, act.slice('restore:'.length));
-        });
-      });
-    });
-    card.appendChild(ctrls);
 
     if(rows.length === 0){
       const empty = document.createElement('div');
