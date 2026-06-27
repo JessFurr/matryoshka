@@ -1008,7 +1008,8 @@ body.view-dashboard .back-to-dash{display:none}
 /* Hedwig-style window: free-positioned card, native browser resize (resize:both),
    header is the drag handle. boardResizeObserver persists the dragged size. */
 .board-card{position:absolute;box-sizing:border-box;width:520px;min-width:300px;min-height:150px;max-width:1100px;max-height:calc(100vh - 110px);background:#fff;border:1px solid rgba(37,47,124,.14);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 1px 3px rgba(37,47,124,.05),0 8px 24px rgba(37,47,124,.09);resize:both}
-.board-canvas .board-card .board-card-table-wrap{flex:1;min-height:0;overflow:auto}
+.board-canvas .board-card .board-card-table-wrap{flex:1;min-height:0;overflow:auto;scrollbar-width:none;-ms-overflow-style:none}
+.board-canvas .board-card .board-card-table-wrap::-webkit-scrollbar{width:0;height:0;display:none}
 .board-card.dragging{z-index:50;opacity:.97;resize:none;box-shadow:0 14px 36px rgba(37,47,124,.22)}
 .board-card::-webkit-resizer{background:transparent}
 .board-card .board-card-table-wrap{border-radius:10px}
