@@ -447,6 +447,12 @@ body{
 .sync-status.syncing .sync-dot{background:var(--lg-cyan);animation:sync-pulse 1s ease-in-out infinite}
 .sync-status.error .sync-dot{background:var(--lg-pink)}
 @keyframes sync-pulse{0%,100%{opacity:.3}50%{opacity:1}}
+.board-crumbs{display:inline-flex;align-items:center;gap:2px}
+.board-crumbs .crumb{font-size:13px;font-weight:500;color:var(--muted);background:transparent;border:none;cursor:pointer;font-family:inherit;padding:5px 6px;border-radius:6px;white-space:nowrap;max-width:160px;overflow:hidden;text-overflow:ellipsis}
+.board-crumbs .crumb:hover{color:var(--text);background:rgba(37,47,124,.06)}
+.board-crumbs .crumb-sep{color:var(--muted);font-size:13px;opacity:.6}
+body[data-skin="dark-neon"] .board-crumbs .crumb{color:#9ba8bf}
+body[data-skin="dark-neon"] .board-crumbs .crumb:hover{color:#f8fafc;background:rgba(255,75,216,.08)}
 .board-switcher{font-size:14px;font-weight:600;color:var(--text);background:transparent;border:none;cursor:pointer;font-family:inherit;padding:6px 10px;border-radius:7px;display:inline-flex;align-items:center;gap:6px;text-align:left;justify-content:flex-start;max-width:280px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .board-switcher::after{content:'▾';font-size:9px;color:var(--muted);margin-top:1px}
 .board-switcher:hover{background:rgba(37,47,124,.05)}
@@ -852,6 +858,8 @@ body[data-skin="dark-neon"] .tbl tbody td{background:rgba(255,255,255,.03);borde
 .row-notes-btn{background:transparent;border:none;color:var(--muted);font-size:12px;line-height:1;cursor:pointer;padding:0 2px;border-radius:4px;height:14px;vertical-align:middle;opacity:.7;filter:grayscale(1);transition:opacity .12s,filter .12s}
 .row-notes-btn:hover{opacity:1;filter:none;background:rgba(43,177,230,.10)}
 .row-notes-btn.has-notes{opacity:1;filter:none}
+.row-board-btn{background:transparent;border:none;font-size:14px;line-height:1;cursor:pointer;padding:0 4px;border-radius:4px;height:18px;vertical-align:middle;transition:transform .12s,background .12s;margin-left:2px;font-family:inherit}
+.row-board-btn:hover{background:rgba(37,47,124,.10);transform:scale(1.12)}
 .row-cut-btn{background:transparent;border:none;color:var(--muted);font-size:14px;line-height:1;cursor:pointer;padding:0 4px;border-radius:4px;height:18px;vertical-align:middle;opacity:.55;transition:opacity .12s,color .12s,background .12s;margin-left:2px;font-family:inherit}
 .row-cut-btn:hover{opacity:1;color:var(--lg-pink);background:rgba(236,5,140,.10)}
 /* When a row has notes, force the actions cell to stay visible so the indicator is always seen. */
@@ -1456,6 +1464,7 @@ document.getElementById('lgSignInBtn').addEventListener('click', () => {
 <div class="header-zone" id="headerZone"></div>
 <div class="header">
   <span class="logo"><span class="doll">🪆</span>Matryoshka</span>
+  <span id="boardCrumbs" class="board-crumbs"></span>
   <button class="title board-switcher" id="boardSwitcher" type="button"></button>
   <button id="matryoshkaHomeBtn" type="button" title="Sentinel — all boards at a glance" style="display:none">Sentinel</button>
   <button id="shortcutsBtn" type="button" title="Keyboard shortcuts (or press ?)" onclick="_kbToggleHelp()">Shortcuts</button>
@@ -3924,10 +3933,44 @@ function save(){
 function bid(){ return 'b_' + Math.random().toString(36).slice(2,9); }
 
 function listBoards(){
-  return Object.keys(state.boards || {}).map(id => ({
-    id, title: state.boards[id].title || 'Untitled board',
-    isActive: id === state.activeBoardId,
-  }));
+  // Only top-level boards appear in the switcher dropdown / Sentinel; nested
+  // boards (created from a row) are reached by clicking into their row.
+  return Object.keys(state.boards || {})
+    .filter(id => !state.boards[id].parent)
+    .map(id => ({
+      id, title: state.boards[id].title || 'Untitled board',
+      isActive: id === state.activeBoardId,
+    }));
+}
+
+// Blank board contents (same shape createBoard uses).
+function emptyBoardData(){
+  return { rows:{}, titles:{home:'Full Picture'}, headers:{}, colWidths:{}, userColumns:{},
+           colOrder:{}, boardOrder:[], userBoards:{}, activeTab:'home', bgColor:'', brandImage:'', hiddenCols:{} };
+}
+// Plain-text of a row's primary (title) column, for naming a nested board.
+function rowTitleText(tab, row){
+  const cols = getColumns(tab); const key = cols[0] && cols[0].key;
+  const tmp = document.createElement('div'); tmp.innerHTML = (key ? row[key] : '') || '';
+  return (tmp.textContent || '').trim();
+}
+// Matryoshka nesting: turn a row into its own board and drill into it. If the row
+// is already a board, just open it. The new board records its parent (board + row)
+// so the breadcrumb can show the full path back up.
+function makeRowIntoBoard(tab, rowId){
+  const arr = (state.rows && state.rows[tab]) || [];
+  const row = arr.find(r => r.id === rowId);
+  if(!row) return;
+  if(row.boardId && state.boards && state.boards[row.boardId]){ switchBoard(row.boardId); return; }
+  const id = bid();
+  state.boards[id] = {
+    title: rowTitleText(tab, row) || 'Untitled',
+    parent: { boardId: state.activeBoardId, tab, rowId },
+    data: emptyBoardData(),
+  };
+  row.boardId = id;
+  save();
+  switchBoard(id);
 }
 
 function switchBoard(id){
@@ -5150,12 +5193,48 @@ function renderBrandCorner(){
   });
 })();
 
+// Walk the nesting chain from a top-level board down to `id`, following each
+// board's .parent pointer (set when a row is turned into its own board).
+function boardAncestry(id){
+  const chain = [];
+  let cur = id, guard = 0;
+  while(cur && state.boards && state.boards[cur] && guard++ < 50){
+    chain.unshift(cur);
+    const p = state.boards[cur].parent;
+    cur = p && p.boardId;
+  }
+  return chain; // [topLevel, ..., id]
+}
+
 function renderBoardSwitcher(){
   const btn = document.getElementById('boardSwitcher');
+  const crumbs = document.getElementById('boardCrumbs');
   if(!btn) return;
   const cur = state.boards?.[state.activeBoardId];
   btn.style.display = '';
   btn.textContent = state.viewingMatryoshkaHome ? 'Sentinel' : (cur?.title || 'Untitled board');
+  // Breadcrumb: Sentinel › [ancestor boards] › (current board is the switcher itself).
+  if(crumbs){
+    crumbs.innerHTML = '';
+    if(!state.viewingMatryoshkaHome){
+      const sep = () => { const s = document.createElement('span'); s.className = 'crumb-sep'; s.textContent = '›'; crumbs.appendChild(s); };
+      const sentinel = document.createElement('button');
+      sentinel.type = 'button'; sentinel.className = 'crumb';
+      sentinel.textContent = 'Sentinel';
+      sentinel.addEventListener('click', e => { e.stopPropagation(); state.viewingMatryoshkaHome = true; save(); render(); });
+      crumbs.appendChild(sentinel);
+      sep();
+      // Ancestor boards between Sentinel and the current board (all but the last).
+      boardAncestry(state.activeBoardId).slice(0, -1).forEach(aid => {
+        const c = document.createElement('button');
+        c.type = 'button'; c.className = 'crumb';
+        c.textContent = state.boards[aid]?.title || 'Board';
+        c.addEventListener('click', e => { e.stopPropagation(); switchBoard(aid); });
+        crumbs.appendChild(c);
+        sep();
+      });
+    }
+  }
   if(!btn.dataset.wired){
     btn.dataset.wired = '1';
     btn.addEventListener('click', e => {
@@ -6351,6 +6430,16 @@ function renderRow(tab, row){
     });
     actTd.appendChild(notesBtn);
   }
+  // Matryoshka: if this row is (or becomes) its own board, show a doll to click into it.
+  if (row.boardId && state.boards && state.boards[row.boardId]){
+    tr.classList.add('row-is-board');
+    const enterBtn = document.createElement('button');
+    enterBtn.className = 'row-board-btn';
+    enterBtn.title = 'Open board';
+    enterBtn.textContent = '🪆';
+    enterBtn.addEventListener('click', e => { e.stopPropagation(); closeFloatingRowMenu(); switchBoard(row.boardId); });
+    actTd.appendChild(enterBtn);
+  }
   const cutBtn = document.createElement('button');
   cutBtn.className = 'row-cut-btn';
   cutBtn.title = 'Cut row';
@@ -6375,7 +6464,8 @@ function renderRow(tab, row){
   const indentButtons = `<button data-act="indent">Make sub-row</button>${curIndent > 0 ? '<button data-act="outdent">Make parent row</button>' : ''}<div class="sep"></div>`;
   const notesButton = `<button data-act="notes">${hasNotes ? 'Open notes' : 'Add notes'}</button><div class="sep"></div>`;
   const insertButton = `<button data-act="insert-below">+ Insert row below</button><div class="sep"></div>`;
-  const popContent = `${notesButton}${insertButton}${moveButtons}${moveButtons ? '<div class="sep"></div>' : ''}${indentButtons}${archiveSection}<button data-act="duplicate">Duplicate</button><button data-act="delete" class="danger">Delete</button>`;
+  const boardButton = `<button data-act="makeboard">${row.boardId ? '↳ Open as board' : '🪆 Make into board'}</button><div class="sep"></div>`;
+  const popContent = `${notesButton}${insertButton}${boardButton}${moveButtons}${moveButtons ? '<div class="sep"></div>' : ''}${indentButtons}${archiveSection}<button data-act="duplicate">Duplicate</button><button data-act="delete" class="danger">Delete</button>`;
   function runRowAction(act){
     if(act === 'delete'){ deleteRow(tab, row.id); }
     else if(act === 'duplicate'){ duplicateRow(tab, row.id); }
@@ -6383,6 +6473,7 @@ function renderRow(tab, row){
     else if(act === 'unarchive' && liveTarget){ moveRowToTab(row.id, tab, liveTarget); }
     else if(act && act.startsWith('move-')){ moveRowToTab(row.id, tab, act.slice(5)); }
     else if(act === 'notes'){ openNotesDrawer(tab, row); }
+    else if(act === 'makeboard'){ makeRowIntoBoard(tab, row.id); }
     else if(act === 'insert-below'){ insertRowAfter(tab, row.id); }
     else if(act === 'indent'){
       row.indent = Math.min(8, (row.indent | 0) + 1);
