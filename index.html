@@ -6099,7 +6099,7 @@ function renderMatryoshkaHome(canvas){
     head.className = 'matryoshka-card-head';
     const collapseLabel = collapsed ? '▸' : '▾';
     head.innerHTML = `
-      <span class="matryoshka-card-title">${escapeHtml(board.title || 'Untitled')}</span>
+      <span class="matryoshka-card-title">${escapeHtml(boardDisplayTitle(id) || 'Untitled')}</span>
       <span class="matryoshka-card-count">${doneCount}/${totalCount}</span>
       <button class="matryoshka-card-collapse" title="${collapsed ? 'Expand' : 'Collapse'}">${collapseLabel}</button>
       <button class="matryoshka-card-open btn-primary">Open →</button>
@@ -6117,7 +6117,7 @@ function renderMatryoshkaHome(canvas){
     });
     head.querySelector('.mc-hide-btn').addEventListener('click', e => {
       e.stopPropagation();
-      if(!confirm('Unpin "' + escapeHtml(board.title || id) + '" from Sentinel?')) return;
+      if(!confirm('Unpin "' + (boardDisplayTitle(id) || id) + '" from Sentinel?')) return;
       state.matryoshkaHome[id] = { ...opts, pinned: false };
       save(); render();
     });
@@ -6206,7 +6206,7 @@ function renderMatryoshkaHome(canvas){
       const board = state.boards[id];
       if(!board) return;
       const btn = document.createElement('button');
-      btn.textContent = '+ ' + escapeHtml(board.title || 'Untitled');
+      btn.textContent = '+ ' + (boardDisplayTitle(id) || 'Untitled');
       btn.style.cssText = 'font-size:11px;padding:3px 9px;color:var(--muted);border:1px dashed var(--border-strong);background:transparent;border-radius:6px;cursor:pointer';
       btn.addEventListener('click', () => {
         state.matryoshkaHome = state.matryoshkaHome || {};
@@ -6853,6 +6853,19 @@ function renderText(tab, row, key, val, placeholder){
   // restore from here instead of letting their text disappear.
   let lastTypedNonEmpty = val || '';
   let hasFocused = false;
+  // If this is the FIRST column of a row that is its own board, editing the cell
+  // renames the board. Keep the board's stored title in sync so the Sentinel card
+  // and every other board.title reference follow the rename (not just the live
+  // breadcrumb). Otherwise a rename shows in the breadcrumb but the Sentinel card
+  // keeps the old name.
+  const _firstColKey = (getColumns(tab)[0] || {}).key;
+  const _syncBoardTitle = (txt) => {
+    if(key !== _firstColKey || !row.boardId) return;
+    const b = state.boards && state.boards[row.boardId];
+    if(!b) return;
+    const plain = (txt || '').replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ').trim();
+    if(plain) b.title = plain;
+  };
   div.addEventListener('focus', () => {
     hasFocused = true;
     if(div.classList.contains('placeholder')){ div.innerHTML=''; div.classList.remove('placeholder'); }
@@ -6862,6 +6875,7 @@ function renderText(tab, row, key, val, placeholder){
     if (stored.trim()) {
       lastTypedNonEmpty = stored;
       row[key] = stored;
+      _syncBoardTitle(stored);
       div.classList.remove('placeholder');
     } else {
       row[key] = '';
@@ -6872,6 +6886,7 @@ function renderText(tab, row, key, val, placeholder){
     const stored = readCellValue(div);
     if (stored.trim()) {
       row[key] = stored;
+      _syncBoardTitle(stored);
       div.classList.remove('placeholder');
     } else if (hasFocused && lastTypedNonEmpty && lastTypedNonEmpty.trim()) {
       // Defensive: the user typed something this session and the cell read back
