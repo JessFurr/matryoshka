@@ -5897,6 +5897,14 @@ function renderMatryoshkaHome(canvas){
     const bRows   = isActive ? state.rows       : (board.data && board.data.rows       || {});
     const bOrder  = isActive ? state.boardOrder : (board.data && board.data.boardOrder || []);
     const bTitles = isActive ? state.titles     : (board.data && board.data.titles     || {});
+    const bUserBoards = isActive ? (state.userBoards || {}) : (board.data && board.data.userBoards || {});
+    // First (title) column key for a list in THIS board — custom lists carry their
+    // columns in the board's userBoards; built-ins come from SCHEMAS.
+    const firstColKeyOf = (listKey) => {
+      const ub = bUserBoards[listKey];
+      const cols = (ub && ub.columns) || (SCHEMAS[listKey] && SCHEMAS[listKey].columns) || [];
+      return cols[0] && cols[0].key;
+    };
 
     const allTaskRows = bOrder.flatMap(k => bRows[k] || []);
     const doneCount   = allTaskRows.filter(r => r.dateResolved || r.status === 'Done').length;
@@ -5953,6 +5961,7 @@ function renderMatryoshkaHome(canvas){
         listsWithTasks.forEach(listKey => {
           const rows = visibleRowsAfterCollapse(bRows[listKey] || []);
           const listTitle = bTitles[listKey] || listKey;
+          const firstKey = firstColKeyOf(listKey);
           const listHead = document.createElement('div');
           listHead.style.cssText = 'padding:5px 14px 3px;font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;border-top:1px solid var(--border)';
           listHead.textContent = listTitle;
@@ -5962,7 +5971,7 @@ function renderMatryoshkaHome(canvas){
             const taskDiv = document.createElement('div');
             taskDiv.className = 'mc-task' + (isDone ? ' mc-done' : '');
             taskDiv.style.setProperty('--mc-ind', Math.max(0, row.indent | 0));
-            const rawTask = row.task || row.matter || row.client || row.prospect || '';
+            const rawTask = (firstKey && row[firstKey]) || row.task || row.matter || row.client || row.prospect || '';
             const taskHtml = /<\/?[a-z][^>]*>/i.test(rawTask)
               ? sanitizeRowHtml(rawTask) : escapeHtml(rawTask);
             taskDiv.innerHTML = `<input type="checkbox" ${isDone?'checked':''}><span class="mc-task-text">${taskHtml}</span>`;
