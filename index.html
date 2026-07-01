@@ -6412,6 +6412,17 @@ function renderRow(tab, row){
       const wrap = document.createElement('div');
       wrap.className = 'first-cell-wrap';
       wrap.appendChild(cb);
+      // Matryoshka: if this row is its own board, a doll at the start of the line
+      // clicks into it.
+      if (row.boardId && state.boards && state.boards[row.boardId]){
+        tr.classList.add('row-is-board');
+        const enterBtn = document.createElement('button');
+        enterBtn.className = 'row-board-btn';
+        enterBtn.title = 'Open board';
+        enterBtn.textContent = '🪆';
+        enterBtn.addEventListener('click', e => { e.stopPropagation(); closeFloatingRowMenu(); switchBoard(row.boardId); });
+        wrap.appendChild(enterBtn);
+      }
       wrap.appendChild(inner);
       // Collapse arrow — only shown when this row has children below it (in the
       // natural state.rows order, not the sorted view).
@@ -6454,16 +6465,6 @@ function renderRow(tab, row){
       openNotesDrawer(tab, row);
     });
     actTd.appendChild(notesBtn);
-  }
-  // Matryoshka: if this row is (or becomes) its own board, show a doll to click into it.
-  if (row.boardId && state.boards && state.boards[row.boardId]){
-    tr.classList.add('row-is-board');
-    const enterBtn = document.createElement('button');
-    enterBtn.className = 'row-board-btn';
-    enterBtn.title = 'Open board';
-    enterBtn.textContent = '🪆';
-    enterBtn.addEventListener('click', e => { e.stopPropagation(); closeFloatingRowMenu(); switchBoard(row.boardId); });
-    actTd.appendChild(enterBtn);
   }
   const cutBtn = document.createElement('button');
   cutBtn.className = 'row-cut-btn';
