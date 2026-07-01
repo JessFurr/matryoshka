@@ -3973,7 +3973,6 @@ function makeRowIntoBoard(tab, rowId){
   if(row.boardId && state.boards && state.boards[row.boardId]){ switchBoard(row.boardId); return; }
   const client = rowTitleText(tab, row) || 'Untitled';       // 1st column (client name)
   const matter = rowColText(tab, row, 1);                    // 2nd column (matter)
-  const seedText = matter || client;
   const id = bid();
   state.boards[id] = {
     // title is a fallback; the breadcrumb derives the live title from the row's
@@ -3984,11 +3983,9 @@ function makeRowIntoBoard(tab, rowId){
   };
   row.boardId = id;
   switchBoard(id); // drill into the (empty) nested board
-  // Seed the sub-board with the MATTER — that's the work you drill in to break
-  // down (a list named for the matter, with the matter as its first row).
-  const listKey = makeUserList(seedText);
-  state.rows[listKey] = state.rows[listKey] || [];
-  state.rows[listKey].push({ id: rid(), task: seedText, dateAdded: todayISO(), dateResolved: '' });
+  // The FIRST column (client) is the board; the SECOND column (matter) becomes a
+  // sub-list WINDOW inside it — an empty list ready for its sub-tasks.
+  makeUserList(matter || client);
   state.activeTab = 'home';
   save();
   render();
