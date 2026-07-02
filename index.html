@@ -3830,6 +3830,10 @@ function runStateMigrations(s){
   if(s.viewingMatryoshkaHome === undefined) s.viewingMatryoshkaHome = false;
   if(!s.matryoshkaHomeMode) s.matryoshkaHomeMode = 'free';
   if(!s.matryoshkaHomeZoom) s.matryoshkaHomeZoom = 1;
+  // One-time: reset both canvas zoom levels to 100% so no view is left looking
+  // zoomed relative to another (they could drift apart before the zoom controls
+  // were separated per view). Users can re-zoom afterward; runs only once.
+  if(!s._zoomResetV1){ s.boardZoom = 1; s.matryoshkaHomeZoom = 1; s._zoomResetV1 = true; }
   if(!s.skin) s.skin = 'simple';
   s.titles = s.titles || {};
   if(!s.titles.home) s.titles.home = 'Full Picture';
