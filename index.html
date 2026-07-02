@@ -76,8 +76,15 @@ body[data-skin="dark-neon"] .header{
   border-bottom:1px solid rgba(255,75,216,.28);
   box-shadow:0 1px 24px rgba(255,75,216,.10);
 }
-body[data-skin="dark-neon"] .logo{background:none;width:auto;height:auto;}
-body[data-skin="dark-neon"] .logo-word{color:#f8fafc;-webkit-text-fill-color:#f8fafc;text-shadow:0 0 10px rgba(255,75,216,.45)}
+body[data-skin="dark-neon"] .logo{
+  background:url('assets/logo-dark-neon.png') left center / contain no-repeat;
+  width:160px;
+  height:38px;
+  color:transparent;
+  text-shadow:none;
+  letter-spacing:0;
+  flex-shrink:0;
+}
 body[data-skin="dark-neon"] .logo .doll{display:none}
 body[data-skin="dark-neon"] .board-switcher{color:#f8fafc}
 body[data-skin="dark-neon"] .board-switcher:hover{background:rgba(255,75,216,.08)}
@@ -267,12 +274,12 @@ body[data-skin="dark-neon"] .board-card{
   border-left:none;
 }
 /* Neon left accent per color class */
-body[data-skin="dark-neon"] .board-card.bc-internal{border:2px solid #ffd21f;box-shadow:0 0 0 1px rgba(255,210,31,.08),0 0 24px rgba(255,210,31,.08),0 18px 60px rgba(0,0,0,.45)}
-body[data-skin="dark-neon"] .board-card.bc-client{border:2px solid #ff4bd8;box-shadow:0 0 0 1px rgba(255,75,216,.1),0 0 24px rgba(255,75,216,.12),0 18px 60px rgba(0,0,0,.45)}
-body[data-skin="dark-neon"] .board-card.bc-bd{border:2px solid #00f5ff;box-shadow:0 0 0 1px rgba(0,245,255,.1),0 0 24px rgba(0,245,255,.12),0 18px 60px rgba(0,0,0,.45)}
-body[data-skin="dark-neon"] .board-card.bc-navy{border:2px solid #a855f7;box-shadow:0 0 0 1px rgba(168,85,247,.1),0 0 24px rgba(168,85,247,.12),0 18px 60px rgba(0,0,0,.45)}
+body[data-skin="dark-neon"] .board-card.bc-internal{border-top:2px solid #ffd21f;box-shadow:0 0 0 1px rgba(255,210,31,.08),0 0 24px rgba(255,210,31,.08),0 18px 60px rgba(0,0,0,.45)}
+body[data-skin="dark-neon"] .board-card.bc-client{border-top:2px solid #ff4bd8;box-shadow:0 0 0 1px rgba(255,75,216,.1),0 0 24px rgba(255,75,216,.12),0 18px 60px rgba(0,0,0,.45)}
+body[data-skin="dark-neon"] .board-card.bc-bd{border-top:2px solid #00f5ff;box-shadow:0 0 0 1px rgba(0,245,255,.1),0 0 24px rgba(0,245,255,.12),0 18px 60px rgba(0,0,0,.45)}
+body[data-skin="dark-neon"] .board-card.bc-navy{border-top:2px solid #a855f7;box-shadow:0 0 0 1px rgba(168,85,247,.1),0 0 24px rgba(168,85,247,.12),0 18px 60px rgba(0,0,0,.45)}
 body[data-skin="dark-neon"] .board-card-title{color:#f8fafc}
-body[data-skin="dark-neon"] .board-card-head{background:rgba(6,16,38,.95);border-bottom:1px solid rgba(255,75,216,.1)}
+body[data-skin="dark-neon"] .board-card-head{border-bottom:1px solid rgba(255,75,216,.1)}
 body[data-skin="dark-neon"] .board-card-count{color:#9ba8bf;background:rgba(255,75,216,.1);border-color:rgba(255,75,216,.25)}
 /* Board card controls (hover toolbar) */
 body[data-skin="dark-neon"] .board-card-controls{background:rgba(6,16,38,.95)!important;border-color:rgba(255,75,216,.28)!important;box-shadow:0 2px 16px rgba(0,0,0,.4)!important}
@@ -326,32 +333,28 @@ body[data-skin="80s-lite"]::before{
   background-color:#fefefe;
 }
 /* Gradient logo text */
-body[data-skin="80s-lite"] .logo-word{
+body[data-skin="80s-lite"] .logo{
   background:linear-gradient(120deg,#f97316 0%,#ec4899 50%,#8b5cf6 100%);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
   background-clip:text;
 }
-body[data-skin="80s-lite"] .logo-img{
-  filter:drop-shadow(0 0 6px rgba(236,72,153,.35)) drop-shadow(0 0 11px rgba(139,92,246,.20));
-}
 body[data-skin="80s-lite"] .logo .doll{
   -webkit-text-fill-color:initial;
   color:initial;
 }
-/* Board cards — white with colored neon-glow border */
+/* Board cards — white with colored top accent */
 body[data-skin="80s-lite"] .board-card{
   background:#ffffff;
   border:1px solid rgba(0,0,0,.08);
   border-left:none;
-  box-shadow:0 0 0 1px rgba(236,72,153,.10),0 0 24px rgba(236,72,153,.20),0 10px 34px rgba(139,92,246,.14);
 }
-body[data-skin="80s-lite"] .board-card.bc-internal{border:3px solid #f97316;box-shadow:0 0 0 1px rgba(249,115,22,.22),0 0 13px rgba(249,115,22,.42),0 0 30px rgba(249,115,22,.24),0 10px 34px rgba(0,0,0,.10);}
-body[data-skin="80s-lite"] .board-card.bc-client  {border:3px solid #06b6d4;box-shadow:0 0 0 1px rgba(6,182,212,.22),0 0 13px rgba(6,182,212,.42),0 0 30px rgba(6,182,212,.24),0 10px 34px rgba(0,0,0,.10);}
-body[data-skin="80s-lite"] .board-card.bc-bd      {border:3px solid #8b5cf6;box-shadow:0 0 0 1px rgba(139,92,246,.22),0 0 13px rgba(139,92,246,.42),0 0 30px rgba(139,92,246,.24),0 10px 34px rgba(0,0,0,.10);}
-body[data-skin="80s-lite"] .board-card.bc-navy    {border:3px solid #ec4899;box-shadow:0 0 0 1px rgba(236,72,153,.22),0 0 13px rgba(236,72,153,.42),0 0 30px rgba(236,72,153,.24),0 10px 34px rgba(0,0,0,.10);}
-/* Section cards — soft neon glow */
-body[data-skin="80s-lite"] .section-card{background:#ffffff;border-color:rgba(0,0,0,.08);box-shadow:0 0 16px rgba(236,72,153,.12),0 0 32px rgba(139,92,246,.08),0 10px 30px rgba(0,0,0,.08);}
+body[data-skin="80s-lite"] .board-card.bc-internal{border-top:3px solid #f97316;}
+body[data-skin="80s-lite"] .board-card.bc-client  {border-top:3px solid #06b6d4;}
+body[data-skin="80s-lite"] .board-card.bc-bd      {border-top:3px solid #8b5cf6;}
+body[data-skin="80s-lite"] .board-card.bc-navy    {border-top:3px solid #ec4899;}
+/* Section cards */
+body[data-skin="80s-lite"] .section-card{background:#ffffff;border-color:rgba(0,0,0,.08);}
 /* Sidebar active item — orange highlight */
 body[data-skin="80s-lite"] .tab-btn.active{
   background:rgba(249,115,22,.10);
@@ -370,20 +373,8 @@ body[data-skin="80s-lite"] #matryoshkaHomeBtn{
 body[data-skin="80s-lite"] #matryoshkaHomeBtn:hover{
   background:rgba(139,92,246,.08);
 }
-/* Matryoshka home cards — soft neon glow */
-/* Sentinel cards get the same cycling neon border + glow as the board cards. */
-body[data-skin="80s-lite"] .matryoshka-card{background:#ffffff;border:2px solid #ec4899;box-shadow:0 0 0 1px rgba(236,72,153,.18),0 0 13px rgba(236,72,153,.40),0 0 30px rgba(236,72,153,.22),0 8px 26px rgba(0,0,0,.08);}
-body[data-skin="80s-lite"] .matryoshka-card:nth-child(4n+1){border-color:#f97316;box-shadow:0 0 0 1px rgba(249,115,22,.18),0 0 13px rgba(249,115,22,.40),0 0 30px rgba(249,115,22,.22),0 8px 26px rgba(0,0,0,.08)}
-body[data-skin="80s-lite"] .matryoshka-card:nth-child(4n+2){border-color:#06b6d4;box-shadow:0 0 0 1px rgba(6,182,212,.18),0 0 13px rgba(6,182,212,.40),0 0 30px rgba(6,182,212,.22),0 8px 26px rgba(0,0,0,.08)}
-body[data-skin="80s-lite"] .matryoshka-card:nth-child(4n+3){border-color:#8b5cf6;box-shadow:0 0 0 1px rgba(139,92,246,.18),0 0 13px rgba(139,92,246,.40),0 0 30px rgba(139,92,246,.22),0 8px 26px rgba(0,0,0,.08)}
-body[data-skin="80s-lite"] .matryoshka-card:nth-child(4n+0){border-color:#ec4899;box-shadow:0 0 0 1px rgba(236,72,153,.18),0 0 13px rgba(236,72,153,.40),0 0 30px rgba(236,72,153,.22),0 8px 26px rgba(0,0,0,.08)}
-body[data-skin="80s-lite"] #matryoshkaHomeBtn{box-shadow:0 0 12px rgba(139,92,246,.30);}
-body[data-skin="80s-lite"] #matryoshkaHomeBtn.active{box-shadow:0 0 16px rgba(139,92,246,.55);}
-/* Active tab pill glows orange */
-body[data-skin="80s-lite"] .tab-btn.active{box-shadow:0 0 14px rgba(249,115,22,.40);}
-/* Stacked/Free toolbar active pill glows */
-body[data-skin="80s-lite"] #boardCanvasToolbar button.active,
-body[data-skin="80s-lite"] .board-canvas-toolbar button.active{box-shadow:0 0 14px rgba(249,115,22,.40);}
+/* Matryoshka home cards */
+body[data-skin="80s-lite"] .matryoshka-card{background:#ffffff;border-color:rgba(0,0,0,.08);}
 /* Toolbar */
 body[data-skin="80s-lite"] #boardCanvasToolbar button,
 body[data-skin="80s-lite"] .board-canvas-toolbar button{color:#6b7280;border-color:rgba(0,0,0,.12)}
@@ -446,9 +437,7 @@ body{
 .brand-icon{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:8px;cursor:pointer;transition:background .15s,transform .15s;text-decoration:none;background:transparent;border:none;padding:4px}
 .brand-icon:hover{background:rgba(0,0,0,.05);transform:translateY(-1px)}
 .brand-icon img{width:100%;height:100%;object-fit:contain}
-.logo{display:inline-flex;align-items:center;gap:8px;font-weight:700;color:var(--lg-blue);white-space:nowrap}
-.logo-img{height:40px;width:auto;display:block;flex-shrink:0}
-.logo-word{font-size:17px;letter-spacing:1px;text-transform:uppercase}
+.logo{font-size:13px;font-weight:700;color:var(--lg-blue);letter-spacing:1.2px;text-transform:uppercase;white-space:nowrap}
 .logo .doll{font-size:16px;margin-right:6px;vertical-align:middle}
 .title{font-size:14px;font-weight:600;color:var(--text);flex:1}
 .sync-status{display:inline-flex;align-items:center;gap:6px;font-size:11px;letter-spacing:.2px;color:var(--muted);background:transparent;border:1px solid transparent;padding:4px 9px;border-radius:7px;cursor:pointer;font-family:inherit;flex-shrink:0;transition:all .12s}
@@ -458,98 +447,6 @@ body{
 .sync-status.syncing .sync-dot{background:var(--lg-cyan);animation:sync-pulse 1s ease-in-out infinite}
 .sync-status.error .sync-dot{background:var(--lg-pink)}
 @keyframes sync-pulse{0%,100%{opacity:.3}50%{opacity:1}}
-/* Account + sync status pinned to the top-right corner, out of the header flow. */
-#accountBtn{position:fixed;top:8px;right:14px;z-index:121;width:30px;height:30px;border-radius:50%;border:1px solid var(--border-strong,rgba(37,47,124,.2));background:var(--card,#fff);color:var(--text);cursor:pointer;font-size:14px;line-height:1;padding:0;display:flex;align-items:center;justify-content:center;font-family:inherit;box-shadow:0 2px 8px rgba(37,47,124,.12)}
-#accountBtn:hover{border-color:var(--lg-blue)}
-body.lg-gated #accountBtn{display:none}
-body[data-skin="dark-neon"] #accountBtn{background:rgba(6,16,38,.9);color:#f8fafc;border-color:rgba(255,75,216,.3)}
-#syncStatus{position:fixed;top:9px;right:52px;z-index:120;background:var(--header-bg,#fff)}
-body.lg-gated #syncStatus{display:none}
-/* Shortcuts + Skins pinned to the bottom-right corner, above the brand corner. */
-.corner-dock{position:fixed;right:16px;bottom:16px;z-index:95;display:flex;gap:8px;align-items:flex-end}
-body.lg-gated .corner-dock{display:none}
-/* Zoom control, lower-left corner */
-/* Sits just to the right of the 92px sidebar so it never covers Share board / New list. */
-.zoom-dock{position:fixed;left:104px;bottom:16px;z-index:95;display:flex;background:var(--card,#fff);border:1px solid var(--border-strong,rgba(37,47,124,.16));border-radius:999px;padding:2px;box-shadow:0 2px 8px rgba(37,47,124,.12)}
-body.lg-gated .zoom-dock{display:none}
-.zoom-dock button{border:none;background:transparent;color:var(--muted);cursor:pointer;font-family:inherit;font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px;line-height:1;min-width:30px}
-.zoom-dock button:hover{color:var(--text);background:rgba(37,47,124,.07)}
-.zoom-dock button[data-z="reset"]{font-variant-numeric:tabular-nums;min-width:46px}
-body[data-skin="dark-neon"] .zoom-dock{background:rgba(6,16,38,.9);border-color:rgba(255,75,216,.22)}
-body[data-skin="dark-neon"] .zoom-dock button{color:#9ba8bf}
-body[data-skin="dark-neon"] .zoom-dock button:hover{color:#f8fafc;background:rgba(255,75,216,.10)}
-.corner-dock > button{font-size:11px;font-weight:600;padding:5px 9px;border-radius:8px;border:1px solid var(--border-strong,rgba(37,47,124,.16));background:var(--card,#fff);color:var(--muted);cursor:pointer;font-family:inherit;white-space:nowrap;box-shadow:0 2px 8px rgba(37,47,124,.10)}
-.corner-dock > button:hover{color:var(--text);border-color:var(--lg-blue)}
-.hmt-priority.active{background:#f5b301 !important;color:#3a2f00 !important;border-color:#f5b301 !important}
-/* Sentinel Priority view */
-.sentinel-priority{max-width:640px;margin:8px auto 0;padding:8px 4px 40px}
-.sp-head{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:700;color:var(--text);padding:6px 10px 12px}
-.sp-star{color:#f5b301}
-.sp-group{margin-bottom:14px}
-.sp-group-head{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);padding:4px 10px}
-.sp-item{display:flex;align-items:center;gap:10px;padding:9px 12px;margin:4px 0;background:var(--card,#fff);border:1px solid var(--border,rgba(0,0,0,.08));border-radius:10px;cursor:pointer;transition:background .1s,transform .1s;box-shadow:0 1px 3px rgba(37,47,124,.05)}
-.sp-item:hover{background:rgba(245,179,1,.08);transform:translateX(2px)}
-.sp-label{flex:1;font-size:14px;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.sp-list{font-size:11px;color:var(--muted);background:rgba(0,0,0,.05);padding:2px 8px;border-radius:8px;white-space:nowrap;flex-shrink:0}
-.sp-empty{text-align:center;color:var(--muted);font-size:14px;padding:60px 20px;line-height:1.7}
-/* Priority strip pinned at the top of Sentinel */
-.sentinel-priority-strip{padding:10px 12px 0}
-.sp-strip-card{background:var(--card,#fff);border:1px solid var(--border-strong,rgba(37,47,124,.16));border-radius:12px;padding:10px 14px 12px;box-shadow:0 2px 10px rgba(37,47,124,.08);max-height:220px;overflow:auto}
-.sp-strip-head{font-size:14px;font-weight:700;color:var(--text);margin-bottom:8px}
-.sp-strip-body{display:flex;flex-wrap:wrap;gap:10px 18px}
-.sp-strip-group{flex:0 1 260px;min-width:200px}
-body[data-skin="dark-neon"] .sp-strip-card{background:rgba(6,16,38,.92);border-color:rgba(255,75,216,.25)}
-body[data-skin="dark-neon"] .sp-strip-head{color:#f8fafc}
-.sp-empty span{font-size:12px}
-body[data-skin="dark-neon"] .sp-item{background:rgba(6,16,38,.9);border-color:rgba(255,75,216,.18)}
-body[data-skin="dark-neon"] .sp-label,body[data-skin="dark-neon"] .sp-head{color:#f8fafc}
-body[data-skin="dark-neon"] .corner-dock > button{background:rgba(6,16,38,.9);color:#9ba8bf;border-color:rgba(255,75,216,.22)}
-body[data-skin="dark-neon"] .corner-dock > button:hover{color:#f8fafc;border-color:#ff4bd8}
-/* Shortcuts as a symbol button */
-.corner-dock > button.ct-symbol{font-size:15px;padding:5px 9px;line-height:1}
-/* Skins stacked directly under the paint palette 🎨 */
-.paint-stack{display:flex;flex-direction:column;align-items:center;gap:6px}
-.skins-btn{font-size:10px;font-weight:600;padding:4px 8px;border-radius:8px;border:1px solid var(--border-strong,rgba(37,47,124,.16));background:var(--card,#fff);color:var(--muted);cursor:pointer;font-family:inherit;white-space:nowrap;box-shadow:0 2px 8px rgba(37,47,124,.10)}
-.skins-btn:hover{color:var(--text);border-color:var(--lg-blue)}
-body[data-skin="dark-neon"] .skins-btn{background:rgba(6,16,38,.9);color:#9ba8bf;border-color:rgba(255,75,216,.22)}
-body[data-skin="dark-neon"] .skins-btn:hover{color:#f8fafc;border-color:#ff4bd8}
-/* Full Matryoshka map (skeleton) */
-#skeletonBtn{font-size:12px;font-weight:600;color:var(--muted);background:transparent;border:1px solid transparent;cursor:pointer;font-family:inherit;padding:5px 10px;border-radius:7px;white-space:nowrap}
-#skeletonBtn:hover{color:var(--text);background:rgba(37,47,124,.06)}
-/* Transparent, non-blocking layer — the map pops up from the bottom-right and
-   does NOT black out the background. */
-.skeleton-overlay{position:fixed;inset:0;z-index:400;display:none;pointer-events:none;background:transparent}
-.skeleton-overlay.open{display:block}
-.skeleton-panel{position:fixed;right:16px;bottom:92px;pointer-events:auto;background:var(--card,#fff);border:1px solid var(--border-strong,rgba(37,47,124,.16));border-radius:14px;box-shadow:0 18px 50px rgba(37,47,124,.28);width:min(380px,90vw);max-height:70vh;display:flex;flex-direction:column;overflow:hidden}
-.skeleton-head{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--border,rgba(0,0,0,.08))}
-.skeleton-title{font-size:14px;font-weight:700;color:var(--text)}
-.skeleton-close{background:transparent;border:none;font-size:15px;color:var(--muted);cursor:pointer;border-radius:6px;padding:2px 7px;line-height:1;font-family:inherit}
-.skeleton-close:hover{background:rgba(0,0,0,.06);color:var(--text)}
-.skeleton-tree{padding:10px 12px 16px;overflow:auto}
-.sk-node{display:flex;align-items:center;gap:7px;padding:5px 8px;border-radius:8px;cursor:pointer;font-size:13px;color:var(--text);transition:background .1s;border:1px solid transparent}
-.sk-node:hover{background:rgba(37,47,124,.07)}
-.sk-node.sk-current{background:rgba(43,177,230,.14);border-color:rgba(43,177,230,.35);font-weight:600}
-.sk-node.sk-board{font-weight:600}
-.sk-node.sk-list{color:var(--muted);font-size:12px}
-.sk-node.sk-sentinel{font-weight:700}
-.sk-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;background:var(--lg-blue,#252f7c)}
-.sk-node.sk-list .sk-dot{width:5px;height:5px;background:var(--muted)}
-.sk-children{margin-left:14px;border-left:1px dashed var(--border-strong,rgba(0,0,0,.14));padding-left:8px}
-body[data-skin="dark-neon"] .skeleton-panel{background:#0b1226;border:1px solid rgba(255,75,216,.25)}
-body[data-skin="dark-neon"] .skeleton-title,body[data-skin="dark-neon"] .sk-node{color:#f8fafc}
-body[data-skin="dark-neon"] .sk-node:hover{background:rgba(255,75,216,.10)}
-body[data-skin="dark-neon"] #skeletonBtn{color:#9ba8bf}
-body[data-skin="dark-neon"] #skeletonBtn:hover{color:#f8fafc;background:rgba(255,75,216,.08)}
-.board-up-btn{font-size:12px;font-weight:600;color:var(--lg-blue);background:rgba(37,47,124,.07);border:1px solid rgba(37,47,124,.14);cursor:pointer;font-family:inherit;padding:4px 10px;border-radius:7px;white-space:nowrap;margin-right:2px}
-.board-up-btn:hover{background:rgba(37,47,124,.13)}
-body[data-skin="dark-neon"] .board-up-btn{color:#00f5ff;background:rgba(0,245,255,.08);border-color:rgba(0,245,255,.25)}
-body[data-skin="dark-neon"] .board-up-btn:hover{background:rgba(0,245,255,.16)}
-.board-crumbs{display:inline-flex;align-items:center;gap:2px}
-.board-crumbs .crumb{font-size:13px;font-weight:500;color:var(--muted);background:transparent;border:none;cursor:pointer;font-family:inherit;padding:5px 6px;border-radius:6px;white-space:nowrap;max-width:160px;overflow:hidden;text-overflow:ellipsis}
-.board-crumbs .crumb:hover{color:var(--text);background:rgba(37,47,124,.06)}
-.board-crumbs .crumb-sep{color:var(--muted);font-size:13px;opacity:.6}
-body[data-skin="dark-neon"] .board-crumbs .crumb{color:#9ba8bf}
-body[data-skin="dark-neon"] .board-crumbs .crumb:hover{color:#f8fafc;background:rgba(255,75,216,.08)}
 .board-switcher{font-size:14px;font-weight:600;color:var(--text);background:transparent;border:none;cursor:pointer;font-family:inherit;padding:6px 10px;border-radius:7px;display:inline-flex;align-items:center;gap:6px;text-align:left;justify-content:flex-start;max-width:280px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .board-switcher::after{content:'▾';font-size:9px;color:var(--muted);margin-top:1px}
 .board-switcher:hover{background:rgba(37,47,124,.05)}
@@ -557,10 +454,8 @@ body[data-skin="dark-neon"] .board-crumbs .crumb:hover{color:#f8fafc;background:
 #matryoshkaHomeBtn{font-size:12px;font-weight:600;color:var(--muted);background:transparent;border:none;cursor:pointer;font-family:inherit;padding:5px 10px;border-radius:7px;white-space:nowrap;letter-spacing:.01em}
 #matryoshkaHomeBtn:hover{background:rgba(37,47,124,.05);color:var(--text)}
 #matryoshkaHomeBtn.active{color:var(--lg-blue);background:rgba(37,47,124,.07)}
-#skinPickerBtn,#shortcutsBtn{font-size:12px;font-weight:500;color:var(--muted);background:transparent;border:none;cursor:pointer;font-family:inherit;padding:5px 10px;border-radius:7px;white-space:nowrap}
-#skinPickerBtn:hover,#shortcutsBtn:hover{background:rgba(37,47,124,.05);color:var(--text)}
-body[data-skin="dark-neon"] #shortcutsBtn{color:#9ba8bf}
-body[data-skin="dark-neon"] #shortcutsBtn:hover{color:#f8fafc;background:rgba(255,75,216,.08)}
+#skinPickerBtn{font-size:12px;font-weight:500;color:var(--muted);background:transparent;border:none;cursor:pointer;font-family:inherit;padding:5px 10px;border-radius:7px;white-space:nowrap}
+#skinPickerBtn:hover{background:rgba(37,47,124,.05);color:var(--text)}
 #skinPickerBtn.open{color:var(--text);background:rgba(37,47,124,.06)}
 .skin-menu{position:fixed;background:var(--card);border:1px solid var(--border-strong);border-radius:12px;box-shadow:0 10px 32px rgba(37,47,124,.18);padding:10px;z-index:9999;min-width:200px}
 .skin-menu-title{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;padding:2px 8px 8px}
@@ -593,7 +488,7 @@ button:hover{border-color:var(--lg-blue)}
 
 /* ── LAYOUT ── */
 .layout{display:flex;align-items:flex-start;min-height:calc(100vh - 47px)}
-.sidebar{position:sticky;top:47px;flex-shrink:0;width:92px;background:transparent;border-right:none;padding:14px 0;height:calc(100vh - 47px);overflow-y:hidden;z-index:1;display:flex;flex-direction:column}
+.sidebar{position:sticky;top:47px;flex-shrink:0;width:92px;background:var(--sidebar-bg);border-right:1px solid var(--border);padding:14px 0;height:calc(100vh - 47px);overflow-y:hidden;z-index:1;display:flex;flex-direction:column}
 .sidebar .tab-nav{flex:1;min-height:0;overflow-y:auto}
 .sidebar-foot{margin-top:auto;padding:10px 8px 14px;display:flex;flex-direction:column;gap:8px;align-items:stretch;border-top:1px solid var(--border)}
 .sidebar-add-list{font-size:11px;padding:7px 8px;border-radius:8px;line-height:1.1;white-space:normal;text-align:center}
@@ -640,33 +535,25 @@ body.view-home .board-canvas{min-height:calc(100vh - 47px)}
 .section-resize{position:absolute;right:0;bottom:0;width:18px;height:18px;cursor:nwse-resize;z-index:6;background:linear-gradient(135deg,transparent 50%,var(--lg-cyan) 50%,var(--lg-cyan) 60%,transparent 60%,transparent 70%,var(--lg-cyan) 70%,var(--lg-cyan) 80%,transparent 80%);opacity:0;border-bottom-right-radius:10px;transition:opacity .15s}
 .section-card:hover .section-resize{opacity:.4}
 .section-resize:hover{opacity:1}
-.section-card .section-head{display:flex;align-items:center;gap:10px;padding:7px 16px 6px;background:transparent;margin-bottom:0}
+.section-card .section-head{display:flex;align-items:center;gap:10px;padding:14px 16px 8px;background:transparent;margin-bottom:0}
 .section-icon{flex-shrink:0;width:10px;height:10px;border-radius:50%;background:var(--text)}
 .section-icon.c-internal{background:var(--lg-yellow)}
 .section-icon.c-client{background:var(--lg-pink)}
 .section-icon.c-bd{background:var(--lg-cyan)}
 .section-icon.c-navy{background:var(--lg-blue)}
 .section-icon.c-white{background:#fff;box-shadow:0 0 0 1.5px var(--lg-blue) inset}
-.section-title{font-size:18px;font-weight:700;color:var(--text);letter-spacing:.1px;flex:0 1 auto;max-width:60%;outline:none;border-radius:4px;padding:1px 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border-bottom:none}
+.section-title{font-size:18px;font-weight:600;color:var(--text);letter-spacing:.1px;flex:0 1 auto;max-width:60%;outline:none;border-radius:4px;padding:1px 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border-bottom:none}
 .section-title:hover{background:rgba(37,47,124,.04)}
 .section-title:focus{background:rgba(255,255,255,.9);box-shadow:inset 0 0 0 1px var(--lg-cyan);border-bottom:none}
 .section-actions{margin-left:auto;display:flex;gap:8px;opacity:1}
 .section-actions button{font-size:11px;padding:3px 9px;color:var(--muted);border:1px dashed var(--border-strong);background:transparent}
 .section-actions button:hover{color:var(--text);border-style:solid;border-color:var(--lg-blue)}
 /* Table inside section-card flows seamlessly — no card border / shadow / radius */
-.section-card .tbl{border:none !important;border-radius:0 !important;box-shadow:none !important;background:transparent !important;width:100% !important;table-layout:fixed;min-width:0}
-.section-card #tableHost{padding:0 12px}
-/* Fit the section table to the card no matter the stored column widths: ignore
-   the per-column px widths (they can be huge from a past resize and push the row
-   off the side, crowding the end buttons), give the end column a compact fixed
-   size, and let the single task column take the rest. */
-.section-card .tbl thead th{width:auto !important}
-.section-card .tbl th.col-handle{width:0 !important;padding:0 !important}
-.section-card .tbl th.col-actions{width:150px !important}
-.section-card #tableHost{overflow-x:hidden}
+.section-card .tbl{border:none !important;border-radius:0 !important;box-shadow:none !important;background:transparent !important;width:100%}
+.section-card #tableHost{padding:0}
 
 /* ── TABLE ── */
-.tbl{width:auto;min-width:100%;background:transparent;border:none;border-radius:10px;border-collapse:separate;table-layout:fixed}
+.tbl{width:auto;min-width:100%;background:var(--card);border:1px solid rgba(0,0,0,.05);border-radius:10px;border-collapse:collapse;table-layout:fixed;box-shadow:0 1px 2px rgba(37,47,124,.04),0 6px 18px rgba(37,47,124,.06)}
 .board-card-table-wrap{overflow-x:auto;overflow-y:visible}
 .board-card-table-wrap .tbl{border-radius:0;border:none}
 .tbl thead th{font-size:12.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#1a1a1a;text-align:left;padding:8px 12px;background:rgba(37,47,124,.03);border-bottom:1px solid var(--border);outline:none}
@@ -711,15 +598,10 @@ body.view-home .board-canvas{min-height:calc(100vh - 47px)}
 .tbl thead th.th-dragging{opacity:.4;background:rgba(43,177,230,.10)}
 .tbl thead th.col-drop-before{box-shadow:inset 4px 0 0 0 var(--lg-cyan)}
 .tbl thead th.col-drop-after{box-shadow:inset -4px 0 0 0 var(--lg-cyan)}
-/* Full-height column resize: the hit area spans the whole table (height set in
-   JS per render), so you can grab a column boundary anywhere down the list, not
-   just in the header. The line itself is invisible until you hover the column or
-   the boundary, then a thin guide runs the full height. */
-.col-resize{position:absolute;top:-5px;right:-9px;transform:translateX(50%);width:11px;height:calc(100% + 10px);cursor:col-resize;z-index:30;display:flex;justify-content:center;pointer-events:auto;touch-action:none}
-.col-resize::after{content:'';width:2px;height:100%;background:rgba(37,47,124,.09);border-radius:2px;transition:background .12s,width .12s}
-.tbl thead th:hover .col-resize::after{background:rgba(43,177,230,.45)}
-.col-resize:hover::after{background:var(--lg-cyan);width:3px}
-.col-resize.resizing::after{background:var(--lg-cyan);width:3px}
+.col-resize{position:absolute;top:-5px;right:0;transform:translateX(50%);width:18px;height:calc(100% + 10px);cursor:col-resize;z-index:50;display:flex;align-items:center;justify-content:center;pointer-events:auto;touch-action:none}
+.col-resize::after{content:'';width:4px;height:100%;background:rgba(43,177,230,.55);border-radius:2px;transition:background .12s}
+.col-resize:hover::after{background:var(--lg-cyan)}
+.col-resize.resizing::after{background:var(--lg-cyan)}
 /* don't let table-wrap overflow hide the resize grip */
 .board-card-table-wrap{overflow-y:visible}
 .tbl td.cell-check{padding:0;text-align:center;vertical-align:middle}
@@ -824,43 +706,10 @@ body.view-home .board-canvas{min-height:calc(100vh - 47px)}
 .tbl tbody tr.row-drop-above{box-shadow:inset 0 2px 0 0 var(--lg-cyan)}
 .tbl tbody tr.drop-below,
 .tbl tbody tr.row-drop-below{box-shadow:inset 0 -2px 0 0 var(--lg-cyan)}
-/* ── Keyboard row cursor ── the focused line when navigating with the keyboard.
-   Left accent bar + soft row tint so it reads clearly without a heavy outline. */
-/* Keyboard cursor row — clearly highlighted. Accent goes on the first VISIBLE
-   cell (the drag-handle cell is hidden, so :first-child would be invisible). */
-.tbl tbody tr.row-kbcursor > td{background:rgba(43,177,230,.20)}
-.tbl tbody tr.row-kbcursor > td.cell-first-data{box-shadow:inset 4px 0 0 0 var(--lg-cyan)}
-body[data-skin="dark-neon"] .tbl tbody tr.row-kbcursor > td{background:rgba(0,245,255,.18)}
-body[data-skin="dark-neon"] .tbl tbody tr.row-kbcursor > td.cell-first-data{box-shadow:inset 4px 0 0 0 #00f5ff}
-/* ── Keyboard shortcuts cheat-sheet (toggled with ?) ── */
-.kbhelp-bg{position:fixed;inset:0;background:rgba(37,47,124,.35);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);z-index:10000;display:flex;align-items:center;justify-content:center;font-family:inherit}
-.kbhelp{background:var(--card,#fff);color:var(--text,#1a1a1a);border-radius:14px;padding:20px 24px 22px;max-width:540px;width:90%;max-height:85vh;overflow:auto;box-shadow:0 24px 70px rgba(37,47,124,.30)}
-.kbhelp h3{margin:0 0 4px;font-size:16px;font-weight:700}
-.kbhelp .kbhelp-sub{margin:0 0 14px;font-size:12px;color:var(--muted,#6f6b62)}
-.kbhelp table{width:100%;border-collapse:collapse;font-size:13px}
-.kbhelp td{padding:6px 8px;border-bottom:1px solid var(--border,rgba(0,0,0,.08));vertical-align:middle}
-.kbhelp td.kb-keys{white-space:nowrap;width:1%}
-.kbhelp kbd{display:inline-block;min-width:16px;text-align:center;padding:2px 7px;margin:0 1px;border-radius:6px;background:rgba(37,47,124,.07);border:1px solid var(--border-strong,rgba(37,47,124,.18));box-shadow:0 1px 0 rgba(37,47,124,.12);font:600 12px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--text,#1a1a1a)}
-.kbhelp .kbhelp-foot{margin-top:14px;font-size:11.5px;color:var(--muted,#6f6b62);text-align:right}
 /* AGGRESSIVE row compaction — force everything tight */
-.tbl{line-height:1.1 !important;border-spacing:0 3px}
-/* ── Rows as draggable bars ── each row is a separated, filled bar you can grab
-   anywhere to drag (see onRowMouseDown). */
-.tbl tbody tr{cursor:grab}
-.tbl tbody tr.row-dragging{cursor:grabbing;opacity:.4}
-.tbl tbody td{background:#faf6f1;border-top:1px solid rgba(70,55,30,.05);border-bottom:1px solid rgba(70,55,30,.05);box-shadow:0 1px 2px rgba(70,55,30,.04)}
-/* Round the visible ends of the bar. The drag-handle cell is the real :first-child
-   but it's hidden, so round the first/last VISIBLE cells by class instead. */
-.tbl tbody tr td.cell-first-data{border-left:1px solid rgba(70,55,30,.06);border-top-left-radius:12px;border-bottom-left-radius:12px}
-.tbl tbody tr td.cell-actions{border-right:1px solid rgba(70,55,30,.06);border-top-right-radius:12px;border-bottom-right-radius:12px}
-.tbl tbody tr:hover td{background:#f3ece2}
-.tbl tbody tr.row-done > td{background:#efe7db}
-body[data-skin="dark-neon"] .tbl tbody td{background:rgba(255,255,255,.03);border-top-color:rgba(255,75,216,.10);border-bottom-color:rgba(255,75,216,.10);box-shadow:none}
+.tbl{line-height:1.15 !important;border-spacing:0}
 .tbl thead{display:none}
-/* Single-column checklist: drop the left drag-handle column (the whole row drags)
-   and the column headers, so each row reads as a clean task bar. */
-.tbl td.cell-handle,.tbl th.col-handle{display:none}
-/* Section (opened list) shows the column headers on hover so columns can be seen/managed. */
+/* Sub-page tables show the thead, styled subtly so it reads as part of the card header */
 .section-card .tbl thead{display:table-header-group;opacity:0;transition:opacity .18s}
 .section-card:hover .tbl thead{opacity:1}
 .section-card .tbl thead th{font-size:10px;padding:5px 9px;background:transparent;color:#1a1a1a;font-weight:700;letter-spacing:.7px;text-transform:uppercase;border-bottom:none}
@@ -868,7 +717,7 @@ body[data-skin="dark-neon"] .tbl tbody td{background:rgba(255,255,255,.03);borde
 .tbl tbody tr{line-height:1.15 !important;height:auto}
 .tbl tbody tr:not(:last-child){border-bottom:none}
 .tbl tbody tr:hover{background:rgba(37,47,124,.025)}
-.tbl td{padding:2px 9px !important;vertical-align:middle;font-size:14px;color:var(--text);line-height:1.2 !important;height:auto}
+.tbl td{padding:8px 9px !important;vertical-align:middle;font-size:14px;color:var(--text);line-height:1.3 !important;height:auto}
 /* Row indentation — Tab / Shift+Tab inside the task cell adjusts the indent.
    The checkbox sits INSIDE the first data cell (in a flex wrapper) so a single
    padding-left shifts both the checkbox and the text right as one unit. */
@@ -878,7 +727,7 @@ body[data-skin="dark-neon"] .tbl tbody td{background:rgba(255,255,255,.03);borde
 .tbl tbody tr .cell-first-data{padding-left:9px !important}
 /* Indent (--ind is set by the row renderer; 0..8). Visually nests sub-rows. */
 .tbl tbody tr .cell-first-data .first-cell-wrap{padding-left:calc(var(--ind, 0) * 22px)}
-.tbl tbody tr .cell-first-data .first-cell-wrap{display:flex;align-items:center;gap:3px;width:100%}
+.tbl tbody tr .cell-first-data .first-cell-wrap{display:flex;align-items:center;gap:8px;width:100%}
 .tbl tbody tr .cell-first-data .first-cell-wrap > .row-check{flex-shrink:0;margin-left:0;margin-right:0}
 .tbl tbody tr .cell-first-data .first-cell-wrap > .cell-edit{flex:0 1 auto;min-width:0;text-align:left}
 .tbl tbody tr .cell-first-data .first-cell-wrap > .row-collapse-arrow{flex:0 0 auto;margin-left:6px}
@@ -886,7 +735,7 @@ body[data-skin="dark-neon"] .tbl tbody td{background:rgba(255,255,255,.03);borde
 .tbl td.cell-handle{cursor:grab;color:var(--muted);text-align:center;padding:0 4px;user-select:none;font-size:12px;line-height:1;opacity:0;transition:opacity .12s}
 .tbl td.cell-handle:hover{color:var(--text);background:rgba(43,177,230,.10)}
 .tbl td.cell-handle:active{cursor:grabbing}
-.tbl td.cell-actions{padding:0;text-align:center;line-height:1;opacity:.45;transition:opacity .12s}
+.tbl td.cell-actions{padding:0;text-align:center;line-height:1;opacity:0;transition:opacity .12s}
 .tbl tbody tr:hover td.cell-handle,
 .tbl tbody tr:hover td.cell-actions,
 .tbl tbody tr.row-menu-open td.cell-handle,
@@ -936,15 +785,6 @@ body[data-skin="dark-neon"] .tbl tbody td{background:rgba(255,255,255,.03);borde
 .pop.pop-multi .pop-multi-row{display:flex;align-items:center;gap:8px;width:100%;text-align:left;padding:5px 8px;border:none;background:transparent;font:inherit;font-size:12.5px;color:var(--text);border-radius:5px;cursor:pointer}
 .pop.pop-multi .pop-multi-row:hover{background:rgba(43,177,230,.12)}
 .pop.pop-multi .pop-check{width:14px;flex-shrink:0;color:var(--lg-cyan);font-weight:700;font-size:13px}
-.pop.pop-multi .pop-person-spacer{flex:1}
-.pop.pop-multi .pop-person-del{opacity:0;border:none;background:transparent;color:var(--muted);cursor:pointer;font-size:15px;line-height:1;padding:0 4px;border-radius:4px;flex-shrink:0}
-.pop.pop-multi .pop-multi-row:hover .pop-person-del{opacity:.55}
-.pop.pop-multi .pop-person-del:hover{opacity:1;color:var(--lg-pink);background:rgba(236,5,140,.10)}
-.pop.pop-multi .pop-add-person{display:flex;gap:5px;padding:5px 6px}
-.pop.pop-multi .pop-add-person input{flex:1;min-width:0;border:1px solid var(--border-strong);border-radius:5px;padding:5px 8px;font:inherit;font-size:12px;text-transform:uppercase;outline:none;color:var(--text)}
-.pop.pop-multi .pop-add-person input:focus{border-color:var(--lg-cyan);box-shadow:0 0 0 2px rgba(43,177,230,.18)}
-.pop.pop-multi .pop-add-person button{border:1px solid var(--border-strong);background:#fff;border-radius:5px;padding:0 11px;font:inherit;font-size:15px;font-weight:700;color:var(--lg-blue);cursor:pointer;flex-shrink:0}
-.pop.pop-multi .pop-add-person button:hover{background:rgba(43,177,230,.1)}
 .pop.pop-multi .pop-sep{height:1px;background:rgba(0,0,0,.10);margin:4px 0}
 .pop.pop-multi .pop-clear{display:block;width:100%;text-align:left;padding:5px 8px;border:none;background:transparent;font:inherit;font-size:11.5px;color:var(--muted);border-radius:5px;cursor:pointer}
 .pop.pop-multi .pop-clear:hover{background:rgba(0,0,0,.04);color:var(--text)}
@@ -965,31 +805,6 @@ body[data-skin="dark-neon"] .tbl tbody td{background:rgba(255,255,255,.03);borde
 .row-notes-btn{background:transparent;border:none;color:var(--muted);font-size:12px;line-height:1;cursor:pointer;padding:0 2px;border-radius:4px;height:14px;vertical-align:middle;opacity:.7;filter:grayscale(1);transition:opacity .12s,filter .12s}
 .row-notes-btn:hover{opacity:1;filter:none;background:rgba(43,177,230,.10)}
 .row-notes-btn.has-notes{opacity:1;filter:none}
-/* Owner + Status relocated to the end of the row. Always visible, single row. */
-.row-endmeta{display:inline-flex;align-items:center;gap:5px;margin-right:5px;vertical-align:middle}
-.tbl tbody tr td.cell-actions:has(.row-endmeta){opacity:1}
-/* Keep the whole row-end group on one line so it never wraps/crowds. */
-.tbl td.cell-actions{white-space:nowrap}
-/* Clock progress icon */
-.status-clock{background:transparent;border:none;padding:0;margin:0;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;line-height:1;vertical-align:middle;transition:transform .12s}
-.status-clock:hover{transform:scale(1.15)}
-.row-star-btn{background:transparent;border:none;color:var(--muted);font-size:15px;line-height:1;cursor:pointer;padding:0 2px;border-radius:4px;height:16px;vertical-align:middle;transition:transform .12s,color .12s;font-family:inherit}
-.row-star-btn:hover{transform:scale(1.2);color:#f5b301}
-.row-star-btn.is-priority{color:#f5b301}
-/* Keep the actions cell visible on rows flagged priority (like has-notes). */
-.tbl tbody tr td.cell-actions:has(.row-star-btn.is-priority){opacity:1}
-.row-board-doll{font-size:20px;line-height:1;vertical-align:middle;margin:0}
-.row-board-btn{background:transparent;border:none;color:var(--lg-blue,#252f7c);font-size:13px;line-height:1;cursor:pointer;padding:0 1px;border-radius:4px;height:18px;vertical-align:middle;transition:transform .12s,background .12s;margin:0;font-family:inherit}
-/* Small breathing room before the task text so the icons don't jam into it. */
-.tbl tbody tr.row-is-board .cell-first-data .first-cell-wrap > .cell-edit{margin-left:5px}
-.row-board-btn:hover{background:rgba(37,47,124,.12);transform:scale(1.15)}
-.row-board-expand{color:var(--muted,#8a8577)}
-.board-preview-row > td{padding:0 0 8px 0;background:transparent}
-.board-preview{margin:2px 10px 4px 38px;padding:8px 12px;background:rgba(37,47,124,.045);border-left:2px solid rgba(37,47,124,.35);border-radius:0 8px 8px 0;font-size:12px}
-.board-preview-list{font-weight:600;color:var(--lg-blue,#252f7c);margin:4px 0 2px;font-size:11px;letter-spacing:.02em}
-.board-preview-list:first-child{margin-top:0}
-.board-preview-item{color:#4a463d;padding:1px 0 1px 10px;line-height:1.5}
-.board-preview-muted{color:var(--muted,#a8a293);font-style:italic}
 .row-cut-btn{background:transparent;border:none;color:var(--muted);font-size:14px;line-height:1;cursor:pointer;padding:0 4px;border-radius:4px;height:18px;vertical-align:middle;opacity:.55;transition:opacity .12s,color .12s,background .12s;margin-left:2px;font-family:inherit}
 .row-cut-btn:hover{opacity:1;color:var(--lg-pink);background:rgba(236,5,140,.10)}
 /* When a row has notes, force the actions cell to stay visible so the indicator is always seen. */
@@ -1040,50 +855,15 @@ body[data-skin="dark-neon"] .tbl tbody td{background:rgba(255,255,255,.03);borde
 /* ── HOME (free-form canvas of boards) ── */
 .board-canvas{position:relative;width:100%;min-height:calc(100vh - 140px)}
 /* Stacked view: boards flow vertically full-width, no drag, no overlap */
-/* Stacked view = sideways columns: lists sit side by side and scroll horizontally. */
-.board-canvas.stacked{display:flex;flex-direction:row;flex-wrap:nowrap;gap:16px;padding:16px 20px;min-height:0;overflow-x:auto;align-items:flex-start}
-.board-canvas.stacked .board-card{position:relative !important;left:auto !important;top:auto !important;flex:0 0 340px;width:340px !important;height:auto !important;max-height:calc(100vh - 160px);z-index:auto !important}
+.board-canvas.stacked{display:flex;flex-direction:column;gap:16px;padding:16px 20px;min-height:0}
+.board-canvas.stacked .board-card{position:relative !important;left:auto !important;top:auto !important;width:auto !important;height:auto !important;z-index:auto !important}
 .board-canvas.stacked .board-card .board-card-head{cursor:default}
 .board-canvas.stacked .board-card .board-resize{display:none}
 .board-canvas.stacked .board-card .board-drag,
 .board-canvas.stacked .board-card .board-head-spacer{cursor:default}
-/* Stacked (kanban) cards are a fixed narrow width. Fit the whole table to the
-   card so nothing runs off the side, and reserve a solid share for the title
-   column so long text always wraps to the next line at a readable width instead
-   of collapsing to a sliver. The remaining columns split the rest and wrap too. */
-.board-canvas.stacked .board-card .tbl{table-layout:fixed;width:100% !important;min-width:0}
-/* Kanban cards don't need column headers; the (invisible) header row's
-   sort/delete/resize controls otherwise impose a hard min-width per column. */
-.board-canvas.stacked .board-card .tbl thead{display:none}
-/* Reserve the bulk of the card for the title; other columns share the rest. */
-.board-canvas.stacked .board-card .tbl tbody td.cell-first-data{width:58% !important}
-/* Tighten cell padding so columns fit comfortably. (!important beats the base
-   `.tbl td` padding, which is itself !important.) */
-.board-canvas.stacked .board-card .tbl td{padding-left:5px !important;padding-right:5px !important}
-.board-canvas.stacked .board-card .board-card-table-wrap{overflow-x:hidden}
-.board-canvas.stacked .board-card .cell-edit{white-space:normal;overflow:visible;text-overflow:clip;word-break:break-word}
-/* Chips/dates are short atomic values — wrap at spaces if needed, but never
-   mid-character (no break-word), so they don't become 1-char-wide columns. */
-.board-canvas.stacked .board-card .status,
-.board-canvas.stacked .board-card .who,
-.board-canvas.stacked .board-card .due,
-.board-canvas.stacked .board-card .auto-date{white-space:normal !important;height:auto}
-/* Grid view: lists auto-arrange in a tidy responsive grid — no manual
-   positioning, no resize, no overlap. Reorder by dragging a list's header. */
-.board-canvas.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:16px;padding:16px 20px;min-height:0;align-items:start;align-content:start}
-.board-canvas.grid .board-card{position:relative !important;left:auto !important;top:auto !important;width:auto !important;height:auto !important;z-index:auto !important;max-height:calc(100vh - 160px)}
-.board-canvas.grid .board-card-table-wrap{overflow:auto;max-height:calc(100vh - 260px)}
-.board-canvas.grid .board-card .board-resize,
-.board-canvas.grid .board-card .board-card-grip,
-.board-canvas.grid .board-card .board-card-controls .ctl.drag{display:none}
-.board-canvas.grid .board-card-head{cursor:grab}
-.board-canvas.grid .board-card-head:active{cursor:grabbing}
-.board-canvas.grid .board-card.card-dragging{opacity:.4}
-.board-canvas.grid .board-card.card-drop-before{box-shadow:inset 4px 0 0 0 var(--lg-cyan)}
-.board-canvas.grid .board-card.card-drop-after{box-shadow:inset -4px 0 0 0 var(--lg-cyan)}
 
 /* Home view-mode toggle pill (top-right of the canvas area) */
-.home-mode-toggle{position:fixed;top:10px;right:158px;z-index:115;display:flex;align-items:center;gap:6px;font-family:inherit}
+.home-mode-toggle{position:fixed;top:10px;right:95px;z-index:115;display:flex;align-items:center;gap:6px;font-family:inherit}
 .home-mode-toggle .hmt-toggle{display:flex;background:#fff;border:1px solid var(--border-strong,rgba(37,47,124,.22));border-radius:999px;padding:2px;box-shadow:0 2px 8px rgba(37,47,124,.10)}
 .home-mode-toggle .hmt-toggle button{border:none;background:transparent;padding:5px 12px;border-radius:999px;font-size:11.5px;font-weight:600;color:var(--muted,#6b6f86);cursor:pointer;letter-spacing:.2px;transition:all .12s}
 .home-mode-toggle .hmt-toggle button:hover{color:var(--text,#252f7c)}
@@ -1108,8 +888,9 @@ body:not(.view-home) .home-mode-toggle{display:none}
 .tbl tbody td:has(> .due){text-align:center}
 
 /* ── BRAND CORNER (bottom-right: BG color picker + uploaded logo) ── */
-.corner-dock .bcb{width:30px;height:30px;border-radius:50%;border:1px solid var(--border-strong);background:#fff;cursor:pointer;font-size:14px;line-height:1;padding:0;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(37,47,124,.10)}
-.corner-dock .bcb:hover{border-color:var(--lg-blue)}
+.brand-corner{position:fixed;bottom:18px;right:18px;z-index:90;display:flex;align-items:flex-end;gap:8px;font-family:inherit}
+.brand-corner .bcb{width:30px;height:30px;border-radius:50%;border:1px solid var(--border-strong);background:#fff;cursor:pointer;font-size:14px;line-height:1;padding:0;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(37,47,124,.10)}
+.brand-corner .bcb:hover{border-color:var(--lg-blue)}
 .brand-image{cursor:pointer;border-radius:8px;background:transparent;display:flex;align-items:center;justify-content:center}
 .brand-image img{max-width:140px;max-height:90px;object-fit:contain;display:block}
 .brand-image-empty{padding:6px 12px;font-size:11px;color:var(--muted);background:rgba(255,255,255,.85);border:1px dashed var(--border-strong);border-radius:8px;letter-spacing:.3px;cursor:pointer;font-weight:600}
@@ -1118,18 +899,6 @@ body:not(.view-home) .home-mode-toggle{display:none}
 .bcb-pop{position:fixed;background:#fff;border:1px solid var(--border-strong);border-radius:9px;box-shadow:0 8px 24px rgba(37,47,124,.16);padding:5px;z-index:90;min-width:160px;font-family:inherit}
 .bcb-pop-item{display:block;width:100%;text-align:left;padding:8px 11px;border:none;background:transparent;cursor:pointer;font-family:inherit;font-size:13px;color:var(--text);border-radius:6px}
 .bcb-pop-item:hover{background:rgba(43,177,230,.12)}
-.bcb-pop-sep{height:1px;background:var(--border,rgba(0,0,0,.08));margin:4px 6px}
-/* Shared indicators — lists (badge) and rows (small ⇧) */
-.shared-badge{display:inline-flex;align-items:center;font-size:10px;font-weight:700;letter-spacing:.3px;color:var(--lg-cyan,#06b6d4);background:rgba(6,182,212,.12);border:1px solid rgba(6,182,212,.35);border-radius:999px;padding:2px 8px;margin-left:8px;white-space:nowrap;flex-shrink:0;vertical-align:middle}
-.row-shared-badge{color:var(--lg-cyan,#06b6d4);font-size:12px;line-height:1;padding:0 3px;vertical-align:middle}
-body[data-skin="dark-neon"] .shared-badge{color:#00f5ff;background:rgba(0,245,255,.12);border-color:rgba(0,245,255,.4)}
-.account-menu{position:fixed;z-index:400;background:var(--card,#fff);border:1px solid var(--border-strong,rgba(37,47,124,.16));border-radius:10px;box-shadow:0 12px 30px rgba(37,47,124,.22);padding:8px;min-width:200px;font-family:inherit}
-.account-menu .am-who{font-size:12px;color:var(--muted);padding:6px 8px 8px;line-height:1.5}
-.account-menu .am-who b{color:var(--text);font-size:13px;word-break:break-all}
-.account-menu .am-item{display:block;width:100%;text-align:left;padding:8px 10px;border:none;background:transparent;border-radius:7px;cursor:pointer;font-family:inherit;font-size:13px;color:var(--text)}
-.account-menu .am-item:hover{background:rgba(43,177,230,.12)}
-body[data-skin="dark-neon"] .account-menu{background:#0b1226;border-color:rgba(255,75,216,.25)}
-body[data-skin="dark-neon"] .account-menu .am-who b,body[data-skin="dark-neon"] .account-menu .am-item{color:#f8fafc}
 
 /* ── DASHBOARD (top-level shell) ── */
 body.view-dashboard .header,
@@ -1182,25 +951,14 @@ body.view-dashboard .back-to-dash{display:none}
 .tile-dialog-actions button{padding:7px 14px;border-radius:7px;font-size:12.5px;font-weight:600;cursor:pointer;font-family:inherit;border:1px solid var(--border-strong);background:#fff;color:var(--text)}
 .tile-dialog-actions .save{background:var(--lg-blue);color:#fff;border-color:var(--lg-blue)}
 .tile-dialog-actions .save:hover{background:#1a2360}
-/* Hedwig-style window: free-positioned card, native browser resize (resize:both),
-   header is the drag handle. boardResizeObserver persists the dragged size. */
-.board-card{position:absolute;box-sizing:border-box;width:520px;min-width:300px;min-height:150px;max-width:1100px;max-height:calc(100vh - 110px);background:#fff;border:1px solid rgba(37,47,124,.14);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 1px 3px rgba(37,47,124,.05),0 8px 24px rgba(37,47,124,.09);resize:both}
-.board-canvas .board-card .board-card-table-wrap{flex:1;min-height:0;overflow:auto;scrollbar-width:none;-ms-overflow-style:none;padding-left:12px;padding-right:12px}
-.board-canvas .board-card .board-card-table-wrap::-webkit-scrollbar{width:0;height:0;display:none}
-.board-card.dragging{z-index:50;opacity:.97;resize:none;box-shadow:0 14px 36px rgba(37,47,124,.22)}
-.board-card::-webkit-resizer{display:none}
+.board-card{position:absolute;box-sizing:border-box;width:560px;background:#fff;border:1px solid rgba(37,47,124,.05);border-radius:10px;overflow:visible;display:flex;flex-direction:column;box-shadow:0 1px 2px rgba(37,47,124,.04),0 6px 20px rgba(37,47,124,.07);min-width:280px;min-height:120px}
 .board-card .board-card-table-wrap{border-radius:10px}
 .board-card-table-wrap{flex:1;overflow-x:auto;overflow-y:visible;padding-top:2px}
 .board-resize{position:absolute;right:0;bottom:0;width:18px;height:18px;cursor:nwse-resize;z-index:6;background:linear-gradient(135deg,transparent 50%,var(--lg-cyan) 50%,var(--lg-cyan) 60%,transparent 60%,transparent 70%,var(--lg-cyan) 70%,var(--lg-cyan) 80%,transparent 80%);opacity:0;border-bottom-right-radius:10px;transition:opacity .15s}
 .board-resize:hover{opacity:1}
 .board-card.dragging{z-index:50;opacity:.97;box-shadow:0 14px 36px rgba(37,47,124,.20);cursor:grabbing}
 /* Title row matches the sublist subpage's section-head: colored dot + bold title, padded. */
-.board-card-head{display:flex;align-items:center;gap:10px;padding:8px 18px;background:#fafaf7;border-bottom:1px solid rgba(37,47,124,.10);margin-bottom:0;flex-shrink:0;cursor:grab}
-.board-card.dragging .board-card-head{cursor:grabbing}
-.board-canvas.grid .board-card-head,.board-canvas.stacked .board-card-head{cursor:grab}
-.board-card-min{background:transparent;border:none;color:var(--muted);cursor:pointer;font-size:12px;line-height:1;padding:3px 7px;border-radius:5px;font-family:inherit;flex-shrink:0;opacity:.6;transition:opacity .12s,background .12s,color .12s}
-.board-card-head:hover .board-card-min{opacity:1}
-.board-card-min:hover{color:var(--text);background:rgba(37,47,124,.1)}
+.board-card-head{display:flex;align-items:center;gap:10px;padding:14px 16px 8px;background:transparent;margin-bottom:0}
 /* Collapsed/minimized board: removed from the canvas entirely; lives in #lgBoardDock at
    the bottom of the viewport as a clickable chip. Click the chip to restore. */
 .board-card.board-collapsed{display:none !important}
@@ -1254,13 +1012,12 @@ body.view-dashboard .back-to-dash{display:none}
 .board-card-head .board-card-add,
 .board-card-head .board-card-open{display:none}
 /* Colored stripe on the left edge of each card */
-/* Board color outlines the whole window (all four sides), not just the left edge. */
-.board-card{border:2px solid var(--border)}
-.board-card.bc-internal{border-color:var(--lg-yellow)}
-.board-card.bc-client{border-color:var(--lg-pink)}
-.board-card.bc-bd{border-color:var(--lg-cyan)}
-.board-card.bc-navy{border-color:var(--lg-blue)}
-.board-card.bc-white{border-color:rgba(37,47,124,.18)}
+.board-card{border-left:3px solid var(--border)}
+.board-card.bc-internal{border-left-color:var(--lg-yellow)}
+.board-card.bc-client{border-left-color:var(--lg-pink)}
+.board-card.bc-bd{border-left-color:var(--lg-cyan)}
+.board-card.bc-navy{border-left-color:var(--lg-blue)}
+.board-card.bc-white{border-left-color:#fff;box-shadow:inset 3px 0 0 0 var(--lg-blue),0 1px 3px rgba(37,47,124,.06),0 4px 14px rgba(37,47,124,.04)}
 /* Board-name tab sitting flush at the top of the card (fully inside, not clipped) */
 /* Manila-folder tab: title sits ABOVE the card top edge with rounded top corners and a
    flat bottom that visually merges into the card. The card's overflow is `visible`, and
@@ -1304,7 +1061,7 @@ body.view-dashboard .back-to-dash{display:none}
 .board-card.bc-navy .board-card-controls .ctl:hover{color:var(--lg-blue);background:rgba(37,47,124,.20)}
 .board-card.dragging .board-card-head{cursor:grabbing}
 .board-card-head .tab-icon{width:10px;height:10px;opacity:1;flex-shrink:0}
-.board-card-title{font-size:18px;font-weight:700;color:var(--text);letter-spacing:.1px;flex:0 1 auto;max-width:70%;outline:none;border-radius:4px;padding:1px 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.board-card-title{font-size:18px;font-weight:600;color:var(--text);letter-spacing:.1px;flex:0 1 auto;max-width:70%;outline:none;border-radius:4px;padding:1px 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .board-head-spacer{flex:1;align-self:stretch;cursor:grab;min-width:20px}
 .board-head-spacer:active{cursor:grabbing}
 .board-card-title:hover{background:rgba(37,47,124,.04)}
@@ -1318,10 +1075,6 @@ body.view-dashboard .back-to-dash{display:none}
 .board-card:hover .board-card-add{opacity:1}
 .board-card-add:hover{color:var(--text);border-color:var(--lg-blue);background:#fff}
 .board-card .tbl{border:none;border-radius:0;background:transparent}
-/* Free & grid board cards: fit the table to the card and let columns size to
-   content so the row-end buttons (owner · clock · star · ✕) always sit at the
-   visible right edge instead of scrolling off. */
-.board-canvas:not(.stacked) .board-card .tbl{table-layout:auto;width:100% !important;min-width:0}
 .board-card .tbl thead{display:table-header-group;opacity:0;transition:opacity .18s}
 .board-card:hover .tbl thead{opacity:1}
 .board-card .tbl thead th{font-size:10px;padding:5px 9px;background:transparent;color:#1a1a1a;font-weight:700;letter-spacing:.7px;text-transform:uppercase;border-bottom:none}
@@ -1624,58 +1377,34 @@ window.__lgAuth = {
 };
 document.getElementById('lgSignInBtn').addEventListener('click', () => {
   const c = window.__lgAuth.client;
-  if (c) c.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: location.origin + location.pathname } });
+  if (!c) return;
+  // Persist any pending invite token so it survives the OAuth redirect
+  const pendingInvite = new URLSearchParams(location.search).get('invite');
+  if (pendingInvite) localStorage.setItem('lg_pending_invite', pendingInvite);
+  c.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: location.origin + location.pathname } });
 });
 </script>
 
 <div class="header-zone" id="headerZone"></div>
 <div class="header">
-  <span class="logo">
-    <img class="logo-img" src="assets/logo.png" alt="" onerror="this.style.display='none'">
-    <span class="logo-word">Matryoshka</span>
-  </span>
-  <button id="boardUpBtn" type="button" class="board-up-btn" style="display:none">↑ Up</button>
-  <span id="boardCrumbs" class="board-crumbs"></span>
+  <span class="logo"><span class="doll">🪆</span>Matryoshka</span>
   <button class="title board-switcher" id="boardSwitcher" type="button"></button>
-  <button id="matryoshkaHomeBtn" type="button" title="Sentinel — all boards at a glance" style="display:none">Sentinel</button>
+  <button id="matryoshkaHomeBtn" type="button" title="Matryoshka Home — all boards at a glance">Home</button>
+  <button id="skinPickerBtn" type="button" title="Change skin">Skins</button>
+  <button class="sync-status" id="syncStatus" type="button" title="Click to pull the latest from the cloud">
+    <span class="sync-dot"></span>
+    <span class="sync-label">syncing…</span>
+  </button>
 </div>
-
-<!-- Full Matryoshka skeleton / map -->
-<div class="skeleton-overlay" id="skeletonOverlay" onclick="if(event.target===this)closeSkeleton()">
-  <div class="skeleton-panel" role="dialog" aria-label="Matryoshka map">
-    <div class="skeleton-head">
-      <span class="skeleton-title">🪆 Matryoshka map</span>
-      <button class="skeleton-close" type="button" onclick="closeSkeleton()" title="Close">✕</button>
-    </div>
-    <div class="skeleton-tree" id="skeletonTree"></div>
-  </div>
-</div>
-
-<!-- Account + sync status pinned to the top-right corner -->
-<button id="accountBtn" type="button" title="Account" onclick="toggleAccountMenu(event)">👤</button>
-<button class="sync-status" id="syncStatus" type="button" title="Click to pull the latest from the cloud">
-  <span class="sync-dot"></span>
-  <span class="sync-label">syncing…</span>
-</button>
 
 <div id="dashboardView"></div>
 
-<!-- Single bottom-right dock: map, shortcuts, background color, skins, logo.
-     One container so the controls never overlap each other. -->
-<div class="corner-dock" id="cornerDock">
-  <button id="skeletonBtn" type="button" title="Full Matryoshka map — jump to any board or list" onclick="toggleSkeleton()">🪆 Map</button>
-  <button id="shortcutsBtn" class="ct-symbol" type="button" title="Keyboard shortcuts (or press ?)" onclick="_kbToggleHelp()">⌨️</button>
-  <button class="bcb" id="bgColorBtn" title="Background &amp; skins">🎨</button>
-  <div class="brand-image" id="brandImage"></div>
+<!-- Brand corner: background color picker + uploaded logo image, bottom-right -->
+<div class="brand-corner" id="brandCorner">
+  <button class="bcb" id="bgColorBtn" title="Background color">🎨</button>
   <input type="color" id="bgColorInput" hidden>
+  <div class="brand-image" id="brandImage"></div>
   <input type="file" id="brandImageInput" accept="image/*" hidden>
-</div>
-
-<!-- Zoom control, pinned to the lower-left corner. Controls the current view. -->
-<div class="zoom-dock" id="zoomDock">
-  <button data-z="out" type="button" title="Zoom out">−</button>
-  <button data-z="reset" type="button" title="Reset to 100%">100%</button>
-  <button data-z="in" type="button" title="Zoom in">+</button>
 </div>
 
 <div class="layout">
@@ -1749,6 +1478,12 @@ const SCHEMA_VERSION = 1;
 // Initialize real Supabase client. If the CDN script hasn't loaded (offline, blocked),
 // bail gracefully — the app still works locally, just won't sync.
 let supa = null;
+// Persist invite token immediately on page load before any auth redirect can strip it
+(function preservePendingInvite(){
+  const token = new URLSearchParams(location.search).get('invite');
+  if (token) localStorage.setItem('lg_pending_invite', token);
+})();
+
 (function initSupabase(){
   if (typeof supabase === 'undefined'){
     console.warn('Supabase CDN script not loaded — running in offline/local-only mode.');
@@ -1783,14 +1518,6 @@ let supa = null;
   supa = client;
 })();
 
-// Preserve any invite token through the OAuth redirect so it survives the round-trip.
-// Must happen at page-load time — by the time bootAppForSession runs, the URL may
-// already be the clean post-OAuth URL with no ?invite= param.
-(function _saveInviteToken(){
-  const token = new URLSearchParams(location.search).get('invite');
-  if (token) sessionStorage.setItem('matryoshka_pending_invite', token);
-})();
-
 // Auth gate: returns true if we should proceed with the rest of the app.
 // Hides the tracker UI until a valid (allowlisted) session exists.
 function withTimeout(promise, ms, label){
@@ -1806,14 +1533,65 @@ async function validateSessionAndReveal(session){
   document.body.classList.remove('lg-gated');
   document.body.classList.add('lg-authed');
   window.__lgAuth.hideLogin();
-  try { renderAccount(); } catch(_){}
   return true;
+}
+
+// ── Yjs CRDT layer (Phase 1 — mirror only, existing sync still active) ──────
+let ydoc = null, yrows, ytitles, yheaders, ycolWidths, yuserColumns, ycolOrder, yboardOrder;
+
+window.initYjs = async function initYjs() {
+  if (ydoc) return; // already initialized
+  let Y;
+  try {
+    Y = await import('https://cdn.jsdelivr.net/npm/yjs@13/+esm');
+    console.log('[Yjs] module loaded', Object.keys(Y));
+  } catch(e) {
+    console.error('[Yjs] import failed', e);
+    return;
+  }
+  ydoc = new Y.Doc();
+  window.ydoc = ydoc;
+  yrows        = ydoc.getMap('rows');
+  ytitles      = ydoc.getMap('titles');
+  yheaders     = ydoc.getMap('headers');
+  ycolWidths   = ydoc.getMap('colWidths');
+  yuserColumns = ydoc.getMap('userColumns');
+  ycolOrder    = ydoc.getMap('colOrder');
+  yboardOrder  = ydoc.getArray('boardOrder');
+  // Observer — logs remote changes (Phase 1: observe only, no UI driven from here yet)
+  ydoc.on('update', (update, origin) => {
+    if (origin === 'local') return;
+    console.log('[Yjs] remote update received, size=', update.byteLength);
+  });
+  console.log('[Yjs] initialized');
+}
+
+// Mirror the current state into the Y.Doc after every save()
+function mirrorStateToYdoc() {
+  if (!ydoc) return;
+  ydoc.transact(() => {
+    const titles = state.titles || {};
+    for (const [k, v] of Object.entries(titles)) ytitles.set(k, v);
+    const order = state.boardOrder || [];
+    if (JSON.stringify(yboardOrder.toArray()) !== JSON.stringify(order)) {
+      yboardOrder.delete(0, yboardOrder.length);
+      yboardOrder.insert(0, order);
+    }
+    for (const [ymap, src] of [
+      [yrows, state.rows], [yheaders, state.headers],
+      [ycolWidths, state.colWidths], [yuserColumns, state.userColumns],
+      [ycolOrder, state.colOrder],
+    ]) {
+      for (const [k, v] of Object.entries(src || {})) ymap.set(k, JSON.stringify(v));
+    }
+  });
 }
 
 // React to auth state changes. Supabase fires INITIAL_SESSION on init with the current
 // session (or null), then SIGNED_IN/SIGNED_OUT/TOKEN_REFRESHED as they happen.
 let appBooted = false;
 async function bootAppForSession(session){
+  console.log('bootAppForSession called, appBooted=', appBooted, 'session=', !!session);
   if (!await validateSessionAndReveal(session)) return;
   if (appBooted) return;
   appBooted = true;
@@ -1826,39 +1604,23 @@ async function bootAppForSession(session){
   const found = await pullStateFromCloud();
   if (found) render(); else pushStateToCloud();
   subscribeRealtime();
+  await initYjs();
   // Load sharing state (boards shared with me, boards I've shared)
   await loadSharingState();
   subscribeSharedBoards();
-
-  // Check for an invite token — either in the URL (already-logged-in path) or in
-  // sessionStorage (post-OAuth path: token was saved before the OAuth redirect wiped it).
-  let inviteToken = new URLSearchParams(location.search).get('invite');
+  // If there's an invite token in the URL or saved from before OAuth redirect, redeem it
+  const inviteToken = new URLSearchParams(location.search).get('invite') || localStorage.getItem('lg_pending_invite');
+  console.log('bootAppForSession: inviteToken=', inviteToken, 'url=', location.search, 'stored=', localStorage.getItem('lg_pending_invite'));
   if (inviteToken) {
-    // Clean the URL immediately regardless of redemption outcome
+    localStorage.removeItem('lg_pending_invite');
+    const redeemed = await redeemInviteToken(inviteToken);
+    // Clean the token from the URL without a reload
     const clean = location.pathname + (location.search.replace(/[?&]invite=[^&]*/,'').replace(/^&/,'?') || '');
     history.replaceState(null, '', clean);
-    sessionStorage.removeItem('matryoshka_pending_invite');
-  } else {
-    inviteToken = sessionStorage.getItem('matryoshka_pending_invite') || null;
-    if (inviteToken) sessionStorage.removeItem('matryoshka_pending_invite');
-  }
-  if (inviteToken) {
-    const redeemed = await redeemInviteToken(inviteToken);
     if (redeemed) {
-      // Reload sharing state so _sharedWithMe is populated, then navigate
-      await loadSharingState();
+      // Find the board we just got access to and switch to it
       const board = Object.values(_sharedWithMe)[0];
       if (board) { switchToSharedBoard(board.boardKey, board.ownerId); return; }
-      // Invite accepted but no shared data came back. Show the exact reason so
-      // we can tell an RLS denial from "owner hasn't written any rows yet".
-      const d = window._sharingDiag || {};
-      let why;
-      if (d.sharedBoardsErr) why = 'The database blocked reading the shared board (row-level-security policy): ' + d.sharedBoardsErr;
-      else if (!d.sharedBoardsCount) why = 'No shared board rows exist yet — the owner needs to open the board and click "Share board" again to publish it (and the shared_boards table/policies must be set up).';
-      else why = 'The shared data loaded but did not match this invite.';
-      alert('You joined the shared board, but its contents could not be loaded.\n\n' + why + '\n\n(Diagnostic: ' + JSON.stringify(d) + ')');
-    } else {
-      alert('This invite link could not be opened. It may have expired, or sharing isn’t fully set up yet on the database. Ask the person who shared it to re-send the link.');
     }
   }
   if (typeof maybeSeedMechanicsListOnce === 'function') maybeSeedMechanicsListOnce();
@@ -1938,7 +1700,6 @@ if (supa) {
       cachedAccessToken = null;
       window.__lgAuth.user = null;
       document.body.classList.remove('lg-authed');
-      try { renderAccount(); } catch(_){}
       window.__lgAuth.showLogin();
     }
   });
@@ -1954,57 +1715,6 @@ function setSyncStatus(s){
   syncStatus = s;
   if(s === 'synced') lastSyncedAt = Date.now();
   updateSyncStatusUI();
-}
-// Account button: shows the signed-in user's initial (or 👤 when signed out) and
-// opens a small menu to sign in / sign out. Gives a persistent, visible way to
-// manage accounts — the login overlay only appears when fully signed out.
-function renderAccount(){
-  const btn = document.getElementById('accountBtn');
-  if(!btn) return;
-  const u = window.__lgAuth && window.__lgAuth.user;
-  if(u && u.email){
-    btn.textContent = (u.email[0] || '?').toUpperCase();
-    btn.title = 'Signed in as ' + u.email;
-  } else {
-    btn.textContent = '👤';
-    btn.title = 'Sign in';
-  }
-}
-function closeAccountMenu(){ const m = document.getElementById('accountMenuFloat'); if(m) m.remove(); }
-function toggleAccountMenu(e){
-  if(e) e.stopPropagation();
-  if(document.getElementById('accountMenuFloat')){ closeAccountMenu(); return; }
-  const btn = document.getElementById('accountBtn');
-  const u = window.__lgAuth && window.__lgAuth.user;
-  const menu = document.createElement('div');
-  menu.id = 'accountMenuFloat';
-  menu.className = 'account-menu';
-  if(u && u.email){
-    menu.innerHTML = `<div class="am-who">Signed in as<br><b>${escapeHtml(u.email)}</b></div>
-      <button class="am-item" data-act="signout">Sign out</button>`;
-  } else {
-    menu.innerHTML = `<div class="am-who">Not signed in</div>
-      <button class="am-item" data-act="signin">Sign in with Google</button>`;
-  }
-  document.body.appendChild(menu);
-  const r = btn.getBoundingClientRect();
-  menu.style.left = Math.max(8, Math.min(r.right - menu.offsetWidth, window.innerWidth - menu.offsetWidth - 8)) + 'px';
-  // Open below the button when it's near the top of the screen, otherwise above.
-  const above = r.top - menu.offsetHeight - 8;
-  menu.style.top = (above < 8 ? r.bottom + 8 : above) + 'px';
-  menu.querySelector('[data-act="signout"]')?.addEventListener('click', () => {
-    closeAccountMenu();
-    if(window.__lgAuth && window.__lgAuth.signOut) window.__lgAuth.signOut();
-  });
-  menu.querySelector('[data-act="signin"]')?.addEventListener('click', () => {
-    closeAccountMenu();
-    if(window.__lgAuth && window.__lgAuth.showLogin) window.__lgAuth.showLogin();
-    const b = document.getElementById('lgSignInBtn'); if(b) b.click();
-  });
-  setTimeout(() => {
-    const close = ev => { if(!ev.target.closest('#accountMenuFloat') && !ev.target.closest('#accountBtn')){ closeAccountMenu(); document.removeEventListener('click', close); } };
-    document.addEventListener('click', close);
-  }, 0);
 }
 function formatSyncAgo(){
   if(!lastSyncedAt) return 'never synced';
@@ -2033,6 +1743,9 @@ function updateSyncStatusUI(){
   }
 }
 setInterval(updateSyncStatusUI, 5000);
+// Initialize Yjs on page load regardless of auth state so it's available for testing
+document.addEventListener('DOMContentLoaded', () => { initYjs(); });
+
 document.addEventListener('DOMContentLoaded', () => {
   const el = document.getElementById('syncStatus');
   if(!el) return;
@@ -2077,10 +1790,7 @@ async function pullStateFromCloud() {
   }
   setSyncStatus('syncing');
   try {
-    const _uid = window.__lgAuth && window.__lgAuth.user && window.__lgAuth.user.id;
-    let _q = supa.from('app_state').select('data, updated_at').eq('id','main');
-    if (_uid) _q = _q.eq('owner_id', _uid); // load only the signed-in user's own boards
-    const { data, error } = await _q.maybeSingle();
+    const { data, error } = await supa.from('app_state').select('data, updated_at').eq('id','main').maybeSingle();
     if (error) { console.warn('pull error', error); setSyncStatus('error'); return false; }
     if (data && data.updated_at) lastSeenCloudUpdatedAt = data.updated_at;
     if (data && data.data && Object.keys(data.data).length > 0) {
@@ -2418,10 +2128,7 @@ async function pushStateToCloud() {
     return false;
   })();
   try {
-    const _uid2 = window.__lgAuth && window.__lgAuth.user && window.__lgAuth.user.id;
-    let _q2 = supa.from('app_state').select('data, updated_at').eq('id', 'main');
-    if (_uid2) _q2 = _q2.eq('owner_id', _uid2);
-    const { data: cloudRow } = await _q2.maybeSingle();
+    const { data: cloudRow } = await supa.from('app_state').select('data, updated_at').eq('id', 'main').maybeSingle();
     if (cloudRow && cloudRow.data){
       if (cloudRow.data.__schemaVersion && cloudRow.data.__schemaVersion > SCHEMA_VERSION) {
         _showVersionReloadGate(cloudRow.data.__schemaVersion);
@@ -3300,9 +3007,6 @@ function subscribeRealtime(){
         { event: '*', schema: 'public', table: 'app_state', filter: 'id=eq.main' },
         payload => {
           if (!payload || !payload.new || !payload.new.data) return;
-          // Only ever apply the signed-in user's own row (defense-in-depth beyond RLS).
-          const _myId = window.__lgAuth && window.__lgAuth.user && window.__lgAuth.user.id;
-          if (_myId && payload.new.owner_id && payload.new.owner_id !== _myId) return;
           const remote = payload.new.data;
           // Suppress our own echo. Postgres JSONB may reorder keys on roundtrip,
           // so don't trust full-JSON equality — match on the revision token we stamped
@@ -3332,84 +3036,14 @@ function subscribeRealtime(){
 // ═══════════════════════════════════════════════════════════════════════════
 // BOARD SHARING — invite-based per-board real-time collaboration
 // Tables: shared_boards (board data per owner), board_invites (access tokens)
-//
-// REQUIRED Supabase setup (run once in the SQL Editor). Sharing silently fails —
-// blank screen for the invitee, nothing added — if these tables/policies are
-// missing, because the owner can't write the shared copy and the invitee can't
-// read it. Tokens are unguessable, so we allow authenticated lookup by token.
-//
-//   create table if not exists shared_boards (
-//     board_key  text not null,
-//     owner_id   uuid not null references auth.users(id) on delete cascade,
-//     data       jsonb not null default '{}',
-//     updated_at timestamptz not null default now(),
-//     primary key (board_key, owner_id)
-//   );
-//   create table if not exists board_invites (
-//     id              uuid primary key default gen_random_uuid(),
-//     board_key       text not null,
-//     owner_id        uuid not null references auth.users(id) on delete cascade,
-//     token           text not null unique,
-//     invitee_user_id uuid references auth.users(id),
-//     invited_at      timestamptz not null default now(),
-//     accepted_at     timestamptz,
-//     label           text
-//   );
-//   alter table shared_boards  enable row level security;
-//   alter table board_invites  enable row level security;
-//   -- owner: full control of their own rows
-//   create policy sb_owner  on shared_boards for all using (auth.uid() = owner_id) with check (auth.uid() = owner_id);
-//   create policy bi_owner  on board_invites for all using (auth.uid() = owner_id) with check (auth.uid() = owner_id);
-//   -- invitee: look up an invite by token, and accept it (claim themselves)
-//   create policy bi_read   on board_invites for select using (true);
-//   create policy bi_accept on board_invites for update using (invitee_user_id is null or invitee_user_id = auth.uid()) with check (invitee_user_id = auth.uid());
-//   -- invitee: read/update the shared board data once they hold an accepted invite
-//   create policy sb_shared_read on shared_boards for select using (
-//     exists (select 1 from board_invites bi where bi.owner_id = shared_boards.owner_id
-//       and bi.invitee_user_id = auth.uid()
-//       and (bi.board_key = shared_boards.board_key or bi.board_key = '__board__')));
-//   create policy sb_shared_edit on shared_boards for update using (
-//     exists (select 1 from board_invites bi where bi.owner_id = shared_boards.owner_id
-//       and bi.invitee_user_id = auth.uid()
-//       and (bi.board_key = shared_boards.board_key or bi.board_key = '__board__')));
 // ═══════════════════════════════════════════════════════════════════════════
 
 let _sharedWithMe = {};    // key = 'boardKey:ownerId' → { boardKey, ownerId, data, updatedAt }
 let _mySharedKeys = new Set(); // board keys I own that have at least one accepted invite
-// Whether a given list (or the whole board) is currently shared with anyone.
-function isListShared(listKey){ return _mySharedKeys.has(listKey) || _mySharedKeys.has('__board__'); }
-function isRowShared(listKey, rowId){ return _mySharedKeys.has('__row__:' + listKey + ':' + rowId); }
-const SHARED_BADGE = '<span class="shared-badge" title="Shared with a collaborator">⇧ Shared</span>';
-
-function _genToken() {
-  // PostgreSQL encode(...,'base64url') is not valid — generate tokens in JS instead.
-  const bytes = new Uint8Array(24);
-  crypto.getRandomValues(bytes);
-  return btoa(String.fromCharCode(...bytes)).replace(/\+/g,'-').replace(/\//g,'_').replace(/=/g,'');
-}
 
 function _sbKey(boardKey, ownerId){ return `${boardKey}:${ownerId}`; }
 
 function _extractBoardData(tabKey) {
-  // Row-scoped share key: `__row__:<listKey>:<rowId>` → a one-row mini-list that
-  // carries the parent list's columns/headers so it renders for the collaborator.
-  if (tabKey.startsWith('__row__:')) {
-    const idx = tabKey.indexOf(':', 8);
-    const listKey = tabKey.slice(8, idx);
-    const rowId = tabKey.slice(idx + 1);
-    const arr = (state.rows || {})[listKey] || [];
-    const row = arr.find(r => r.id === rowId);
-    const label = row ? (rowTitleText(listKey, row) || 'Shared task') : 'Shared task';
-    return {
-      rows:        row ? [row] : [],
-      title:       label,
-      headers:     (state.headers     || {})[listKey] || {},
-      colWidths:   (state.colWidths   || {})[listKey] || {},
-      userColumns: (state.userColumns || {})[listKey] || [],
-      colOrder:    (state.colOrder    || {})[listKey] || [],
-      baseListKey: listKey,
-    };
-  }
   return {
     rows:        (state.rows        || {})[tabKey] || [],
     title:       (state.titles      || {})[tabKey] || tabKey,
@@ -3424,28 +3058,49 @@ async function loadSharingState() {
   if (!supa || !window.__lgAuth.user) return;
   const userId = window.__lgAuth.user.id;
   try {
-    const inv = await supa.from('board_invites').select('board_key').eq('owner_id', userId);
-    _mySharedKeys = new Set((inv.data || []).map(r => r.board_key));
+    const { data: myInvites } = await supa.from('board_invites')
+      .select('board_key')
+      .eq('owner_id', userId);
+    _mySharedKeys = new Set((myInvites || []).map(r => r.board_key));
 
-    const acc = await supa.from('shared_boards')
-      .select('board_key, owner_id, data, updated_at')
-      .neq('owner_id', userId);
-    // Diagnostic snapshot so an invitee who can't load a board can report the
-    // exact cause (RLS-denied vs. simply no rows written by the owner yet).
-    window._sharingDiag = {
-      invitesErr: inv.error ? (inv.error.message || inv.error.code) : null,
-      sharedBoardsErr: acc.error ? (acc.error.message || acc.error.code) : null,
-      sharedBoardsCount: (acc.data || []).length,
-    };
+    // Pull accepted invites where I am the invitee
+    const { data: acceptedInvites } = await supa.from('board_invites')
+      .select('board_key, owner_id')
+      .eq('invitee_user_id', userId)
+      .not('accepted_at', 'is', null);
+
     _sharedWithMe = {};
-    for (const b of (acc.data || [])) {
-      _sharedWithMe[_sbKey(b.board_key, b.owner_id)] = {
-        boardKey: b.board_key, ownerId: b.owner_id,
-        data: b.data || {}, updatedAt: b.updated_at,
-      };
+    if (acceptedInvites && acceptedInvites.length) {
+      for (const inv of acceptedInvites) {
+        if (inv.board_key.startsWith('__board__')) {
+          // Board-level invite — fetch all lists this owner has pushed to shared_boards
+          const { data: rows } = await supa.from('shared_boards')
+            .select('board_key, owner_id, data, updated_at')
+            .eq('owner_id', inv.owner_id);
+          for (const b of (rows || [])) {
+            _sharedWithMe[_sbKey(b.board_key, b.owner_id)] = {
+              boardKey: b.board_key, ownerId: b.owner_id,
+              data: b.data || {}, updatedAt: b.updated_at,
+            };
+          }
+        } else {
+          // Per-list invite — fetch just that one shared_boards row
+          const { data: b } = await supa.from('shared_boards')
+            .select('board_key, owner_id, data, updated_at')
+            .eq('board_key', inv.board_key)
+            .eq('owner_id', inv.owner_id)
+            .single();
+          if (b) {
+            _sharedWithMe[_sbKey(b.board_key, b.owner_id)] = {
+              boardKey: b.board_key, ownerId: b.owner_id,
+              data: b.data || {}, updatedAt: b.updated_at,
+            };
+          }
+        }
+      }
     }
     renderTabs();
-  } catch(e) { window._sharingDiag = { threw: String(e) }; console.warn('loadSharingState failed', e); }
+  } catch(e) { console.warn('loadSharingState failed', e); }
 }
 
 async function pushSharedBoard(boardKey) {
@@ -3472,8 +3127,8 @@ async function pushCollaboratorEdit(boardKey, ownerId, data) {
   } catch(e) { console.warn('pushCollaboratorEdit failed', e); }
 }
 
-// ── Board-level sharing (one invite = all lists) ──────────────────────────
-async function createBoardInvite() {
+// ── Board-level sharing (one invite = all lists in a specific board) ──────────────────────────
+async function createBoardInvite(boardId) {
   let userId = window.__lgAuth.user?.id;
   if (!userId && supa) {
     try {
@@ -3481,29 +3136,37 @@ async function createBoardInvite() {
       if (session?.user) { window.__lgAuth.user = session.user; userId = session.user.id; }
     } catch(_) {}
   }
-  if (!userId || !supa) return null;
+  if (!userId || !supa) { console.error('createBoardInvite: no userId or supa', {userId, supa: !!supa}); return null; }
+  // Use the boardId as the invite key, prefixed so it's distinguishable from a list key
+  const inviteKey = '__board__' + boardId;
+  console.log('createBoardInvite: boardId=', boardId, 'inviteKey=', inviteKey);
   try {
-    // Push every current list to shared_boards so collaborators can read them
-    for (const key of (state.boardOrder || [])) {
-      await supa.from('shared_boards').upsert({
+    // Push all lists belonging to this board to shared_boards
+    const boardData = (boardId === state.activeBoardId)
+      ? state
+      : (state.boards[boardId] ? Object.assign({}, state, state.boards[boardId].data) : state);
+    console.log('createBoardInvite: boardOrder=', boardData.boardOrder);
+    for (const key of (boardData.boardOrder || [])) {
+      const { error: upsertErr } = await supa.from('shared_boards').upsert({
         board_key: key, owner_id: userId,
         data: _extractBoardData(key),
         updated_at: new Date().toISOString(),
       }, { onConflict: 'board_key,owner_id' });
-      _mySharedKeys.add(key);
+      if (upsertErr) console.error('createBoardInvite: shared_boards upsert failed for', key, upsertErr);
+      else _mySharedKeys.add(key);
     }
-    _mySharedKeys.add('__board__');
+    _mySharedKeys.add(inviteKey);
     // Create (or reuse) the board-level invite token
     const { data: existing } = await supa.from('board_invites')
-      .select('token').eq('board_key', '__board__').eq('owner_id', userId).limit(1).single();
-    if (existing?.token) return `${location.origin}${location.pathname}?invite=${existing.token}`;
-    const token = _genToken();
+      .select('token').eq('board_key', inviteKey).eq('owner_id', userId).limit(1).single();
+    if (existing?.token) { console.log('createBoardInvite: reusing existing token'); return `${location.origin}${location.pathname}?invite=${existing.token}`; }
     const { data, error } = await supa.from('board_invites')
-      .insert({ board_key: '__board__', owner_id: userId, token })
+      .insert({ board_key: inviteKey, owner_id: userId })
       .select('token').single();
-    if (error || !data) { console.warn('createBoardInvite error', error); return { error }; }
+    if (error || !data) { console.error('createBoardInvite: insert failed', error); return null; }
+    console.log('createBoardInvite: success, token=', data.token);
     return `${location.origin}${location.pathname}?invite=${data.token}`;
-  } catch(e) { console.warn('createBoardInvite threw', e); return { error: e }; }
+  } catch(e) { console.error('createBoardInvite threw', e); return null; }
 }
 
 async function openBoardShareModal() {
@@ -3512,25 +3175,26 @@ async function openBoardShareModal() {
   const linkArea = document.getElementById('lgShareLinkArea');
   const collabList = document.getElementById('lgShareCollabList');
   if (!modal) return;
-  _shareModalBoardKey = '__board__';
-  titleEl.textContent = 'entire board';
+  const boardId = state.activeBoardId;
+  const inviteKey = '__board__' + boardId;
+  _shareModalBoardKey = inviteKey;
+  const boardTitle = state.boards?.[boardId]?.title || 'this board';
+  titleEl.textContent = boardTitle;
   linkArea.textContent = 'Generating link…';
   collabList.innerHTML = '<div class="lg-share-loading">Loading…</div>';
   modal.classList.add('visible');
 
-  const result = await createBoardInvite();
-  const link = typeof result === 'string' ? result : null;
+  const link = await createBoardInvite(boardId);
   if (link) {
     linkArea.innerHTML = `<input id="lgShareLinkInput" readonly value="${escapeHtml(link)}" onclick="this.select()"><button onclick="copyShareLink()">Copy</button>`;
   } else {
-    const errMsg = result?.error?.message || result?.error?.code || 'unknown error';
-    linkArea.textContent = `Could not generate link: ${errMsg}`;
+    linkArea.textContent = 'Could not generate link. Make sure you are signed in.';
   }
 
   const userId = window.__lgAuth.user?.id;
   const { data: collabs } = await supa.from('board_invites')
     .select('id, invitee_user_id, invited_at, accepted_at, label')
-    .eq('board_key', '__board__').eq('owner_id', userId)
+    .eq('board_key', inviteKey).eq('owner_id', userId)
     .order('invited_at', { ascending: false });
   const list = collabs || [];
   if (!list.length) {
@@ -3556,9 +3220,8 @@ async function createInvite(boardKey) {
       data: _extractBoardData(boardKey),
       updated_at: new Date().toISOString(),
     }, { onConflict: 'board_key,owner_id' });
-    const token = _genToken();
     const { data, error } = await supa.from('board_invites')
-      .insert({ board_key: boardKey, owner_id: userId, token })
+      .insert({ board_key: boardKey, owner_id: userId })
       .select('token').single();
     if (error || !data) { console.warn('createInvite error', error); return null; }
     _mySharedKeys.add(boardKey);
@@ -3691,12 +3354,7 @@ async function openShareModal(tabKey) {
   const linkArea = document.getElementById('lgShareLinkArea');
   const collabList = document.getElementById('lgShareCollabList');
   if (!modal) return;
-  // Friendly title: for a row-scoped key, show the task's text; otherwise the list title.
-  if (boardKey.startsWith('__row__:')) {
-    titleEl.textContent = (_extractBoardData(boardKey).title || 'Task') + ' (single task)';
-  } else {
-    titleEl.textContent = state.titles[boardKey] || boardKey;
-  }
+  titleEl.textContent = state.titles[boardKey] || boardKey;
   linkArea.textContent = 'Generating link…';
   collabList.innerHTML = '<div class="lg-share-loading">Loading…</div>';
   modal.classList.add('visible');
@@ -3866,23 +3524,6 @@ const STATUS_CLASS = {'Not started':'s-todo','In progress':'s-progress','Blocked
                       // BD stage aliases reuse the same swatches; you can rename via the dropdown
                      };
 const ASSIGNEE_OPTIONS = ['JF', 'KVD', 'HH', 'JL', 'MW'];
-// Initials that have a dedicated color in CSS (.who-XX). Anyone else (custom
-// teammates added via the assignee picker) gets a deterministic generated color.
-const BUILTIN_WHO = new Set(['JF','KVD','HH','JL','KC','KL','MW']);
-// The editable roster of assignee initials. Seeded from ASSIGNEE_OPTIONS on first
-// load (see runStateMigrations); customizable in the who-picker. Synced.
-function assigneeRoster(){ return Array.isArray(state.assignees) ? state.assignees : ASSIGNEE_OPTIONS; }
-function whoChipColors(initials){
-  let h = 0;
-  for (let i = 0; i < initials.length; i++) h = (h * 31 + initials.charCodeAt(i)) % 360;
-  return { bg: `hsl(${h} 62% 88%)`, fg: `hsl(${h} 52% 30%)` };
-}
-function applyWhoChipColor(chip, initials){
-  if (BUILTIN_WHO.has(initials)) return; // dedicated CSS class handles these
-  const c = whoChipColors(initials);
-  chip.style.background = c.bg;
-  chip.style.color = c.fg;
-}
 
 function defaultState(){
   const today = todayISO();
@@ -3899,7 +3540,7 @@ function defaultState(){
     boardPos:  { internal:{x:20,y:20}, client:{x:600,y:20}, bd:{x:20,y:520}, financing:{x:600,y:520} },
     boardSize: { internal:{w:560,h:0}, client:{w:560,h:0}, bd:{w:560,h:0}, financing:{w:560,h:0} },
     titles: {
-      home:'Full Picture',
+      home:'Home',
       internal:'Internal', client:'Client matters', bd:'Business development', financing:'Financing',
       internalArchive:'Internal — archive', clientArchive:'Client matters — archive', bdArchive:'Business development — archive', financingArchive:'Financing — archive',
     },
@@ -3985,34 +3626,6 @@ function runStateMigrations(s){
       data: snapshotBoardFields(s),
     };
   }
-  // One-time cleanup: remove stray EMPTY duplicate top-level boards left over
-  // from earlier bugs (e.g. several blank "Firm To-Do Tracker" copies). Keeps
-  // 'main', the active board, and — within each duplicate title group — the one
-  // with the most rows; only deletes copies that are genuinely empty.
-  if(!s._dedupeEmptyV1){
-    const rowsOf = id => { const d = (s.boards[id] && s.boards[id].data) || {}; let n = 0; for(const k in (d.rows || {})) n += (d.rows[k] || []).length; return n; };
-    const topLevel = Object.keys(s.boards).filter(id => !s.boards[id].parent);
-    const byTitle = {};
-    topLevel.forEach(id => {
-      const t = ((s.boards[id].title || '').trim().toLowerCase()) || '(untitled)';
-      (byTitle[t] = byTitle[t] || []).push(id);
-    });
-    Object.values(byTitle).forEach(group => {
-      if(group.length < 2) return;
-      const keep = group.slice().sort((a, b) => (b === 'main' ? 1 : 0) - (a === 'main' ? 1 : 0) || rowsOf(b) - rowsOf(a))[0];
-      group.forEach(id => {
-        if(id === keep || id === 'main' || id === s.activeBoardId) return;
-        if(rowsOf(id) === 0){
-          // Don't orphan any nested boards that point at this one.
-          const hasChildren = Object.keys(s.boards).some(cid => s.boards[cid].parent && s.boards[cid].parent.boardId === id);
-          if(hasChildren) return;
-          if(s.matryoshkaHome) delete s.matryoshkaHome[id];
-          delete s.boards[id];
-        }
-      });
-    });
-    s._dedupeEmptyV1 = true;
-  }
   // Backfill bgColor/brandImage from top-level state to the active board's data
   // (so existing branding moves into the main board and stays there).
   if(s.boards.main && s.boards.main.data){
@@ -4024,24 +3637,9 @@ function runStateMigrations(s){
   if(s.viewingMatryoshkaHome === undefined) s.viewingMatryoshkaHome = false;
   if(!s.matryoshkaHomeMode) s.matryoshkaHomeMode = 'free';
   if(!s.matryoshkaHomeZoom) s.matryoshkaHomeZoom = 1;
-  // One-time: reset both canvas zoom levels to 100% so no view is left looking
-  // zoomed relative to another (they could drift apart before the zoom controls
-  // were separated per view). Users can re-zoom afterward; runs only once.
-  if(!s._zoomResetV1){ s.boardZoom = 1; s.matryoshkaHomeZoom = 1; s._zoomResetV1 = true; }
   if(!s.skin) s.skin = 'simple';
   s.titles = s.titles || {};
-  if(!s.titles.home) s.titles.home = 'Full Picture';
-  // One-time: rename the per-board aggregate tab from its old default 'Home' to 'Full Picture'.
-  // Guarded so a user who later renames a tab back to 'Home' isn't clobbered on every load.
-  if(!s._homeTabRenamedToFullPicture){
-    if(s.titles.home === 'Home') s.titles.home = 'Full Picture';
-    if(s.boards){
-      Object.values(s.boards).forEach(b => {
-        if(b && b.data && b.data.titles && b.data.titles.home === 'Home') b.data.titles.home = 'Full Picture';
-      });
-    }
-    s._homeTabRenamedToFullPicture = true;
-  }
+  if(!s.titles.home) s.titles.home = 'Home';
   if(!s.activeTab) s.activeTab = 'home';
   // Rebuild the runtime registries from scratch each migration. Previously this just
   // appended to LIVE_BOARDS / ALL_BOARDS / SCHEMAS, which meant deleted boards (and stale
@@ -4092,10 +3690,6 @@ function runStateMigrations(s){
     s._seededFinancing = true;
   }
   if(!s.homeViewMode) s.homeViewMode = 'free';
-  // Adopt Hedwig-style free-floating windows — migrate grid users to free.
-  if(s.homeViewMode === 'grid') s.homeViewMode = 'free';
-  // Seed the editable assignee roster from the built-in defaults on first load.
-  if(!Array.isArray(s.assignees)) s.assignees = [...ASSIGNEE_OPTIONS];
   // Drop any keys that aren't valid live boards anymore (e.g., orphaned user-list keys).
   // We do NOT auto-add the built-in 'internal','client','bd' here — if the user deleted them,
   // they should stay deleted (otherwise they'd resurrect on every reload).
@@ -4277,6 +3871,8 @@ function save(){
       console.warn('localStorage save failed', e);
     }
   }
+  // Mirror into Yjs doc (Phase 1 — passive mirror, existing sync still active)
+  if (!applyingRemote) mirrorStateToYdoc();
   // Mark "local has changes that haven't been confirmed pushed". Cleared on a successful push.
   // Suppressed while we're applying a remote update — those edits aren't user-driven.
   if (!applyingRemote) pendingLocalChanges = true;
@@ -4295,11 +3891,7 @@ function save(){
   // pushSharedBoard() no-ops internally if nothing is shared.
   if (!applyingRemote && !state.activeSharedBoard) {
     clearTimeout(window.__ownerSbPushId);
-    window.__ownerSbPushId = setTimeout(() => {
-      pushSharedBoard(state.activeTab);
-      // Also refresh any shared single-task copies that live in the active list.
-      _mySharedKeys.forEach(k => { if (k.startsWith('__row__:' + state.activeTab + ':')) pushSharedBoard(k); });
-    }, 400);
+    window.__ownerSbPushId = setTimeout(() => pushSharedBoard(state.activeTab), 400);
   }
 }
 
@@ -4307,262 +3899,22 @@ function save(){
 function bid(){ return 'b_' + Math.random().toString(36).slice(2,9); }
 
 function listBoards(){
-  // Only top-level boards appear in the switcher dropdown / Sentinel; nested
-  // boards (created from a row) are reached by clicking into their row.
-  return Object.keys(state.boards || {})
-    .filter(id => !state.boards[id].parent)
-    .map(id => ({
-      id, title: state.boards[id].title || 'Untitled board',
-      isActive: id === state.activeBoardId,
-    }));
-}
-
-// Blank board contents (same shape createBoard uses).
-function emptyBoardData(){
-  return { rows:{}, titles:{home:'Full Picture'}, headers:{}, colWidths:{}, userColumns:{},
-           colOrder:{}, boardOrder:[], userBoards:{}, activeTab:'home', bgColor:'', brandImage:'', hiddenCols:{} };
-}
-// Plain-text of a row's primary (title) column, for naming a nested board.
-function rowColText(tab, row, idx){
-  const cols = getColumns(tab); const key = cols[idx] && cols[idx].key;
-  const tmp = document.createElement('div'); tmp.innerHTML = (key ? row[key] : '') || '';
-  return (tmp.textContent || '').trim();
-}
-function rowTitleText(tab, row){ return rowColText(tab, row, 0); }
-// Which board rows are showing an inline peek of their sub-board (▾ toggle).
-// Ephemeral per page session — resets on reload, which is fine for a preview.
-let _boardRowExpanded = {};
-// Plain text of a value in another board's data (no live SCHEMAS for that board).
-function boardCellText(key, row){
-  const tmp = document.createElement('div'); tmp.innerHTML = (key ? row[key] : '') || '';
-  return (tmp.textContent || '').trim();
-}
-// An inline "peek" row placed under a board-row: shows the sub-board's lists and
-// their items without navigating. Reads the sub-board's stored data directly.
-function renderBoardPreviewRow(tab, row){
-  const boardId = row.boardId;
-  const board = state.boards && state.boards[boardId];
-  const tr = document.createElement('tr');
-  tr.className = 'board-preview-row';
-  const td = document.createElement('td');
-  td.colSpan = 99;
-  const box = document.createElement('div');
-  box.className = 'board-preview';
-  const data = (board && board.data) || {};
-  const bOrder = data.boardOrder || [];
-  const bRows = data.rows || {};
-  const bTitles = data.titles || {};
-  const bUB = data.userBoards || {};
-  const firstKeyOf = (lk) => {
-    const cols = (bUB[lk] && bUB[lk].columns) || (SCHEMAS[lk] && SCHEMAS[lk].columns) || [];
-    return cols[0] && cols[0].key;
-  };
-  const nextTextKeyOf = (lk) => {
-    const cols = (bUB[lk] && bUB[lk].columns) || (SCHEMAS[lk] && SCHEMAS[lk].columns) || [];
-    const c = cols.slice(1).find(c => !c.type || c.type === 'text');
-    return c && c.key;
-  };
-  let any = false;
-  bOrder.forEach(lk => {
-    const listRows = (bRows[lk] || []);
-    const k0 = firstKeyOf(lk), k1 = nextTextKeyOf(lk);
-    const head = document.createElement('div');
-    head.className = 'board-preview-list';
-    head.textContent = bTitles[lk] || lk;
-    box.appendChild(head); any = true;
-    if(!listRows.length){
-      const em = document.createElement('div');
-      em.className = 'board-preview-item board-preview-muted';
-      em.textContent = '(empty)';
-      box.appendChild(em);
-      return;
-    }
-    listRows.forEach(r => {
-      const item = document.createElement('div');
-      item.className = 'board-preview-item';
-      const a = boardCellText(k0, r);
-      const b = k1 ? boardCellText(k1, r) : '';
-      item.textContent = [a, b].filter(Boolean).join(' - ') || '(untitled)';
-      box.appendChild(item);
-    });
-  });
-  if(!any){
-    const em = document.createElement('div');
-    em.className = 'board-preview-muted';
-    em.textContent = 'Empty sub-board — click → to open and add items.';
-    box.appendChild(em);
-  }
-  td.appendChild(box);
-  tr.appendChild(td);
-  return tr;
-}
-// Matryoshka nesting: turn a row into its own board and drill into it. If the row
-// is already a board, just open it. The new board records its parent (board + row)
-// so the breadcrumb can show the full path back up.
-function makeRowIntoBoard(tab, rowId){
-  const arr = (state.rows && state.rows[tab]) || [];
-  const row = arr.find(r => r.id === rowId);
-  if(!row) return;
-  if(row.boardId && state.boards && state.boards[row.boardId]){ switchBoard(row.boardId); return; }
-  const client = rowTitleText(tab, row) || 'Untitled';       // 1st column (client name)
-  const matter = rowColText(tab, row, 1);                    // 2nd column (matter)
-  const id = bid();
-  state.boards[id] = {
-    // title is a fallback; the breadcrumb derives the live title from the row's
-    // client column (see boardDisplayTitle), so renaming the client updates it.
-    title: client,
-    parent: { boardId: state.activeBoardId, tab, rowId },
-    data: emptyBoardData(),
-  };
-  row.boardId = id;
-  switchBoard(id); // drill into the (empty) nested board
-  // The FIRST column (client) is the board; the SECOND column (matter) becomes a
-  // sub-list WINDOW inside it — an empty list ready for its sub-tasks.
-  makeUserList(matter || client);
-  state.activeTab = 'home';
-  save();
-  render();
-}
-
-// Total row count across all of a board's lists. Uses live state.rows for the
-// active board, otherwise the board's stored snapshot.
-function boardTotalRows(id){
-  const b = state.boards && state.boards[id];
-  if(!b) return 0;
-  const rowsObj = (id === state.activeBoardId) ? (state.rows || {}) : ((b.data && b.data.rows) || {});
-  let n = 0;
-  for(const k in rowsObj){ n += (rowsObj[k] || []).length; }
-  return n;
-}
-// A nested (Russian-doll) sub-board that has no rows left disappears when you
-// leave it: delete the board and unlink its parent row (so the doll goes away
-// and the row is a plain row again). Only prunes parented, non-active, empty
-// boards — top-level boards and the board you're on are never auto-removed.
-function pruneEmptyNestedBoard(id){
-  const b = state.boards && state.boards[id];
-  if(!b || !b.parent) return false;
-  if(id === state.activeBoardId) return false;
-  if(boardTotalRows(id) > 0) return false;
-  const p = b.parent;
-  const parent = state.boards[p.boardId];
-  if(parent){
-    const rows = (p.boardId === state.activeBoardId)
-      ? (state.rows[p.tab] || [])
-      : ((parent.data && parent.data.rows && parent.data.rows[p.tab]) || []);
-    const row = rows.find(r => r.id === p.rowId);
-    if(row) delete row.boardId;
-  }
-  if(state.matryoshkaHome) delete state.matryoshkaHome[id];
-  delete state.boards[id];
-  return true;
-}
-// Navigate up to the Sentinel view, pruning the board we're leaving if it's an
-// empty nested board.
-function enterSentinel(){
-  const leaving = state.activeBoardId;
-  if(leaving && state.boards[leaving]) state.boards[leaving].data = snapshotBoardFields(state);
-  pruneEmptyNestedBoard(leaving);
-  state.viewingMatryoshkaHome = true;
-  save(); render();
-}
-
-// ── Full Matryoshka map (skeleton) ──────────────────────────────────────────
-// A clickable tree of every board, its lists, and its nested sub-boards. Click a
-// board to open it, a list to open that board on that list.
-function boardListsOf(id){
-  const b = state.boards && state.boards[id];
-  if(!b) return [];
-  const order = (id === state.activeBoardId) ? (state.boardOrder || []) : ((b.data && b.data.boardOrder) || []);
-  const titles = (id === state.activeBoardId) ? (state.titles || {}) : ((b.data && b.data.titles) || {});
-  return order.map(k => ({ key: k, title: titles[k] || (SCHEMAS[k] && SCHEMAS[k].label) || k }));
-}
-function childBoardsOf(id){
-  return Object.keys(state.boards || {}).filter(cid => {
-    const p = state.boards[cid].parent;
-    return p && p.boardId === id;
-  });
-}
-function openBoardOnList(boardId, listKey){
-  closeSkeleton();
-  if(boardId !== state.activeBoardId) switchBoard(boardId);
-  state.viewingMatryoshkaHome = false;
-  if(listKey) state.activeTab = listKey;
-  save(); render();
-}
-function renderSkeletonNode(boardId, container, depth){
-  if(depth > 8) return; // guard against cycles
-  const node = document.createElement('div');
-  node.className = 'sk-node sk-board' + (boardId === state.activeBoardId && !state.viewingMatryoshkaHome ? ' sk-current' : '');
-  node.innerHTML = `<span class="sk-dot"></span><span>${escapeHtml(boardDisplayTitle(boardId) || 'Untitled')}</span>`;
-  node.addEventListener('click', () => openBoardOnList(boardId, null));
-  container.appendChild(node);
-  const kids = document.createElement('div');
-  kids.className = 'sk-children';
-  // Lists (sections) of this board
-  boardListsOf(boardId).forEach(l => {
-    const ln = document.createElement('div');
-    ln.className = 'sk-node sk-list';
-    ln.innerHTML = `<span class="sk-dot"></span><span>${escapeHtml(l.title)}</span>`;
-    ln.addEventListener('click', () => openBoardOnList(boardId, l.key));
-    kids.appendChild(ln);
-  });
-  // Nested sub-boards
-  childBoardsOf(boardId).forEach(cid => renderSkeletonNode(cid, kids, depth + 1));
-  if(kids.children.length) container.appendChild(kids);
-}
-function renderSkeletonTree(){
-  const tree = document.getElementById('skeletonTree');
-  if(!tree) return;
-  tree.innerHTML = '';
-  const sentinel = document.createElement('div');
-  sentinel.className = 'sk-node sk-sentinel' + (state.viewingMatryoshkaHome ? ' sk-current' : '');
-  sentinel.innerHTML = `<span class="sk-dot" style="background:var(--lg-cyan,#2bb1e6)"></span><span>Sentinel — all boards</span>`;
-  sentinel.addEventListener('click', () => { closeSkeleton(); enterSentinel(); });
-  tree.appendChild(sentinel);
-  const wrap = document.createElement('div');
-  wrap.className = 'sk-children';
-  const topLevel = Object.keys(state.boards || {}).filter(id => !state.boards[id].parent);
-  topLevel.forEach(id => renderSkeletonNode(id, wrap, 0));
-  tree.appendChild(wrap);
-}
-function _skeletonOutside(e){
-  const panel = document.querySelector('.skeleton-panel');
-  const btn = document.getElementById('skeletonBtn');
-  if(panel && !panel.contains(e.target) && btn && !btn.contains(e.target)) closeSkeleton();
-}
-function openSkeleton(){
-  // Snapshot live rows so the map reflects the current board too.
-  if(state.activeBoardId && state.boards[state.activeBoardId]) state.boards[state.activeBoardId].data = snapshotBoardFields(state);
-  renderSkeletonTree();
-  const ov = document.getElementById('skeletonOverlay');
-  if(ov) ov.classList.add('open');
-  // Close when clicking anywhere outside the popup (added next tick so this
-  // same click doesn't immediately close it).
-  setTimeout(() => document.addEventListener('mousedown', _skeletonOutside), 0);
-}
-function closeSkeleton(){
-  const ov = document.getElementById('skeletonOverlay');
-  if(ov) ov.classList.remove('open');
-  document.removeEventListener('mousedown', _skeletonOutside);
-}
-function toggleSkeleton(){
-  const ov = document.getElementById('skeletonOverlay');
-  if(ov && ov.classList.contains('open')) closeSkeleton(); else openSkeleton();
+  return Object.keys(state.boards || {}).map(id => ({
+    id, title: state.boards[id].title || 'Untitled board',
+    isActive: id === state.activeBoardId,
+  }));
 }
 
 function switchBoard(id){
   if(!state.boards || !state.boards[id] || id === state.activeBoardId) return;
   // Snapshot current — guard in case the active board was deleted on another tab via realtime
   // (otherwise this throws on `.data = ...` on undefined).
-  const leavingId = state.activeBoardId;
-  if (leavingId && state.boards[leavingId]) {
-    state.boards[leavingId].data = snapshotBoardFields(state);
+  if (state.activeBoardId && state.boards[state.activeBoardId]) {
+    state.boards[state.activeBoardId].data = snapshotBoardFields(state);
   }
   // Load new
   state.activeBoardId = id;
   restoreBoardFields(state, state.boards[id].data || {});
-  // Leaving an emptied nested sub-board removes it (and unlinks its parent row).
-  if (leavingId && leavingId !== id) pruneEmptyNestedBoard(leavingId);
   // Re-run migrations for the loaded board so any missing defaults fill in
   runStateMigrations(state);
   // Always land on the home canvas when switching workspaces — that's where the
@@ -4585,7 +3937,7 @@ function _createBoard(title, templateKey){
   // Empty workspace: no built-in lists, no rows, fresh bg/logo
   const emptyData = {
     rows: {},
-    titles: { home: 'Full Picture' },
+    titles: { home: 'Home' },
     headers: {},
     colWidths: {},
     userColumns: {},
@@ -5122,8 +4474,8 @@ function renderMatryoshkaHomeButton(){
   if(btn.dataset.wired) return;
   btn.dataset.wired = '1';
   btn.addEventListener('click', () => {
-    if(!state.viewingMatryoshkaHome){ enterSentinel(); }
-    else { state.viewingMatryoshkaHome = false; save(); render(); }
+    state.viewingMatryoshkaHome = !state.viewingMatryoshkaHome;
+    save(); render();
   });
 }
 
@@ -5638,19 +4990,7 @@ function applyBgColor(){
   }
 }
 
-// Top-left header logo: use the exact image the user uploaded (state.brandImage),
-// falling back to main's uploaded image, then assets/logo.png, then the wordmark.
-function renderHeaderLogo(){
-  const img = document.querySelector('.logo .logo-img');
-  if(!img) return;
-  // The uploaded artwork lives at assets/logo.png. If it ever fails to load the
-  // <img> onerror hides it and the wordmark shows.
-  if(!/assets\/logo\.png/.test(img.getAttribute('src') || '')) img.src = 'assets/logo.png';
-  img.style.display = '';
-}
-
 function renderBrandCorner(){
-  renderHeaderLogo();
   const imgWrap = document.getElementById('brandImage');
   if(!imgWrap) return;
   if(state.brandImage){
@@ -5694,8 +5034,6 @@ function renderBrandCorner(){
       <button data-act="default" class="bcb-pop-item">${check('default')}↺ Default page</button>
       <button data-act="pick"    class="bcb-pop-item">${check('color')}🎨 Pick a color</button>
       <button data-act="gug"     class="bcb-pop-item">${check('gug')}🖼 Guggenheim artwork</button>
-      <div class="bcb-pop-sep"></div>
-      <button data-act="skins"   class="bcb-pop-item">   🎭 Skins…</button>
     `;
     document.body.appendChild(pop);
     const r = colorBtn.getBoundingClientRect();
@@ -5728,10 +5066,6 @@ function renderBrandCorner(){
       applyGuggenheim();
       save();
       pop.remove();
-    });
-    pop.querySelector('[data-act="skins"]').addEventListener('click', () => {
-      pop.remove();
-      openSkinMenu(colorBtn);
     });
     setTimeout(() => {
       const close = ev => {
@@ -5791,136 +5125,18 @@ function renderBrandCorner(){
   });
 })();
 
-// Walk the nesting chain from a top-level board down to `id`, following each
-// board's .parent pointer (set when a row is turned into its own board).
-function boardAncestry(id){
-  const chain = [];
-  let cur = id, guard = 0;
-  while(cur && state.boards && state.boards[cur] && guard++ < 50){
-    chain.unshift(cur);
-    const p = state.boards[cur].parent;
-    cur = p && p.boardId;
-  }
-  return chain; // [topLevel, ..., id]
-}
-
-// A nested board's display title is derived LIVE from its parent row's first
-// (client) column, so renaming the client updates the breadcrumb/switcher. Falls
-// back to the stored title if the parent row is gone.
-function boardDisplayTitle(id){
-  const b = state.boards && state.boards[id];
-  if(!b) return 'Board';
-  const p = b.parent;
-  if(p && state.boards[p.boardId]){
-    const isActiveParent = p.boardId === state.activeBoardId;
-    const pdata = state.boards[p.boardId].data || {};
-    const rows = isActiveParent ? (state.rows[p.tab] || []) : ((pdata.rows && pdata.rows[p.tab]) || []);
-    const row = rows.find(r => r.id === p.rowId);
-    if(row){
-      const ub = isActiveParent ? (state.userBoards || {}) : (pdata.userBoards || {});
-      const cols = (ub[p.tab] && ub[p.tab].columns) || (SCHEMAS[p.tab] && SCHEMAS[p.tab].columns) || [];
-      const key = cols[0] && cols[0].key;
-      const tmp = document.createElement('div'); tmp.innerHTML = (key ? row[key] : '') || '';
-      const t = (tmp.textContent || '').trim();
-      if(t) return t;
-    }
-  }
-  return b.title || 'Untitled';
-}
-
-// Rename the current board from the breadcrumb. For a nested board this writes
-// the new name back to the parent row's client (first) column — the source of
-// truth — so the row and breadcrumb stay in sync. Top-level boards rename their
-// own title.
-function renameCurrentBoard(newText){
-  newText = (newText || '').trim();
-  const id = state.activeBoardId;
-  const b = state.boards && state.boards[id];
-  if(!b || !newText){ render(); return; }
-  b.title = newText;
-  const p = b.parent;
-  if(p && state.boards[p.boardId]){
-    const pdata = state.boards[p.boardId].data || {};
-    const rows = (pdata.rows && pdata.rows[p.tab]) || [];
-    const row = rows.find(r => r.id === p.rowId);
-    if(row){
-      const ub = pdata.userBoards || {};
-      const cols = (ub[p.tab] && ub[p.tab].columns) || (SCHEMAS[p.tab] && SCHEMAS[p.tab].columns) || [];
-      const key = cols[0] && cols[0].key;
-      if(key) row[key] = newText;
-    }
-  }
-  save(); render();
-}
-
 function renderBoardSwitcher(){
   const btn = document.getElementById('boardSwitcher');
-  const crumbs = document.getElementById('boardCrumbs');
   if(!btn) return;
   const cur = state.boards?.[state.activeBoardId];
-  btn.style.display = '';
-  // "Up" button — appears inside a nested board; goes up one Matryoshka layer.
-  const upBtn = document.getElementById('boardUpBtn');
-  if(upBtn){
-    const parentId = !state.viewingMatryoshkaHome && cur && cur.parent && cur.parent.boardId;
-    const hasParent = parentId && state.boards[parentId];
-    upBtn.style.display = hasParent ? '' : 'none';
-    upBtn.title = hasParent ? ('Back up to ' + (boardDisplayTitle(parentId) || 'the layer above')) : '';
-    upBtn.onclick = hasParent ? (e => { e.stopPropagation(); switchBoard(parentId); }) : null;
-  }
-  btn.textContent = state.viewingMatryoshkaHome ? 'Sentinel' : (boardDisplayTitle(state.activeBoardId) || 'Untitled board');
-  // Breadcrumb: Sentinel › [ancestor boards] › (current board is the switcher itself).
-  if(crumbs){
-    crumbs.innerHTML = '';
-    if(!state.viewingMatryoshkaHome){
-      const sep = () => { const s = document.createElement('span'); s.className = 'crumb-sep'; s.textContent = '›'; crumbs.appendChild(s); };
-      const sentinel = document.createElement('button');
-      sentinel.type = 'button'; sentinel.className = 'crumb';
-      sentinel.textContent = 'Sentinel';
-      sentinel.addEventListener('click', e => { e.stopPropagation(); enterSentinel(); });
-      crumbs.appendChild(sentinel);
-      sep();
-      // Ancestor boards between Sentinel and the current board (all but the last).
-      boardAncestry(state.activeBoardId).slice(0, -1).forEach(aid => {
-        const c = document.createElement('button');
-        c.type = 'button'; c.className = 'crumb';
-        c.textContent = boardDisplayTitle(aid) || 'Board';
-        c.addEventListener('click', e => { e.stopPropagation(); switchBoard(aid); });
-        crumbs.appendChild(c);
-        sep();
-      });
-    }
-  }
+  const onHome = state.activeTab === 'home' || state.viewingMatryoshkaHome;
+  btn.style.display = onHome ? 'none' : '';
+  btn.textContent = cur?.title || 'Untitled board';
   if(!btn.dataset.wired){
     btn.dataset.wired = '1';
     btn.addEventListener('click', e => {
-      if(btn.dataset.editing === '1') return; // ignore clicks while renaming
       e.stopPropagation();
       openBoardMenu(btn);
-    });
-    // Double-click the current board name to rename it (renames the client on a
-    // nested board). Enter/blur commits, Esc cancels.
-    btn.addEventListener('dblclick', e => {
-      e.stopPropagation();
-      if(state.viewingMatryoshkaHome) return;
-      closeBoardMenu();
-      btn.dataset.editing = '1';
-      btn.contentEditable = 'true';
-      btn.spellcheck = false;
-      btn.focus();
-      try { const r=document.createRange(); r.selectNodeContents(btn); const s=window.getSelection(); s.removeAllRanges(); s.addRange(r); } catch(_){}
-    });
-    btn.addEventListener('keydown', e => {
-      if(btn.dataset.editing !== '1') return;
-      e.stopPropagation();
-      if(e.key === 'Enter'){ e.preventDefault(); btn.blur(); }
-      else if(e.key === 'Escape'){ e.preventDefault(); btn.dataset.editing=''; btn.contentEditable='false'; render(); }
-    });
-    btn.addEventListener('blur', () => {
-      if(btn.dataset.editing !== '1') return;
-      btn.dataset.editing = '';
-      btn.contentEditable = 'false';
-      renameCurrentBoard(btn.textContent);
     });
   }
 }
@@ -5931,33 +5147,16 @@ function openBoardMenu(anchor){
   const menu = document.createElement('div');
   menu.className = 'board-menu';
   menu.id = 'boardMenuFloat';
-
-  // Home item at top
-  const homeItem = document.createElement('div');
-  homeItem.className = 'board-menu-item' + (state.viewingMatryoshkaHome ? ' active' : '');
-  homeItem.innerHTML = `<span class="check">${state.viewingMatryoshkaHome ? '✓' : ''}</span><span class="name">Sentinel</span>`;
-  homeItem.addEventListener('click', () => {
-    closeBoardMenu();
-    enterSentinel();
-  });
-  menu.appendChild(homeItem);
-  const homeSep = document.createElement('div');
-  homeSep.className = 'board-menu-sep';
-  menu.appendChild(homeSep);
-
   const boards = listBoards();
   boards.forEach(b => {
-    // In Sentinel, only Sentinel is "current" — don't also mark the underlying
-    // active board as checked.
-    const boardActive = b.isActive && !state.viewingMatryoshkaHome;
     const item = document.createElement('div');
-    item.className = 'board-menu-item' + (boardActive ? ' active' : '');
+    item.className = 'board-menu-item' + (b.isActive ? ' active' : '');
     const isPinned = !!(state.matryoshkaHome && state.matryoshkaHome[b.id] && state.matryoshkaHome[b.id].pinned);
     item.innerHTML = `
-      <span class="check">${boardActive ? '✓' : ''}</span>
+      <span class="check">${b.isActive ? '✓' : ''}</span>
       <span class="name">${escapeHtml(b.title)}</span>
       <span class="row-actions">
-        <button class="pin" title="${isPinned ? 'Unpin from Sentinel' : 'Pin to Sentinel'}" style="opacity:${isPinned?'1':'.45'}">${isPinned ? '◉' : '◎'}</button>
+        <button class="pin" title="${isPinned ? 'Unpin from Matryoshka Home' : 'Pin to Matryoshka Home'}" style="opacity:${isPinned?'1':'.45'}">${isPinned ? '◉' : '◎'}</button>
         <button class="tpl" title="Save as template">⌬</button>
         <button class="dup" title="Duplicate">⎘</button>
         <button class="rename" title="Rename">✎</button>
@@ -6179,10 +5378,9 @@ function renderSection(){
     const zoomStyle = (mode === 'free' && zoom !== 1)
       ? ` style="transform:scale(${zoom});transform-origin:top left;width:${(100/zoom).toFixed(2)}%"`
       : '';
-    homeHost.innerHTML = `<div class="sentinel-priority-strip" id="sentinelPriorityStrip"></div><div class="matryoshka-canvas mhome-${mode}" id="matryoshkaHomeCanvas"${zoomStyle}></div>`;
+    homeHost.innerHTML = `<div class="matryoshka-canvas mhome-${mode}" id="matryoshkaHomeCanvas"${zoomStyle}></div>`;
     const toggle = document.getElementById('homeModeToggle');
     if(toggle) toggle.remove();
-    renderSentinelPriorityStrip(document.getElementById('sentinelPriorityStrip'));
     renderMatryoshkaHome(document.getElementById('matryoshkaHomeCanvas'));
     ensureMatryoshkaHomeToolbar();
     return;
@@ -6232,28 +5430,12 @@ function renderSection(){
     const isSharedTab  = tab.startsWith('__sb_');
     shareBtn.style.display = (isArchiveTab || isSharedTab) ? 'none' : '';
   }
-  // "Shared" badge next to the section title when this list (or the board) is shared.
-  const _head = document.querySelector('#sectionCard .section-head');
-  if (_head){
-    const old = _head.querySelector('.shared-badge'); if (old) old.remove();
-    if (isListShared(tab)){
-      const b = document.createElement('span');
-      b.className = 'shared-badge';
-      b.title = 'Shared with a collaborator';
-      b.textContent = '⇧ Shared';
-      titleEl.insertAdjacentElement('afterend', b);
-    }
-  }
   // Apply saved per-list width and height (or fall back to defaults)
   const card = document.getElementById('sectionCard');
   if(card){
     const sz = state.sectionSize?.[tab] || {};
     card.style.width  = (sz.w && sz.w > 0) ? (sz.w + 'px') : '600px';
     card.style.height = (sz.h && sz.h > 0) ? (sz.h + 'px') : '';
-    // Honor the lower-left zoom control in the single-list (section) view too.
-    const _z = Math.max(0.4, Math.min(2, +state.boardZoom || 1));
-    if(_z !== 1){ card.style.transform = 'scale(' + _z + ')'; card.style.transformOrigin = 'top left'; }
-    else { card.style.transform = ''; card.style.transformOrigin = ''; }
   }
   // Apply collapse first (operates on natural order), then sort the remainder.
   const visible = visibleRowsAfterCollapse(state.rows[tab]);
@@ -6264,7 +5446,7 @@ function renderSection(){
     return;
   }
 
-  const headHtml = listHeadHtml(tab);
+  const headHtml = cols.map(col => renderColHeader(tab, col)).join('');
 
   host.innerHTML = `
     <table class="tbl">
@@ -6282,11 +5464,7 @@ function renderSection(){
   wireHeader(host, tab);
 
   const tbody = document.getElementById('tbody');
-  rows.forEach(row => {
-    tbody.appendChild(renderRow(tab, row));
-    if(row.boardId && state.boards && state.boards[row.boardId] && _boardRowExpanded[row.id])
-      tbody.appendChild(renderBoardPreviewRow(tab, row));
-  });
+  rows.forEach(row => tbody.appendChild(renderRow(tab, row)));
 }
 
 // Build the <th> for one column, with a label span (editable), a tiny × for user cols, and a resize grip.
@@ -6312,6 +5490,7 @@ function renderColHeader(tab, col){
       <span class="th-label" contenteditable="true" spellcheck="false">${escapeHtml(label)}</span>
       ${sortBtn}
       ${userBadge}
+      <span class="col-resize" data-col="${col.key}" title="Drag to resize"></span>
     </div>
   </th>`;
 }
@@ -6453,7 +5632,7 @@ function addColumn(tab){ openAddColumnPicker(tab, document.getElementById('addCo
 
 function ensureHomeModeToggle(){
   let bar = document.getElementById('homeModeToggle');
-  const mode = state.homeViewMode === 'stacked' ? 'stacked' : 'free';
+  const mode = state.homeViewMode || 'free';
   const zoom = Math.max(0.4, Math.min(2, +state.boardZoom || 1));
   const zoomPct = Math.round(zoom * 100);
   const hasPreferred = !!(state.preferredLayout && state.preferredLayout.boardPos && Object.keys(state.preferredLayout.boardPos).length);
@@ -6472,7 +5651,17 @@ function ensureHomeModeToggle(){
       <button data-mode="free">Free</button>
       <button data-mode="stacked">Stacked</button>
     </div>
-    <button data-act="toggle-all" class="hmt-action" title="${anyCollapsed ? 'Restore every minimized list' : 'Minimize every list'}">${anyCollapsed ? '▴ Max all' : '▾ Min all'}</button>
+    ${mode === 'free' ? `
+      <div class="hmt-zoom">
+        <button data-act="zoom-out" title="Zoom out">−</button>
+        <button data-act="zoom-reset" title="Reset to 100%">${zoomPct}%</button>
+        <button data-act="zoom-in" title="Zoom in">+</button>
+      </div>
+      <button data-act="auto-fit" class="hmt-action" title="Tile every board to fit on one screen">↔ Auto-fit</button>
+      <button data-act="toggle-all" class="hmt-action" title="${anyCollapsed ? 'Restore every minimized list back to the canvas' : 'Minimize every list to the dock at the bottom'}">${anyCollapsed ? '▴ Max all' : '▾ Min all'}</button>
+      <button data-act="save-layout" class="hmt-action" title="Capture the current arrangement as your preferred default">↥ Save layout</button>
+      <button data-act="apply-layout" class="hmt-action" ${hasPreferred?'':'disabled'} title="${hasPreferred ? 'Restore your saved arrangement' : 'No saved layout yet — click Save layout first'}">⌂ Preferred Fit</button>
+    ` : ''}
   `;
   bar.querySelectorAll('button[data-mode]').forEach(b =>
     b.classList.toggle('active', b.dataset.mode === mode));
@@ -6508,28 +5697,6 @@ function ensureHomeModeToggle(){
 function setBoardZoom(z){
   state.boardZoom = Math.max(0.4, Math.min(2, +(+z).toFixed(2)));
   save(); render();
-}
-// The lower-left zoom control drives whichever view is showing: the Sentinel
-// canvas when in Sentinel, otherwise the board canvas.
-function currentZoomVar(){ return state.viewingMatryoshkaHome ? 'matryoshkaHomeZoom' : 'boardZoom'; }
-function ensureZoomDock(){
-  const d = document.getElementById('zoomDock');
-  if(!d) return;
-  if(!d.dataset.wired){
-    d.dataset.wired = '1';
-    d.addEventListener('click', e => {
-      const b = e.target.closest('button'); if(!b) return;
-      const v = currentZoomVar();
-      let z = Math.max(0.4, Math.min(2, +state[v] || 1));
-      if(b.dataset.z === 'out') z = Math.max(0.4, +(z - 0.1).toFixed(2));
-      else if(b.dataset.z === 'in') z = Math.min(2, +(z + 0.1).toFixed(2));
-      else z = 1;
-      state[v] = z; save(); render();
-    });
-  }
-  const z = Math.max(0.4, Math.min(2, +state[currentZoomVar()] || 1));
-  const lbl = d.querySelector('[data-z="reset"]');
-  if(lbl) lbl.textContent = Math.round(z * 100) + '%';
 }
 function savePreferredLayout(){
   state.preferredLayout = {
@@ -6575,125 +5742,18 @@ function autoFitBoards(){
   save(); render();
 }
 
-// Gather every starred (priority) row across all boards, for the Sentinel
-// Priority view. Reads live rows for the active board, snapshots for the rest.
-function collectStarredRows(){
-  const out = [];
-  Object.keys(state.boards || {}).forEach(bid => {
-    const b = state.boards[bid];
-    const isActive = bid === state.activeBoardId;
-    const rowsObj = isActive ? (state.rows || {}) : ((b.data && b.data.rows) || {});
-    const titles  = isActive ? (state.titles || {}) : ((b.data && b.data.titles) || {});
-    const ub      = isActive ? (state.userBoards || {}) : ((b.data && b.data.userBoards) || {});
-    Object.keys(rowsObj).forEach(lk => {
-      (rowsObj[lk] || []).forEach(r => {
-        if(!r.priority) return;
-        const cols = (ub[lk] && ub[lk].columns) || (SCHEMAS[lk] && SCHEMAS[lk].columns) || [];
-        const k0 = cols[0] && cols[0].key;
-        const k1 = (cols.slice(1).find(c => !c.type || c.type === 'text') || {}).key;
-        const tmp = document.createElement('div'); tmp.innerHTML = (k0 ? r[k0] : '') || '';
-        const a = (tmp.textContent || '').trim();
-        tmp.innerHTML = (k1 ? r[k1] : '') || ''; const bx = (tmp.textContent || '').trim();
-        out.push({
-          boardId: bid, listKey: lk, rowId: r.id,
-          boardTitle: boardDisplayTitle(bid) || 'Untitled',
-          listTitle: titles[lk] || lk,
-          label: [a, bx].filter(Boolean).join(' - ') || '(untitled)',
-        });
-      });
-    });
-  });
-  return out;
-}
-// The Priority "board" that lives at the top of Sentinel: every starred item
-// across all boards, grouped by board, click to jump to it.
-function renderSentinelPriorityStrip(host){
-  if(!host) return;
-  const items = collectStarredRows();
-  if(!items.length){ host.innerHTML = ''; host.style.display = 'none'; return; }
-  host.style.display = '';
-  const byBoard = {};
-  items.forEach(it => { (byBoard[it.boardId] = byBoard[it.boardId] || []).push(it); });
-  const card = document.createElement('div');
-  card.className = 'sp-strip-card';
-  const head = document.createElement('div');
-  head.className = 'sp-strip-head';
-  head.innerHTML = `<span class="sp-star">★</span> Priority — ${items.length} starred item${items.length===1?'':'s'}`;
-  card.appendChild(head);
-  const body = document.createElement('div');
-  body.className = 'sp-strip-body';
-  Object.keys(byBoard).forEach(bid => {
-    const g = byBoard[bid];
-    const grp = document.createElement('div');
-    grp.className = 'sp-strip-group';
-    const gh = document.createElement('div');
-    gh.className = 'sp-group-head';
-    gh.textContent = g[0].boardTitle;
-    grp.appendChild(gh);
-    g.forEach(it => {
-      const item = document.createElement('div');
-      item.className = 'sp-item';
-      item.innerHTML = `<span class="sp-star">★</span><span class="sp-label">${escapeHtml(it.label)}</span>`;
-      item.addEventListener('click', () => openBoardOnList(it.boardId, it.listKey));
-      grp.appendChild(item);
-    });
-    body.appendChild(grp);
-  });
-  card.appendChild(body);
-  host.appendChild(card);
-}
-function renderSentinelPriority(canvas){
-  canvas.innerHTML = '';
-  const items = collectStarredRows();
-  const panel = document.createElement('div');
-  panel.className = 'sentinel-priority';
-  if(!items.length){
-    panel.innerHTML = `<div class="sp-empty"><span class="sp-star">★</span> No priority items yet.<br><span>Star a row (the ☆ at the end of any row) and it shows up here.</span></div>`;
-    canvas.appendChild(panel);
-    return;
-  }
-  // Group by board.
-  const byBoard = {};
-  items.forEach(it => { (byBoard[it.boardId] = byBoard[it.boardId] || []).push(it); });
-  const head = document.createElement('div');
-  head.className = 'sp-head';
-  head.innerHTML = `<span class="sp-star">★</span> Priority — ${items.length} starred item${items.length===1?'':'s'}`;
-  panel.appendChild(head);
-  Object.keys(byBoard).forEach(bid => {
-    const group = byBoard[bid];
-    const g = document.createElement('div');
-    g.className = 'sp-group';
-    const gh = document.createElement('div');
-    gh.className = 'sp-group-head';
-    gh.textContent = group[0].boardTitle;
-    g.appendChild(gh);
-    group.forEach(it => {
-      const row = document.createElement('div');
-      row.className = 'sp-item';
-      row.innerHTML = `<span class="sp-star">★</span><span class="sp-label">${escapeHtml(it.label)}</span><span class="sp-list">${escapeHtml(it.listTitle)}</span>`;
-      row.addEventListener('click', () => openBoardOnList(it.boardId, it.listKey));
-      g.appendChild(row);
-    });
-    panel.appendChild(g);
-  });
-  canvas.appendChild(panel);
-}
-
 function renderMatryoshkaHome(canvas){
   canvas.innerHTML = '';
-  if(state.sentinelPriority){ renderSentinelPriority(canvas); return; }
   const homeOpts = state.matryoshkaHome || {};
   const mode = canvas.classList.contains('mhome-free') ? 'free' : 'grid';
-  // Sentinel shows exactly the first layer down — the same top-level boards as
-  // the board-switcher dropdown (listBoards). Nested Russian-doll sub-boards
-  // live inside their parents and never appear here.
-  const pinnedIds   = listBoards().map(b => b.id);
-  const unpinnedIds = [];
+  const allBoardIds = Object.keys(state.boards || {});
+  const pinnedIds   = allBoardIds.filter(id => homeOpts[id] && homeOpts[id].pinned);
+  const unpinnedIds = allBoardIds.filter(id => !(homeOpts[id] && homeOpts[id].pinned));
 
   if(pinnedIds.length === 0){
     const empty = document.createElement('div');
     empty.className = 'matryoshka-empty';
-    empty.innerHTML = `<h2>Your Sentinel view is empty</h2><p>Create a board to see it here.</p>`;
+    empty.innerHTML = `<h2>Your Matryoshka Home is empty</h2><p>Pin boards here for a cross-board overview. Use the board menu (▾ next to a board name) and choose "Pin to Home".</p>`;
     canvas.appendChild(empty);
   }
 
@@ -6721,14 +5781,6 @@ function renderMatryoshkaHome(canvas){
     const bRows   = isActive ? state.rows       : (board.data && board.data.rows       || {});
     const bOrder  = isActive ? state.boardOrder : (board.data && board.data.boardOrder || []);
     const bTitles = isActive ? state.titles     : (board.data && board.data.titles     || {});
-    const bUserBoards = isActive ? (state.userBoards || {}) : (board.data && board.data.userBoards || {});
-    // First (title) column key for a list in THIS board — custom lists carry their
-    // columns in the board's userBoards; built-ins come from SCHEMAS.
-    const firstColKeyOf = (listKey) => {
-      const ub = bUserBoards[listKey];
-      const cols = (ub && ub.columns) || (SCHEMAS[listKey] && SCHEMAS[listKey].columns) || [];
-      return cols[0] && cols[0].key;
-    };
 
     const allTaskRows = bOrder.flatMap(k => bRows[k] || []);
     const doneCount   = allTaskRows.filter(r => r.dateResolved || r.status === 'Done').length;
@@ -6751,11 +5803,11 @@ function renderMatryoshkaHome(canvas){
     head.className = 'matryoshka-card-head';
     const collapseLabel = collapsed ? '▸' : '▾';
     head.innerHTML = `
-      <span class="matryoshka-card-title">${escapeHtml(boardDisplayTitle(id) || 'Untitled')}</span>
+      <span class="matryoshka-card-title">${escapeHtml(board.title || 'Untitled')}</span>
       <span class="matryoshka-card-count">${doneCount}/${totalCount}</span>
       <button class="matryoshka-card-collapse" title="${collapsed ? 'Expand' : 'Collapse'}">${collapseLabel}</button>
       <button class="matryoshka-card-open btn-primary">Open →</button>
-      <button class="mc-hide-btn" title="Unpin from Sentinel">✕</button>
+      <button class="mc-hide-btn" title="Unpin from Home">✕</button>
     `;
     head.querySelector('.matryoshka-card-open').addEventListener('click', e => {
       e.stopPropagation();
@@ -6769,7 +5821,7 @@ function renderMatryoshkaHome(canvas){
     });
     head.querySelector('.mc-hide-btn').addEventListener('click', e => {
       e.stopPropagation();
-      if(!confirm('Unpin "' + (boardDisplayTitle(id) || id) + '" from Sentinel?')) return;
+      if(!confirm('Unpin "' + escapeHtml(board.title || id) + '" from Matryoshka Home?')) return;
       state.matryoshkaHome[id] = { ...opts, pinned: false };
       save(); render();
     });
@@ -6782,16 +5834,9 @@ function renderMatryoshkaHome(canvas){
       if(listsWithTasks.length === 0){
         body.innerHTML = `<div style="padding:12px 14px;font-size:12.5px;color:var(--muted)">No tasks yet.</div>`;
       } else {
-        // Plain text of a cell value (strip any inline HTML) for the compact preview.
-        const cellText = v => { if(!v) return ''; const d = document.createElement('div'); d.innerHTML = v; return (d.textContent || '').trim(); };
         listsWithTasks.forEach(listKey => {
           const rows = visibleRowsAfterCollapse(bRows[listKey] || []);
           const listTitle = bTitles[listKey] || listKey;
-          const listCols = (bUserBoards[listKey] && bUserBoards[listKey].columns) || (SCHEMAS[listKey] && SCHEMAS[listKey].columns) || [];
-          const firstKey = listCols[0] && listCols[0].key;
-          // "What to do" = the next plain-text column after the first (skip status/who/due/date).
-          const descCol = listCols.slice(1).find(c => !c.kind);
-          const descKey = descCol && descCol.key;
           const listHead = document.createElement('div');
           listHead.style.cssText = 'padding:5px 14px 3px;font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;border-top:1px solid var(--border)';
           listHead.textContent = listTitle;
@@ -6801,12 +5846,10 @@ function renderMatryoshkaHome(canvas){
             const taskDiv = document.createElement('div');
             taskDiv.className = 'mc-task' + (isDone ? ' mc-done' : '');
             taskDiv.style.setProperty('--mc-ind', Math.max(0, row.indent | 0));
-            // Client name (first column) + what to do (next text column), " - " separated.
-            const parts = [
-              cellText(firstKey && row[firstKey]) || cellText(row.task || row.matter || row.client || row.prospect),
-              cellText(descKey && row[descKey]),
-            ].filter(Boolean);
-            taskDiv.innerHTML = `<input type="checkbox" ${isDone?'checked':''}><span class="mc-task-text">${escapeHtml(parts.join(' - '))}</span>`;
+            const rawTask = row.task || row.matter || row.client || row.prospect || '';
+            const taskHtml = /<\/?[a-z][^>]*>/i.test(rawTask)
+              ? sanitizeRowHtml(rawTask) : escapeHtml(rawTask);
+            taskDiv.innerHTML = `<input type="checkbox" ${isDone?'checked':''}><span class="mc-task-text">${taskHtml}</span>`;
             body.appendChild(taskDiv);
           });
         });
@@ -6858,7 +5901,7 @@ function renderMatryoshkaHome(canvas){
       const board = state.boards[id];
       if(!board) return;
       const btn = document.createElement('button');
-      btn.textContent = '+ ' + (boardDisplayTitle(id) || 'Untitled');
+      btn.textContent = '+ ' + escapeHtml(board.title || 'Untitled');
       btn.style.cssText = 'font-size:11px;padding:3px 9px;color:var(--muted);border:1px dashed var(--border-strong);background:transparent;border-radius:6px;cursor:pointer';
       btn.addEventListener('click', () => {
         state.matryoshkaHome = state.matryoshkaHome || {};
@@ -6940,6 +5983,11 @@ function ensureMatryoshkaHomeToolbar(){
       <button data-mode="grid">Grid</button>
     </div>
     ${mode === 'free' ? `
+      <div class="hmt-zoom">
+        <button data-act="zoom-out" title="Zoom out">−</button>
+        <button data-act="zoom-reset" title="Reset to 100%">${zoomPct}%</button>
+        <button data-act="zoom-in" title="Zoom in">+</button>
+      </div>
       <button data-act="auto-fit" class="hmt-action" title="Tile boards to fit on screen">↔ Auto-fit</button>
     ` : ''}
     <button data-act="toggle-all" class="hmt-action">${anyCollapsed ? '▴ Max all' : '▾ Min all'}</button>
@@ -6956,7 +6004,6 @@ function ensureMatryoshkaHomeToolbar(){
     else if(act === 'zoom-in')    { state.matryoshkaHomeZoom = +(Math.min(2, z + 0.1)).toFixed(2); save(); render(); }
     else if(act === 'zoom-reset') { state.matryoshkaHomeZoom = 1; save(); render(); }
     else if(act === 'auto-fit')   mhomeAutoFit();
-    else if(act === 'priority')   { state.sentinelPriority = !state.sentinelPriority; save(); render(); }
     else if(act === 'toggle-all') {
       const opts = state.matryoshkaHome || {};
       const ids = Object.keys(state.boards || {}).filter(id => opts[id] && opts[id].pinned);
@@ -6991,60 +6038,16 @@ function mhomeAutoFit(){
   save(); render();
 }
 
-// Right-click menu for a list card in the board (grid) view: the list-level
-// actions that used to live in the top-right hover bar. Minimize stays as a
-// button next to the title; everything else is here.
-function openBoardCardMenu(x, y, tabKey){
-  closeFloatingRowMenu();
-  const pop = document.createElement('div');
-  pop.className = 'row-menu-pop floating-row-menu';
-  const hiddenList = getHiddenColumns(tabKey);
-  const restoreHtml = hiddenList.length
-    ? '<div class="sep"></div>' + hiddenList.map(c => `<button data-act="restore:${c.key}">↶ Restore "${escapeHtml(c.label)}"</button>`).join('')
-    : '';
-  pop.innerHTML = `
-    <button data-act="addrow">+ Add row</button>
-    <button data-act="addcol">+ Add column</button>
-    <button data-act="open">↗ Open list</button>${restoreHtml}
-    <div class="sep"></div>
-    <button data-act="delete" class="danger">× Delete list</button>`;
-  document.body.appendChild(pop);
-  const popW = pop.offsetWidth, popH = pop.offsetHeight;
-  let left = x, top = y;
-  if (left + popW > window.innerWidth - 8)  left = Math.max(8, window.innerWidth  - popW - 8);
-  if (top  + popH > window.innerHeight - 8) top  = Math.max(8, window.innerHeight - popH - 8);
-  pop.style.left = left + 'px';
-  pop.style.top  = top + 'px';
-  pop.querySelectorAll('button').forEach(b => b.addEventListener('click', ev => {
-    ev.stopPropagation();
-    const act = b.dataset.act;
-    closeFloatingRowMenu();
-    if (act === 'addrow') addRowTo(tabKey);
-    else if (act === 'addcol') addColumn(tabKey);
-    else if (act === 'open'){ state.activeTab = tabKey; save(); render(); }
-    else if (act === 'delete') deleteSubList(tabKey);
-    else if (act && act.startsWith('restore:')) restoreHiddenColumn(tabKey, act.slice('restore:'.length));
-  }));
-}
-
 function renderHome(host){
-  // Board view layouts (Hedwig-style): 'free' (default — free-floating windows you
-  // drag by the header and resize from the corner with the browser's native handle)
-  // or 'stacked' (single full-width column, no drag/resize).
   const mode = state.homeViewMode === 'stacked' ? 'stacked' : 'free';
 
   const zoom = Math.max(0.4, Math.min(2, +state.boardZoom || 1));
-  // At non-100% zoom, scale the whole canvas (both free and stacked). Compensate
-  // width so the scaled content still fills the wrapper horizontally.
-  const zoomStyle = (zoom !== 1)
+  // In free mode at non-100% zoom, scale the whole canvas. Compensate width so the
+  // scaled content still fills the wrapper horizontally (otherwise it leaves whitespace).
+  const zoomStyle = (mode === 'free' && zoom !== 1)
     ? ` style="transform:scale(${zoom});transform-origin:top left;width:${(100/zoom).toFixed(2)}%"`
     : '';
-  const canvasMode = mode === 'stacked' ? 'stacked' : '';
-  host.innerHTML = `<div class="board-canvas ${canvasMode}" id="boardCanvas"${zoomStyle}></div>`;
-  // Remove the Sentinel-only toolbar so it doesn't linger over the board toolbar
-  // (mirror of the Sentinel path, which removes #homeModeToggle).
-  const _mhomeBar = document.getElementById('mhomeToolbar');
-  if(_mhomeBar) _mhomeBar.remove();
+  host.innerHTML = `<div class="board-canvas ${mode==='stacked'?'stacked':''}" id="boardCanvas"${zoomStyle}></div>`;
   ensureHomeModeToggle();
   const canvas = document.getElementById('boardCanvas');
   state.boardOrder.forEach(tabKey => {
@@ -7061,41 +6064,59 @@ function renderHome(host){
       card.style.left = pos.x + 'px';
       card.style.top  = pos.y + 'px';
     }
-    const sz = state.boardSize?.[tabKey] || {w:0,h:0};
-    if(mode === 'free'){
-      // Width hugs the columns by default (no empty card on the right); a manual
-      // resize (sz.w) overrides. Height is free.
-      if(sz.w) card.style.width = sz.w + 'px';
-      else { const cw = tableTargetWidth(tabKey); if(cw) card.style.width = Math.max(320, Math.min(900, cw)) + 'px'; }
-      if(sz.h) card.style.height = sz.h + 'px';
-    }
-
-    const collapsed = !!(state.boardCollapsed && state.boardCollapsed[tabKey]);
+    const sz = state.boardSize?.[tabKey] || {w:560,h:0};
+    if(mode === 'free' && sz.w) card.style.width = sz.w + 'px';
+    if(mode === 'free' && sz.h) card.style.height = sz.h + 'px';
 
     const head = document.createElement('div');
     head.className = 'board-card-head';
     head.innerHTML = `
       <span class="tab-icon ${sch.color}"></span>
       <div class="board-card-title" contenteditable="true" spellcheck="false">${escapeHtml(state.titles[tabKey])}</div>
-      ${isListShared(tabKey) ? SHARED_BADGE : ''}
-      <button class="board-card-min" title="${collapsed ? 'Expand list' : 'Minimize list'}">${collapsed ? '▸' : '▾'}</button>
       <div class="board-head-spacer"></div>
       <span class="board-card-count">${rows.length}</span>
+      <button class="board-card-add" title="Add row or column">+</button>
+      <button class="board-card-open" title="Open this list">Open →</button>
     `;
     head.querySelector('.board-card-title').addEventListener('input', (e) => {
       state.titles[tabKey] = e.target.textContent.trim() || sch.label;
       save(); renderTabs();
     });
-    head.querySelector('.board-card-min').addEventListener('click', (e) => {
+    head.querySelector('.board-card-open').addEventListener('click', (e) => {
       e.stopPropagation();
-      state.boardCollapsed = state.boardCollapsed || {};
-      state.boardCollapsed[tabKey] = !state.boardCollapsed[tabKey];
-      save(); render();
+      state.activeTab = tabKey; save(); render();
     });
-    // Right-click the header for list actions (add row/column, open, delete).
-    head.addEventListener('contextmenu', (e) => {
-      e.preventDefault(); e.stopPropagation();
-      openBoardCardMenu(e.clientX, e.clientY, tabKey);
+    head.querySelector('.board-card-add').addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeFloatingRowMenu();
+      const btn = e.currentTarget;
+      const pop = document.createElement('div');
+      pop.className = 'row-menu-pop floating-row-menu';
+      const hiddenList = getHiddenColumns(tabKey);
+      const restoreHtml = hiddenList.length
+        ? '<div class="sep"></div>' + hiddenList.map(c => `<button data-act="restore:${c.key}">↶ Restore "${escapeHtml(c.label)}"</button>`).join('')
+        : '';
+      pop.innerHTML = `<button data-act="addrow">+ Add row</button><button data-act="addcol">+ Add column</button>${restoreHtml}`;
+      document.body.appendChild(pop);
+      const r = btn.getBoundingClientRect();
+      const popW = pop.offsetWidth, popH = pop.offsetHeight;
+      let top = r.bottom + 4;
+      if (top + popH > window.innerHeight - 8) top = Math.max(8, r.top - popH - 4);
+      let left = r.right - popW;
+      if (left < 8) left = 8;
+      if (left + popW > window.innerWidth - 8) left = window.innerWidth - popW - 8;
+      pop.style.top = top + 'px';
+      pop.style.left = left + 'px';
+      pop.querySelectorAll('button').forEach(b => {
+        b.addEventListener('click', ev => {
+          ev.stopPropagation();
+          const act = b.dataset.act;
+          closeFloatingRowMenu();
+          if (act === 'addrow') addRowTo(tabKey);
+          else if (act === 'addcol') addColumn(tabKey);
+          else if (act && act.startsWith('restore:')) restoreHiddenColumn(tabKey, act.slice('restore:'.length));
+        });
+      });
     });
 
     // accept ROW drops from a different tab to recategorize
@@ -7110,7 +6131,86 @@ function renderHome(host){
 
     card.appendChild(head);
 
+    // Transparent strip across the top of the card — drag the card from anywhere on it
+    const grip = document.createElement('div');
+    grip.className = 'board-card-grip';
+    grip.title = 'Drag to move';
+    card.appendChild(grip);
+
+    // Board name "tab" sitting on the top edge of the card
+    const nameTab = document.createElement('div');
+    nameTab.className = 'board-card-tab ' + (sch.color || '');
+    nameTab.contentEditable = 'true';
+    nameTab.spellcheck = false;
+    nameTab.title = 'Click to rename';
+    nameTab.textContent = state.titles[tabKey] || sch.label;
+    nameTab.addEventListener('input', () => {
+      state.titles[tabKey] = nameTab.textContent.trim() || sch.label;
+      save(); renderTabs();
+    });
+    nameTab.addEventListener('keydown', e => { if(e.key === 'Enter'){ e.preventDefault(); nameTab.blur(); }});
+    // Allow the title bar to act as a drag handle (via threshold, see onBoardMouseDown)
+    card.appendChild(nameTab);
+
+    const collapsed = !!(state.boardCollapsed && state.boardCollapsed[tabKey]);
     if (collapsed) card.classList.add('board-collapsed');
+    // Floating controls strip in the top-right of the card (drag handle, +, minimize, ×, open)
+    const ctrls = document.createElement('div');
+    ctrls.className = 'board-card-controls';
+    ctrls.innerHTML = `
+      <button class="ctl drag" title="Drag to move">⋮⋮</button>
+      <button class="ctl add" title="Add row or column">+</button>
+      <button class="ctl min" title="${collapsed ? 'Expand list' : 'Minimize list'}">${collapsed ? '▸' : '▾'}</button>
+      <button class="ctl del" title="Delete this list">×</button>
+      <button class="ctl open" title="Open this list">↗</button>
+    `;
+    ctrls.querySelector('.open').addEventListener('click', e => {
+      e.stopPropagation();
+      state.activeTab = tabKey; save(); render();
+    });
+    ctrls.querySelector('.min').addEventListener('click', e => {
+      e.stopPropagation();
+      state.boardCollapsed = state.boardCollapsed || {};
+      state.boardCollapsed[tabKey] = !state.boardCollapsed[tabKey];
+      save(); render();
+    });
+    ctrls.querySelector('.del').addEventListener('click', e => {
+      e.stopPropagation();
+      deleteSubList(tabKey);
+    });
+    ctrls.querySelector('.add').addEventListener('click', e => {
+      e.stopPropagation();
+      closeFloatingRowMenu();
+      const btn = e.currentTarget;
+      const pop = document.createElement('div');
+      pop.className = 'row-menu-pop floating-row-menu';
+      const hiddenList = getHiddenColumns(tabKey);
+      const restoreHtml = hiddenList.length
+        ? '<div class="sep"></div>' + hiddenList.map(c => `<button data-act="restore:${c.key}">↶ Restore "${escapeHtml(c.label)}"</button>`).join('')
+        : '';
+      pop.innerHTML = `<button data-act="addrow">+ Add row</button><button data-act="addcol">+ Add column</button>${restoreHtml}`;
+      document.body.appendChild(pop);
+      const r = btn.getBoundingClientRect();
+      const popW = pop.offsetWidth, popH = pop.offsetHeight;
+      let top = r.bottom + 4;
+      if (top + popH > window.innerHeight - 8) top = Math.max(8, r.top - popH - 4);
+      let left = r.right - popW;
+      if (left < 8) left = 8;
+      if (left + popW > window.innerWidth - 8) left = window.innerWidth - popW - 8;
+      pop.style.top = top + 'px';
+      pop.style.left = left + 'px';
+      pop.querySelectorAll('button').forEach(b => {
+        b.addEventListener('click', ev => {
+          ev.stopPropagation();
+          const act = b.dataset.act;
+          closeFloatingRowMenu();
+          if (act === 'addrow') addRowTo(tabKey);
+          else if (act === 'addcol') addColumn(tabKey);
+          else if (act && act.startsWith('restore:')) restoreHiddenColumn(tabKey, act.slice('restore:'.length));
+        });
+      });
+    });
+    card.appendChild(ctrls);
 
     if(rows.length === 0){
       const empty = document.createElement('div');
@@ -7118,7 +6218,8 @@ function renderHome(host){
       empty.textContent = 'No tasks yet';
       card.appendChild(empty);
     } else {
-      const headHtml = listHeadHtml(tabKey);
+      const cols = getColumns(tabKey);
+      const headHtml = cols.map(col => renderColHeader(tabKey, col)).join('');
       const wrap = document.createElement('div');
       wrap.className = 'board-card-table-wrap';
       wrap.innerHTML = `
@@ -7127,35 +6228,49 @@ function renderHome(host){
           <tbody></tbody>
         </table>`;
       const tbody = wrap.querySelector('tbody');
-      rows.forEach(row => {
-        tbody.appendChild(renderRow(tabKey, row));
-        if(row.boardId && state.boards && state.boards[row.boardId] && _boardRowExpanded[row.id])
-          tbody.appendChild(renderBoardPreviewRow(tabKey, row));
-      });
+      rows.forEach(row => tbody.appendChild(renderRow(tabKey, row)));
       card.appendChild(wrap);
       wireHeader(wrap, tabKey);
     }
 
-    // No custom resize handle — the card uses the browser's native resize:both
-    // (see .board-card CSS) and boardResizeObserver persists the new size.
+    // resize handle (bottom-right corner)
+    const resize = document.createElement('div');
+    resize.className = 'board-resize';
+    resize.title = 'Drag to resize';
+    resize.addEventListener('mousedown', e => {
+      e.preventDefault(); e.stopPropagation();
+      const startX = e.clientX, startY = e.clientY;
+      const startRect = card.getBoundingClientRect();
+      // Canvas may be transform:scale(zoom). Convert viewport deltas → logical pixels
+      // so the card resizes in step with the cursor at any zoom level.
+      const z = Math.max(0.4, Math.min(2, +state.boardZoom || 1));
+      const startW = startRect.width  / z;
+      const startH = startRect.height / z;
+      const onMove = ev => {
+        const w = Math.max(280, Math.round(startW + (ev.clientX - startX) / z));
+        const h = Math.max(120, Math.round(startH + (ev.clientY - startY) / z));
+        card.style.width  = w + 'px';
+        card.style.height = h + 'px';
+      };
+      const onUp = () => {
+        document.removeEventListener('mousemove', onMove);
+        document.removeEventListener('mouseup', onUp);
+        const w = parseInt(card.style.width, 10) || startRect.width;
+        const h = parseInt(card.style.height, 10) || startRect.height;
+        state.boardSize[tabKey] = { w, h };
+        save();
+      };
+      document.addEventListener('mousemove', onMove);
+      document.addEventListener('mouseup', onUp);
+    });
+    card.appendChild(resize);
+
     canvas.appendChild(card);
   });
 }
 
-// Lists render all columns (task + status/who/due/date + any custom columns like
-// Assignee). Kept as helpers so the row and header builds stay in sync.
-// Owner (who) and Status/Stage no longer get their own columns — they render as
-// buttons at the end of each row. So exclude them from the table columns; the
-// header and body both derive from this, staying in sync.
-function isEndMetaCol(c){ return c.kind === 'who' || c.kind === 'status'; }
-function endMetaColumns(tab){ return getColumns(tab).filter(isEndMetaCol); }
-// Rows show at most 2 text columns (title + one more). Everything else —
-// owner, status/progress, priority — loads as buttons at the end of the row.
-function listDisplayColumns(tab){ return getColumns(tab).filter(c => !isEndMetaCol(c)).slice(0, 1); }
-function listHeadHtml(tab){ return listDisplayColumns(tab).map(col => renderColHeader(tab, col)).join(''); }
-
 function renderRow(tab, row){
-  const cols = listDisplayColumns(tab);
+  const cols = getColumns(tab);
   const tr = document.createElement('tr');
   tr.dataset.rowId = row.id;
   tr.dataset.tab = tab;
@@ -7189,22 +6304,14 @@ function renderRow(tab, row){
     if (anchorEl && anchorEl.closest && anchorEl.closest('ul, ol')) return; // bullet indent — let doc handler run
     e.preventDefault();
     e.stopPropagation();
-    // On the task (first) column, Tab indents / Shift+Tab outdents the row so you
-    // can build sub-part lists while typing. Other columns keep cell-to-cell tabbing.
-    if (e.target.closest('.cell-first-data')){
-      const colKey = e.target.closest('td')?.dataset.col;
-      bulkShiftIndent(tab, [row.id], e.shiftKey ? -1 : 1);
-      setTimeout(() => focusCellInRow(tab, row.id, colKey), 0);
-    } else {
-      focusAdjacentCell(e.target, e.shiftKey ? 'prev' : 'next');
-    }
+    focusAdjacentCell(e.target, e.shiftKey ? 'prev' : 'next');
   });
 
   // Build the checkbox once — it'll be slotted into the first data cell so it indents with the text
   const cb = document.createElement('input');
   cb.type = 'checkbox';
   cb.className = 'row-check';
-  const statusCol = getColumns(tab).find(c => c.kind === 'status');
+  const statusCol = cols.find(c => c.kind === 'status');
   const statusKey = statusCol ? statusCol.key : null;
   cb.checked = statusKey ? (row[statusKey] === 'Done') : !!row.__done;
   if(cb.checked) tr.classList.add('row-done');
@@ -7256,32 +6363,6 @@ function renderRow(tab, row){
       const wrap = document.createElement('div');
       wrap.className = 'first-cell-wrap';
       wrap.appendChild(cb);
-      // Matryoshka: if this row is its own board, show a doll + two arrows at the
-      // start of the line — ▾ expands an inline preview of the sub-board, → drills in.
-      if (row.boardId && state.boards && state.boards[row.boardId]){
-        tr.classList.add('row-is-board');
-        const doll = document.createElement('span');
-        doll.className = 'row-board-doll';
-        doll.textContent = '🪆';
-        wrap.appendChild(doll);
-        const expanded = !!_boardRowExpanded[row.id];
-        const downBtn = document.createElement('button');
-        downBtn.className = 'row-board-btn row-board-expand';
-        downBtn.title = expanded ? 'Hide sub-board preview' : 'Preview sub-board';
-        downBtn.textContent = expanded ? '▾' : '▸';
-        downBtn.addEventListener('click', e => {
-          e.stopPropagation(); closeFloatingRowMenu();
-          if(_boardRowExpanded[row.id]) delete _boardRowExpanded[row.id]; else _boardRowExpanded[row.id] = true;
-          render();
-        });
-        wrap.appendChild(downBtn);
-        const rightBtn = document.createElement('button');
-        rightBtn.className = 'row-board-btn row-board-open';
-        rightBtn.title = 'Open sub-board';
-        rightBtn.textContent = '→';
-        rightBtn.addEventListener('click', e => { e.stopPropagation(); closeFloatingRowMenu(); switchBoard(row.boardId); });
-        wrap.appendChild(rightBtn);
-      }
       wrap.appendChild(inner);
       // Collapse arrow — only shown when this row has children below it (in the
       // natural state.rows order, not the sorted view).
@@ -7325,42 +6406,6 @@ function renderRow(tab, row){
     });
     actTd.appendChild(notesBtn);
   }
-  // Every row gets the same four end-of-row buttons: owner, clock (progress),
-  // star, ✕ — regardless of the board's columns. Owner/status bind to the
-  // board's who/status column key when it has one, else to a default key so the
-  // data still lives on the row.
-  const whoCol = getColumns(tab).find(c => c.kind === 'who');
-  const whoKey = whoCol ? whoCol.key : '__owner';
-  const progKey = statusKey || '__status';
-  const meta = document.createElement('span');
-  meta.className = 'row-endmeta';
-  meta.appendChild(renderWho(tab, row, whoKey, row[whoKey] ?? ''));
-  meta.appendChild(renderStatusIcon(tab, row, progKey, row[progKey] ?? ''));
-  actTd.appendChild(meta);
-  // Priority star — an end-of-row icon (no dedicated column). Click toggles it;
-  // a set star stays gold and keeps the actions cell visible, off is a faint
-  // outline that appears on row hover like the other action icons.
-  const starBtn = document.createElement('button');
-  starBtn.className = 'row-star-btn' + (row.priority ? ' is-priority' : '');
-  starBtn.title = row.priority ? 'Priority — click to clear' : 'Mark as priority';
-  starBtn.textContent = row.priority ? '★' : '☆';
-  starBtn.addEventListener('click', e => {
-    e.stopPropagation();
-    closeFloatingRowMenu();
-    if (row.priority) delete row.priority; else row.priority = true;
-    save(); render();
-  });
-  actTd.appendChild(starBtn);
-  if (row.priority) tr.classList.add('row-priority');
-  // Shared-task indicator: a small ⇧ when this specific row is shared.
-  if (isRowShared(tab, row.id)){
-    const sh = document.createElement('span');
-    sh.className = 'row-shared-badge';
-    sh.title = 'Shared with a collaborator';
-    sh.textContent = '⇧';
-    actTd.appendChild(sh);
-    tr.classList.add('row-shared');
-  }
   const cutBtn = document.createElement('button');
   cutBtn.className = 'row-cut-btn';
   cutBtn.title = 'Cut row';
@@ -7385,11 +6430,7 @@ function renderRow(tab, row){
   const indentButtons = `<button data-act="indent">Make sub-row</button>${curIndent > 0 ? '<button data-act="outdent">Make parent row</button>' : ''}<div class="sep"></div>`;
   const notesButton = `<button data-act="notes">${hasNotes ? 'Open notes' : 'Add notes'}</button><div class="sep"></div>`;
   const insertButton = `<button data-act="insert-below">+ Insert row below</button><div class="sep"></div>`;
-  const boardButton = `<button data-act="makeboard">${row.boardId ? '↳ Open as board' : '🪆 Make into board'}</button><div class="sep"></div>`;
-  // Share just this one task (reuses the board/list invite system with a row-scoped key).
-  const canShareRow = !!(window.__lgAuth && window.__lgAuth.user) && !tab.startsWith('__sb_');
-  const shareButton = canShareRow ? `<button data-act="share-row">⇧ Share task…</button><div class="sep"></div>` : '';
-  const popContent = `${notesButton}${insertButton}${boardButton}${shareButton}${moveButtons}${moveButtons ? '<div class="sep"></div>' : ''}${indentButtons}${archiveSection}<button data-act="duplicate">Duplicate</button><button data-act="delete" class="danger">Delete</button>`;
+  const popContent = `${notesButton}${insertButton}${moveButtons}${moveButtons ? '<div class="sep"></div>' : ''}${indentButtons}${archiveSection}<button data-act="duplicate">Duplicate</button><button data-act="delete" class="danger">Delete</button>`;
   function runRowAction(act){
     if(act === 'delete'){ deleteRow(tab, row.id); }
     else if(act === 'duplicate'){ duplicateRow(tab, row.id); }
@@ -7397,8 +6438,6 @@ function renderRow(tab, row){
     else if(act === 'unarchive' && liveTarget){ moveRowToTab(row.id, tab, liveTarget); }
     else if(act && act.startsWith('move-')){ moveRowToTab(row.id, tab, act.slice(5)); }
     else if(act === 'notes'){ openNotesDrawer(tab, row); }
-    else if(act === 'makeboard'){ makeRowIntoBoard(tab, row.id); }
-    else if(act === 'share-row'){ closeFloatingRowMenu(); openShareModal('__row__:' + tab + ':' + row.id); }
     else if(act === 'insert-below'){ insertRowAfter(tab, row.id); }
     else if(act === 'indent'){
       row.indent = Math.min(8, (row.indent | 0) + 1);
@@ -7553,19 +6592,6 @@ function renderText(tab, row, key, val, placeholder){
   // restore from here instead of letting their text disappear.
   let lastTypedNonEmpty = val || '';
   let hasFocused = false;
-  // If this is the FIRST column of a row that is its own board, editing the cell
-  // renames the board. Keep the board's stored title in sync so the Sentinel card
-  // and every other board.title reference follow the rename (not just the live
-  // breadcrumb). Otherwise a rename shows in the breadcrumb but the Sentinel card
-  // keeps the old name.
-  const _firstColKey = (getColumns(tab)[0] || {}).key;
-  const _syncBoardTitle = (txt) => {
-    if(key !== _firstColKey || !row.boardId) return;
-    const b = state.boards && state.boards[row.boardId];
-    if(!b) return;
-    const plain = (txt || '').replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ').trim();
-    if(plain) b.title = plain;
-  };
   div.addEventListener('focus', () => {
     hasFocused = true;
     if(div.classList.contains('placeholder')){ div.innerHTML=''; div.classList.remove('placeholder'); }
@@ -7575,7 +6601,6 @@ function renderText(tab, row, key, val, placeholder){
     if (stored.trim()) {
       lastTypedNonEmpty = stored;
       row[key] = stored;
-      _syncBoardTitle(stored);
       div.classList.remove('placeholder');
     } else {
       row[key] = '';
@@ -7586,7 +6611,6 @@ function renderText(tab, row, key, val, placeholder){
     const stored = readCellValue(div);
     if (stored.trim()) {
       row[key] = stored;
-      _syncBoardTitle(stored);
       div.classList.remove('placeholder');
     } else if (hasFocused && lastTypedNonEmpty && lastTypedNonEmpty.trim()) {
       // Defensive: the user typed something this session and the cell read back
@@ -7613,29 +6637,19 @@ function renderText(tab, row, key, val, placeholder){
     const anchorEl = anchor && (anchor.nodeType === 1 ? anchor : anchor.parentElement);
     if (anchorEl && anchorEl.closest && anchorEl.closest('li')) return;
     e.preventDefault();
-    // Enter makes the next line right below at the SAME indent (so a sub-part
-    // list keeps its nesting), then lands the cursor there.
-    const arr = state.rows[tab] || [];
-    const idx = arr.findIndex(r => r.id === row.id);
-    insertRowAfter(tab, row.id);   // inherits this row's indent
-    const created = (state.rows[tab] || [])[idx + 1];
-    if (created) setTimeout(() => focusCellInRow(tab, created.id, key), 0);
+    const tr = div.closest('tr');
+    if (tr && !tr.nextElementSibling) {
+      // Bottom of the table — create a fresh row and land in the same column.
+      addRowTo(tab);
+      setTimeout(() => focusCellInLastRow(tab, key), 0);
+    } else {
+      focusCellBelow(div);
+    }
   });
   return div;
 }
 
 // After addRowTo + render, find the freshly-added row's cell for `colKey` and focus it.
-// Focus a specific row's cell (by rowId + column), cursor at end. Used after
-// indent/outdent and Enter re-render so editing continues where expected.
-function focusCellInRow(tab, rowId, colKey){
-  const tr = document.querySelector(`tr[data-row-id="${rowId}"]`);
-  if (!tr) return;
-  const td = tr.querySelector(`td[data-col="${colKey}"]`);
-  const editable = (td && td.querySelector('.cell-edit, [contenteditable="true"]')) || tr.querySelector('.cell-edit, [contenteditable="true"]');
-  if (!editable) return;
-  editable.focus();
-  try { const range = document.createRange(); range.selectNodeContents(editable); range.collapse(false); const sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(range); } catch(_){}
-}
 function focusCellInLastRow(tab, colKey){
   const rows = state.rows[tab];
   if (!Array.isArray(rows) || !rows.length) return;
@@ -7668,264 +6682,6 @@ function readCellValue(div){
   return sanitizeRowHtml(div.innerHTML);
 }
 
-// ── KEYBOARD-FIRST ROW NAVIGATION ─────────────────────────────────────────
-// A "row cursor" makes the whole tracker usable without a mouse. The cursor
-// tracks the live DOM (not state order), so it follows sections, the aggregate
-// "Full Picture" view, and collapse state for free — collapsed children aren't
-// in the DOM, so navigation skips them automatically. Two implicit modes:
-//   • Navigate — no cell focused. Arrows/j-k move the cursor; single keys act.
-//   • Edit — a .cell-edit is focused (existing Tab/Enter behavior). Esc exits.
-let _kbCursor = null;   // { tab, rowId } | null
-let _kbLastDel = 0;     // timestamp of last 'd' for the dd-to-delete combo
-
-function _kbVisibleRows(){
-  // offsetParent === null filters out display:none collapsed children.
-  return Array.from(document.querySelectorAll('main .tbl tbody tr[data-row-id]'))
-    .filter(tr => tr.offsetParent !== null);
-}
-function _kbIndexOfCursor(rows){
-  if (!_kbCursor) return -1;
-  return rows.findIndex(tr => tr.dataset.rowId === _kbCursor.rowId && tr.dataset.tab === _kbCursor.tab);
-}
-function _kbCurrentTr(){
-  const rows = _kbVisibleRows();
-  const i = _kbIndexOfCursor(rows);
-  return i >= 0 ? rows[i] : null;
-}
-// Re-paint the cursor highlight. Called after every render() (see the wrapper
-// below), so the cursor survives saves, indents, check-offs, etc.
-function applyKbCursor(){
-  document.querySelectorAll('tr.row-kbcursor').forEach(tr => tr.classList.remove('row-kbcursor'));
-  if (!_kbCursor) return;
-  const tr = _kbVisibleRows().find(t => t.dataset.rowId === _kbCursor.rowId && t.dataset.tab === _kbCursor.tab);
-  if (tr) tr.classList.add('row-kbcursor'); else _kbCursor = null;
-}
-function _kbSetCursorEl(tr, scroll){
-  if (!tr) return;
-  _kbCursor = { tab: tr.dataset.tab, rowId: tr.dataset.rowId };
-  applyKbCursor();
-  if (scroll !== false) tr.scrollIntoView({ block: 'nearest' });
-}
-function _kbMove(delta){
-  const rows = _kbVisibleRows();
-  if (!rows.length) return;
-  let i = _kbIndexOfCursor(rows);
-  if (i < 0) i = delta > 0 ? -1 : rows.length;   // first nav lands on the near edge
-  _kbSetCursorEl(rows[Math.max(0, Math.min(rows.length - 1, i + delta))]);
-}
-function _kbEdit(tr){
-  const cell = tr && tr.querySelector('.cell-edit');
-  if (!cell) return;
-  cell.focus();
-  try {
-    const r = document.createRange(); r.selectNodeContents(cell); r.collapse(false);
-    const s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
-  } catch(_){}
-}
-// Alt+↑/↓ reorders within the same list, using the adjacent same-tab row as the target.
-function _kbMoveRow(delta){
-  const tr = _kbCurrentTr();
-  if (!tr) return;
-  const rows = _kbVisibleRows();
-  const i = rows.indexOf(tr);
-  const neighbor = rows[i + delta];
-  if (!neighbor || neighbor.dataset.tab !== tr.dataset.tab) return;
-  reorderRow(tr.dataset.tab, tr.dataset.rowId, neighbor.dataset.rowId, delta < 0);
-  // render() reapplies the cursor (rowId unchanged), keeping focus on the moved row.
-}
-
-// Cheat-sheet overlay (toggled with ?).
-function _kbCloseHelp(){ const el = document.getElementById('kbHelpBg'); if (el){ el.remove(); return true; } return false; }
-function _kbToggleHelp(){
-  if (_kbCloseHelp()) return;
-  const rows = [
-    ['↑ ↓', 'or', 'j', 'k', 'Move between lines'],
-    ['Enter', 'Edit the current line'],
-    ['Esc', 'Stop editing / clear cursor'],
-    ['Space', 'Check off / un-check'],
-    ['Tab', 'Shift+Tab', 'Indent / outdent'],
-    ['← →', 'Collapse / expand sub-rows'],
-    ['n', 'New line below'],
-    ['e', 'Open notes'],
-    ['d d', 'Delete the current line'],
-    ['Alt+↑ ↓', 'Move the line up / down'],
-    ['?', 'Show / hide this list'],
-  ];
-  const fmt = parts => parts.map(p => /^(or|Move|Edit|Stop|Check|Indent|Collapse|New|Open|Delete|Show)/.test(p) ? '' : '<kbd>'+p+'</kbd>');
-  const body = rows.map(r => {
-    const label = r[r.length - 1];
-    const keys = r.slice(0, -1).map(p => p === 'or' ? '<span style="color:var(--muted)">or</span>' : '<kbd>'+p+'</kbd>').join(' ');
-    return `<tr><td class="kb-keys">${keys}</td><td>${label}</td></tr>`;
-  }).join('');
-  const bg = document.createElement('div');
-  bg.className = 'kbhelp-bg'; bg.id = 'kbHelpBg';
-  bg.innerHTML = `<div class="kbhelp" role="dialog" aria-label="Keyboard shortcuts">
-    <h3>Keyboard shortcuts</h3>
-    <p class="kbhelp-sub">Work line to line without the mouse.</p>
-    <table>${body}</table>
-    <div class="kbhelp-foot">Press <kbd>?</kbd> or <kbd>Esc</kbd> to close</div>
-  </div>`;
-  bg.addEventListener('click', e => { if (e.target === bg) _kbCloseHelp(); });
-  document.body.appendChild(bg);
-}
-
-// Wrap render() so the cursor highlight is re-applied after every redraw.
-// Stretch every column-resize handle to span its table's full height, so the
-// boundary can be grabbed anywhere down the list (not just in the header row).
-// Run after each render once layout is known.
-function sizeColResizeGrips(){
-  document.querySelectorAll('.tbl').forEach(tbl => {
-    const h = tbl.offsetHeight;
-    if (!h) return;
-    tbl.querySelectorAll('.col-resize').forEach(g => { g.style.height = (h + 6) + 'px'; });
-  });
-}
-// A board-window table is width:auto, which lets the text column swallow all slack
-// and ignore per-column widths (so column resize did nothing there). Give it an
-// explicit width = sum of its columns so table-layout:fixed honors each width.
-// 28px = .col-handle, 52px = .col-actions (see CSS).
-function tableTargetWidth(tab){
-  if (!SCHEMAS[tab]) return null;
-  // Only the SHOWN columns (max 2) plus room for the row-end button cluster
-  // (owner · clock · star · ✕). Excludes the hidden owner/status/date columns so
-  // the table doesn't stretch past the card and hide the buttons.
-  return 28 + 170 + listDisplayColumns(tab).reduce((s, c) => s + (c.width || 140), 0);
-}
-function fitBoardTableWidths(){
-  const stacked = !!document.querySelector('#boardCanvas.stacked');
-  document.querySelectorAll('#boardCanvas .board-card').forEach(card => {
-    const tab = card.dataset.tab;
-    const tbl = card.querySelector('.tbl');
-    if (!tbl) return;
-    // Stacked mode fits the table to the (narrow) card via CSS so every cell
-    // wraps — clear any inline width so we don't force horizontal overflow.
-    if (stacked) { tbl.style.width = ''; return; }
-    const w = tab ? tableTargetWidth(tab) : null;
-    if (w) tbl.style.width = w + 'px';
-  });
-}
-// While dragging, keep the active guide line full-height even as the table reflows.
-function sizeActiveColResizeGrip(){
-  if (!colResizeState || !colResizeState.grip) return;
-  const tbl = colResizeState.th.closest('table');
-  if (tbl) colResizeState.grip.style.height = (tbl.offsetHeight + 6) + 'px';
-}
-
-// Persist Hedwig-style native (resize:both) window sizing. Skips the initial
-// observation of each freshly-rendered card (so content-height windows aren't
-// frozen) and only saves a genuine user resize; skips during a drag and on
-// detached nodes; debounced. WeakSet keys on the live node, which is recreated
-// each render, so each render's initial fire is naturally skipped.
-let _boardResizeSaveTimer = null;
-const _observedBoardCards = (typeof WeakSet !== 'undefined') ? new WeakSet() : null;
-const boardResizeObserver = (typeof ResizeObserver !== 'undefined') ? new ResizeObserver(entries => {
-  if (boardDragState) return;
-  let dirty = false;
-  entries.forEach(entry => {
-    const el = entry.target;
-    if (!el.classList || !el.classList.contains('board-card') || !document.contains(el)) return;
-    if (_observedBoardCards && !_observedBoardCards.has(el)) { _observedBoardCards.add(el); return; }
-    const tab = el.dataset.tab;
-    if (!tab) return;
-    const w = Math.round(el.offsetWidth), h = Math.round(el.offsetHeight);
-    if (w < 80 || h < 80) return;
-    state.boardSize = state.boardSize || {};
-    const prev = state.boardSize[tab];
-    if (!prev || prev.w !== w || prev.h !== h){ state.boardSize[tab] = { w, h }; dirty = true; }
-  });
-  if (dirty){ clearTimeout(_boardResizeSaveTimer); _boardResizeSaveTimer = setTimeout(save, 150); }
-}) : null;
-
-function observeBoardCardResizes(){
-  if (!boardResizeObserver) return;
-  boardResizeObserver.disconnect();
-  document.querySelectorAll('#boardCanvas .board-card').forEach(el => boardResizeObserver.observe(el));
-}
-
-if (typeof render === 'function' && !render.__kbWrapped){
-  const _origRender = render;
-  render = function(){ const out = _origRender.apply(this, arguments); try { fitBoardTableWidths(); } catch(_){} try { applyKbCursor(); } catch(_){} try { sizeColResizeGrips(); } catch(_){} try { observeBoardCardResizes(); } catch(_){} try { ensureZoomDock(); } catch(_){} return out; };
-  render.__kbWrapped = true;
-}
-
-// Keep the cursor in sync when the mouse is used: clicking into a cell moves it.
-document.addEventListener('focusin', e => {
-  const cell = e.target.closest && e.target.closest('.cell-edit');
-  if (!cell) return;
-  const tr = cell.closest('tr[data-row-id]');
-  if (tr) { _kbCursor = { tab: tr.dataset.tab, rowId: tr.dataset.rowId }; applyKbCursor(); }
-});
-
-window.addEventListener('keydown', e => {
-  if (state.viewingMatryoshkaHome) return;            // Sentinel canvas isn't a row list
-  const t = e.target;
-  const inField = t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable);
-
-  // Esc inside a table cell drops back to navigate mode on that row.
-  if (e.key === 'Escape' && inField && t.classList && t.classList.contains('cell-edit')){
-    const tr = t.closest('tr[data-row-id]');
-    t.blur();
-    if (tr) _kbSetCursorEl(tr, false);
-    e.preventDefault();
-    return;
-  }
-  if (inField) return;                                // typing — leave it alone
-  if (e.metaKey || e.ctrlKey) return;                 // don't shadow Cmd/Ctrl combos
-
-  if (e.key === '?'){ e.preventDefault(); _kbToggleHelp(); return; }
-  if (e.key === 'Escape'){
-    if (_kbCloseHelp()){ e.preventDefault(); return; }
-    if (_kbCursor){ _kbCursor = null; applyKbCursor(); e.preventDefault(); }
-    return;
-  }
-
-  const k = e.key;
-  if (k === 'ArrowDown' || k === 'j'){ e.preventDefault(); e.altKey ? _kbMoveRow(1) : _kbMove(1); return; }
-  if (k === 'ArrowUp'   || k === 'k'){ e.preventDefault(); e.altKey ? _kbMoveRow(-1) : _kbMove(-1); return; }
-
-  const tr = _kbCurrentTr();
-  if (!tr) return;                                    // everything below needs a cursor
-  const tab = tr.dataset.tab, rowId = tr.dataset.rowId;
-
-  if (k === 'Enter' || k === 'i'){ e.preventDefault(); _kbEdit(tr); return; }
-  if (k === ' '){ e.preventDefault(); const cb = tr.querySelector('input.row-check'); if (cb) cb.click(); return; }
-  if (k === 'Tab'){ e.preventDefault(); bulkShiftIndent(tab, [rowId], e.shiftKey ? -1 : 1); return; }
-  if (k === 'ArrowRight' || k === 'l'){
-    if (rowHasChildren(tab, rowId) && isCollapsedRow(rowId)){ e.preventDefault(); toggleRowCollapsed(rowId); }
-    return;
-  }
-  if (k === 'ArrowLeft' || k === 'h'){
-    if (rowHasChildren(tab, rowId) && !isCollapsedRow(rowId)){ e.preventDefault(); toggleRowCollapsed(rowId); }
-    return;
-  }
-  if (k === 'e'){ e.preventDefault(); const row = (state.rows[tab] || []).find(r => r.id === rowId); if (row) openNotesDrawer(tab, row); return; }
-  if (k === 'n'){
-    e.preventDefault();
-    const arr = state.rows[tab] || [];
-    const idx = arr.findIndex(r => r.id === rowId);
-    insertRowAfter(tab, rowId);                       // calls render()
-    const created = (state.rows[tab] || [])[idx + 1];
-    if (created){ _kbCursor = { tab, rowId: created.id }; applyKbCursor();
-      const newTr = document.querySelector(`tr[data-row-id="${created.id}"]`); _kbEdit(newTr); }
-    return;
-  }
-  if (k === 'd'){
-    e.preventDefault();
-    const now = (performance && performance.now) ? performance.now() : Date.now();
-    if (now - _kbLastDel < 600){                      // dd within 600ms = delete
-      _kbLastDel = 0;
-      const rows = _kbVisibleRows();
-      const i = rows.indexOf(tr);
-      const fallback = rows[i + 1] || rows[i - 1];    // where the cursor lands afterward
-      if (fallback) _kbCursor = { tab: fallback.dataset.tab, rowId: fallback.dataset.rowId };
-      deleteRow(tab, rowId);                          // calls render() → reapplies cursor
-    } else {
-      _kbLastDel = now;
-    }
-    return;
-  }
-});
-
 function renderChip(tab, row, key, val, placeholder){
   const div = document.createElement('div');
   div.className = 'chip' + (val ? '' : ' placeholder');
@@ -7943,26 +6699,6 @@ function renderChip(tab, row, key, val, placeholder){
   return div;
 }
 
-// Compact progress indicator for the end of a row: a small clock whose colour
-// reflects status (opens the same picker on click). Replaces the wide text pill
-// so the row-end buttons don't crowd.
-const STATUS_ICON_COLOR = {'Not started':'#9aa0b4','In progress':'#2bb1e6','Blocked':'#e5484d','Done':'#3aa06b'};
-function renderStatusIcon(tab, row, key, val){
-  const cur = val || 'Not started';
-  const btn = document.createElement('button');
-  btn.className = 'status-clock ' + (STATUS_CLASS[cur] || 's-todo');
-  btn.title = 'Progress: ' + cur;
-  btn.style.color = STATUS_ICON_COLOR[cur] || '#9aa0b4';
-  const done = cur === 'Done';
-  btn.innerHTML = done
-    ? '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9"/></svg>'
-    : '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 2"/></svg>';
-  btn.addEventListener('click', e => {
-    e.preventDefault(); e.stopPropagation();
-    openPopover(btn, STATUS_OPTIONS, choice => { row[key] = choice; save(); render(); });
-  });
-  return btn;
-}
 function renderStatus(tab, row, key, val){
   const cur = val || 'Not started';
   const div = document.createElement('span');
@@ -8005,7 +6741,6 @@ function renderWho(tab, row, key, val){
       const chip = document.createElement('span');
       chip.className = 'who who-' + o.replace(/[^A-Za-z0-9]/g, '');
       chip.textContent = o;
-      applyWhoChipColor(chip, o);
       wrap.appendChild(chip);
     });
   }
@@ -8025,90 +6760,32 @@ function openMultiOwnerPopover(anchor, currentOwners, onClose){
   const selected = new Set(currentOwners);
   const pop = document.createElement('div');
   pop.className = 'pop pop-multi';
-  // Roster list — the editable assignee roster plus anyone already on the row
-  // whose initials aren't in the roster (legacy entries). Each row can be removed
-  // from the roster (×); new initials are added via the form below.
-  const listHost = document.createElement('div');
-  listHost.className = 'pop-multi-list';
-  pop.appendChild(listHost);
-
-  function buildRows(){
-    listHost.innerHTML = '';
-    const all = Array.from(new Set([...assigneeRoster(), ...currentOwners])).filter(Boolean);
-    all.forEach(name => {
-      const rowEl = document.createElement('div');
-      rowEl.className = 'pop-multi-row';
-      const check = document.createElement('span');
-      check.className = 'pop-check';
+  // "All people" list — built-in roster plus anyone already on the row whose
+  // initials aren't in the roster (e.g., legacy entries).
+  const all = Array.from(new Set([...ASSIGNEE_OPTIONS, ...currentOwners])).filter(Boolean);
+  all.forEach(name => {
+    const row = document.createElement('button');
+    row.type = 'button';
+    row.className = 'pop-multi-row';
+    const check = document.createElement('span');
+    check.className = 'pop-check';
+    check.textContent = selected.has(name) ? '✓' : '';
+    const chip = document.createElement('span');
+    chip.className = 'who who-' + name.replace(/[^A-Za-z0-9]/g, '');
+    chip.textContent = name;
+    row.appendChild(check);
+    row.appendChild(chip);
+    row.addEventListener('click', ev => {
+      ev.stopPropagation();
+      if (selected.has(name)) selected.delete(name);
+      else selected.add(name);
       check.textContent = selected.has(name) ? '✓' : '';
-      const chip = document.createElement('span');
-      chip.className = 'who who-' + name.replace(/[^A-Za-z0-9]/g, '');
-      chip.textContent = name;
-      applyWhoChipColor(chip, name);
-      const spacer = document.createElement('span');
-      spacer.className = 'pop-person-spacer';
-      const del = document.createElement('button');
-      del.type = 'button';
-      del.className = 'pop-person-del';
-      del.title = 'Remove ' + name + ' from the list';
-      del.textContent = '×';
-      del.addEventListener('click', ev => {
-        ev.stopPropagation();
-        // Remove from the roster AND from this row's current selection, otherwise
-        // buildRows() re-adds it from currentOwners and it looks stuck.
-        state.assignees = assigneeRoster().filter(a => a !== name);
-        selected.delete(name);
-        const i = currentOwners.indexOf(name);
-        if (i >= 0) currentOwners.splice(i, 1);
-        save();
-        buildRows();
-      });
-      rowEl.appendChild(check);
-      rowEl.appendChild(chip);
-      rowEl.appendChild(spacer);
-      rowEl.appendChild(del);
-      rowEl.addEventListener('click', ev => {
-        ev.stopPropagation();
-        if (selected.has(name)) selected.delete(name);
-        else selected.add(name);
-        check.textContent = selected.has(name) ? '✓' : '';
-      });
-      listHost.appendChild(rowEl);
     });
-  }
-  buildRows();
-
+    pop.appendChild(row);
+  });
   const sep = document.createElement('div');
   sep.className = 'pop-sep';
   pop.appendChild(sep);
-
-  // Add-a-person form: type initials, Enter or + to add to the roster.
-  const addForm = document.createElement('div');
-  addForm.className = 'pop-add-person';
-  const addInput = document.createElement('input');
-  addInput.type = 'text';
-  addInput.maxLength = 5;
-  addInput.placeholder = 'Add initials…';
-  const addBtn = document.createElement('button');
-  addBtn.type = 'button';
-  addBtn.textContent = '+';
-  const doAdd = () => {
-    const v = (addInput.value || '').trim().toUpperCase();
-    if (!v) return;
-    const roster = assigneeRoster();
-    if (!roster.includes(v)){ state.assignees = [...roster, v]; save(); }
-    selected.add(v);
-    addInput.value = '';
-    buildRows();
-    addInput.focus();
-  };
-  addBtn.addEventListener('click', ev => { ev.stopPropagation(); doAdd(); });
-  addInput.addEventListener('click', ev => ev.stopPropagation());
-  addInput.addEventListener('keydown', ev => { ev.stopPropagation(); if (ev.key === 'Enter'){ ev.preventDefault(); doAdd(); } });
-  addForm.appendChild(addInput);
-  addForm.appendChild(addBtn);
-  pop.appendChild(addForm);
-
   const clearBtn = document.createElement('button');
   clearBtn.type = 'button';
   clearBtn.className = 'pop-clear';
@@ -8243,10 +6920,8 @@ function onBoardMouseDown(e){
   if(!card) return;
   const canvas = card.parentElement;
   if(!canvas || !canvas.classList.contains('board-canvas')) return;
-  if(canvas.classList.contains('stacked') || canvas.classList.contains('grid')) return;
-  // Treat the editable title like the old name-tab: a stationary click focuses it
-  // for rename; only a >4px drag moves the card (so clicking to edit still works).
-  const onTab = !!e.target.closest('.board-card-tab, .board-card-title');
+  if(canvas.classList.contains('stacked')) return;
+  const onTab = !!e.target.closest('.board-card-tab');
   const onHandle = !!e.target.closest('.ctl.drag');
   const onGrip = !!e.target.closest('.board-card-grip');
   const cardRect = card.getBoundingClientRect();
@@ -8343,115 +7018,25 @@ document.addEventListener('click', e => {
   if(boardDragJustEnded){ e.stopPropagation(); e.preventDefault(); }
 }, true);
 
-/* ── BOARD-VIEW GRID REORDER ──────────────────────────────────────────────
-   In grid mode, drag a list by its header to reorder it. Pointer-based with a
-   5px threshold (so a click still edits the title); shows a left/right
-   insertion border on the card under the cursor; reorders boardOrder on drop.
-   No free positioning, no ghost — the grid reflows itself. */
-let gridReorder = null, gridReorderJustEnded = false;
-
-function onGridHeadMouseDown(e){
-  if (e.button !== 0) return;
-  const canvas = e.target.closest('.board-canvas.grid');
-  if (!canvas) return;
-  const head = e.target.closest('.board-card-head');
-  if (!head) return;
-  // Don't start a drag from the editable title or the header buttons.
-  if (e.target.closest('button, .board-card-title, [contenteditable="true"]')) return;
-  const card = head.closest('.board-card');
-  if (!card || !card.dataset.tab) return;
-  gridReorder = { tab: card.dataset.tab, card, canvas, startX: e.clientX, startY: e.clientY, active: false, target: null, before: false };
-}
-
-function clearGridDropIndicators(canvas){
-  canvas.querySelectorAll('.card-drop-before, .card-drop-after')
-    .forEach(n => n.classList.remove('card-drop-before','card-drop-after'));
-}
-
-function onGridHeadMouseMove(e){
-  if (!gridReorder) return;
-  if (!gridReorder.active){
-    if (Math.abs(e.clientX - gridReorder.startX) <= 5 && Math.abs(e.clientY - gridReorder.startY) <= 5) return;
-    gridReorder.active = true;
-    gridReorder.card.classList.add('card-dragging');
-    document.body.style.userSelect = 'none';
-  }
-  clearGridDropIndicators(gridReorder.canvas);
-  gridReorder.target = null;
-  for (const c of gridReorder.canvas.querySelectorAll('.board-card')){
-    if (c === gridReorder.card) continue;
-    const r = c.getBoundingClientRect();
-    if (e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom){
-      const before = (e.clientX - r.left) < r.width / 2;
-      c.classList.add(before ? 'card-drop-before' : 'card-drop-after');
-      gridReorder.target = c; gridReorder.before = before;
-      break;
-    }
-  }
-}
-
-function onGridHeadMouseUp(){
-  if (!gridReorder) return;
-  const g = gridReorder; gridReorder = null;
-  document.body.style.userSelect = '';
-  g.card.classList.remove('card-dragging');
-  clearGridDropIndicators(g.canvas);
-  if (g.active && g.target && g.target.dataset.tab && g.target.dataset.tab !== g.tab){
-    const order = (state.boardOrder || []).slice();
-    const from = order.indexOf(g.tab);
-    if (from >= 0){
-      order.splice(from, 1);
-      let to = order.indexOf(g.target.dataset.tab);
-      if (to < 0) to = order.length;
-      order.splice(g.before ? to : to + 1, 0, g.tab);
-      state.boardOrder = order;
-      save(); render();
-    }
-    // Swallow the trailing click so it doesn't refocus the title.
-    gridReorderJustEnded = true;
-  }
-}
-
-document.addEventListener('mousedown', onGridHeadMouseDown);
-document.addEventListener('mousemove', onGridHeadMouseMove);
-document.addEventListener('mouseup',   onGridHeadMouseUp);
-document.addEventListener('click', e => {
-  if (gridReorderJustEnded){ gridReorderJustEnded = false; e.stopPropagation(); e.preventDefault(); }
-}, true);
-
 /* ── ROW DRAG (mouse-event based; HTML5 drag on <tr> is unreliable) ── */
 let rowDragState = null;
 
-let pendingRowDrag = null;
-
 function onRowMouseDown(e){
   if (e.button !== 0) return; // left-click only
-  // The WHOLE row is a drag handle. Only the interactive controls opt out — the
-  // checkbox, status/who/due/chip pickers, buttons, links, the collapse arrow,
-  // and open popovers keep their own click behavior.
-  const onControl = e.target.closest(
-    '.status, .who, .who-wrap, .due, .chip, input, textarea, select, button, a, label, ' +
-    '.row-collapse-arrow, .cell-actions, .row-menu-pop, .pop, .floating-row-menu, .row-check'
+  // Drag-source: the dedicated .cell-handle (always), OR any non-interactive space
+  // on the row. Skip clicks on editable text, status/who/due chips, buttons, links,
+  // popovers, the row-collapse arrow, and the row checkbox — those have their own behavior.
+  const isInteractive = e.target.closest(
+    '.cell-edit, .status, .who, .who-wrap, .due, .chip, input, textarea, select, button, a, label, ' +
+    '.row-collapse-arrow, .cell-actions, .row-menu-pop, .pop, .floating-row-menu, [contenteditable="true"]'
   );
-  if (onControl) return;
-  const tr = e.target.closest('tr');
+  const handle = e.target.closest('.cell-handle');
+  if (isInteractive && !handle) return;
+  const tr = (handle || e.target).closest('tr');
   if(!tr || !tr.dataset.rowId) return;
   const tbody = tr.parentElement;
   if(!tbody || tbody.tagName !== 'TBODY') return;
-  // If the grab landed on editable text, keep it "soft": don't preventDefault, so a
-  // stationary click still focuses the editor; a >5px move promotes it to a drag.
-  const soft = !!e.target.closest('.cell-edit, [contenteditable="true"]');
-  pendingRowDrag = { tr, tbody, startX: e.clientX, startY: e.clientY, soft };
-  if (!soft) e.preventDefault();
-}
-
-// Build the floating ghost + arm rowDragState. Called once the 5px threshold is crossed.
-function _beginRowDrag(p){
-  const tr = p.tr, tbody = p.tbody;
-  if (p.soft){
-    const a = document.activeElement; if (a && a.blur) a.blur();
-    const sel = window.getSelection(); if (sel && sel.removeAllRanges) sel.removeAllRanges();
-  }
+  e.preventDefault();
   tr.classList.add('row-dragging');
   // Drag group: this row + any contiguous deeper-indent children below it in the
   // natural state.rows order. Mark them all as dragging so the user sees what moves.
@@ -8502,8 +7087,8 @@ function _beginRowDrag(p){
     target: null,
     before: false,
     ghost: ghostTable,
-    offsetX: p.startX - trRect.left,
-    offsetY: p.startY - trRect.top,
+    offsetX: e.clientX - trRect.left,
+    offsetY: e.clientY - trRect.top,
   };
   // Update the ghost with a count badge when more than one row is moving.
   if (groupIds.length > 1){
@@ -8515,14 +7100,6 @@ function _beginRowDrag(p){
 }
 
 function onRowMouseMove(e){
-  // Promote a pending whole-row drag once the pointer crosses 5px.
-  if (pendingRowDrag && !rowDragState){
-    const dx = e.clientX - pendingRowDrag.startX, dy = e.clientY - pendingRowDrag.startY;
-    if (Math.abs(dx) <= 5 && Math.abs(dy) <= 5) return;
-    if (pendingRowDrag.soft) e.preventDefault();
-    _beginRowDrag(pendingRowDrag);
-    pendingRowDrag = null;
-  }
   if(!rowDragState) return;
   // move the ghost
   if(rowDragState.ghost){
@@ -8558,7 +7135,6 @@ function onRowMouseMove(e){
 }
 
 function onRowMouseUp(){
-  pendingRowDrag = null;
   if(!rowDragState) return;
   rowDragState.tr.classList.remove('row-dragging');
   rowDragState.tbody.querySelectorAll('tr.row-dragging-child')
@@ -8582,7 +7158,6 @@ document.addEventListener('mouseup',   onRowMouseUp);
 
 /* ── COLUMN RESIZE (global; works in every table including Home cards) ── */
 let colResizeState = null;
-let colResizeJustEnded = false;
 
 function onColResizeMouseDown(e){
   const grip = e.target.closest('.col-resize');
@@ -8603,28 +7178,16 @@ function onColResizeMouseDown(e){
   document.body.style.userSelect = 'none';
   colResizeState = {
     th, grip, tab, colKey,
-    // Left edge of the column at grab time. It doesn't move while we resize this
-    // column's right boundary, so width = cursorX - leftX keeps the boundary (and
-    // the guide line) glued to the cursor instead of slowly drifting off it.
-    leftX: th.getBoundingClientRect().left,
+    startX: e.clientX,
+    startW: th.getBoundingClientRect().width,
   };
 }
 
 function onColResizeMouseMove(e){
   if(!colResizeState) return;
-  const w = Math.max(50, Math.round(e.clientX - colResizeState.leftX));
+  const w = Math.max(50, Math.round(colResizeState.startW + (e.clientX - colResizeState.startX)));
   colResizeState.th.style.width = w + 'px';
-  state.colWidths[colResizeState.tab] = state.colWidths[colResizeState.tab] || {};
   state.colWidths[colResizeState.tab][colResizeState.colKey] = w;
-  // In a board window the table needs an explicit width (= sum of columns) or the
-  // text column eats the change and the boundary won't move. Grow/shrink it live.
-  const card = colResizeState.th.closest('.board-card');
-  if (card){
-    const tbl = colResizeState.th.closest('table');
-    const tw = tableTargetWidth(colResizeState.tab);
-    if (tbl && tw) tbl.style.width = tw + 'px';
-  }
-  sizeActiveColResizeGrip();
 }
 
 function onColResizeMouseUp(){
@@ -8636,25 +7199,12 @@ function onColResizeMouseUp(){
   // in the right state, and render() causes a brief jump as the table rebuilds.
   save();
   colResizeState = null;
-  // The browser fires a click right after the drag (mousedown on the grip,
-  // mouseup having drifted onto the header or its sort arrows). Arm a guard so
-  // that single click is swallowed before it can reach the sort toggle and
-  // reorder every row. Timer-free on purpose — the guard is cleared by the click
-  // itself (below) so there's no reset race between the timer and the click.
-  colResizeJustEnded = true;
 }
 
 // Use capture phase so this fires before the row/board mousedown handlers
 document.addEventListener('mousedown', onColResizeMouseDown, true);
 document.addEventListener('mousemove', onColResizeMouseMove);
 document.addEventListener('mouseup',   onColResizeMouseUp);
-// Swallow the one click that follows a column resize, before it reaches the
-// header / sort-arrow click handlers. Cleared as a one-shot here; also cleared
-// at the start of any fresh pointer interaction so it can never get stuck.
-document.addEventListener('click', e => {
-  if(colResizeJustEnded){ colResizeJustEnded = false; e.stopPropagation(); e.preventDefault(); }
-}, true);
-document.addEventListener('mousedown', () => { colResizeJustEnded = false; }, true);
 
 /* ── COLUMN REORDER (drag column header to a new position) ── */
 let colDragState = null;
