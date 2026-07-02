@@ -460,6 +460,31 @@ body.lg-gated #syncStatus{display:none}
 .corner-tools-bl{display:flex;gap:4px;align-items:center;justify-content:center;margin-top:2px}
 .corner-tools-bl button{font-size:11px;padding:5px 8px;border-radius:7px;border:none;background:transparent;color:var(--muted);cursor:pointer;font-family:inherit;white-space:nowrap;flex:1}
 .corner-tools-bl button:hover{color:var(--text);background:rgba(0,0,0,.05)}
+/* Full Matryoshka map (skeleton) */
+#skeletonBtn{font-size:12px;font-weight:600;color:var(--muted);background:transparent;border:1px solid transparent;cursor:pointer;font-family:inherit;padding:5px 10px;border-radius:7px;white-space:nowrap}
+#skeletonBtn:hover{color:var(--text);background:rgba(37,47,124,.06)}
+.skeleton-overlay{position:fixed;inset:0;z-index:400;background:rgba(20,22,40,.42);backdrop-filter:blur(2px);display:none;align-items:flex-start;justify-content:center;padding:64px 16px}
+.skeleton-overlay.open{display:flex}
+.skeleton-panel{background:var(--card,#fff);border-radius:14px;box-shadow:0 24px 70px rgba(37,47,124,.30);width:min(460px,94vw);max-height:80vh;display:flex;flex-direction:column;overflow:hidden}
+.skeleton-head{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--border,rgba(0,0,0,.08))}
+.skeleton-title{font-size:14px;font-weight:700;color:var(--text)}
+.skeleton-close{background:transparent;border:none;font-size:15px;color:var(--muted);cursor:pointer;border-radius:6px;padding:2px 7px;line-height:1;font-family:inherit}
+.skeleton-close:hover{background:rgba(0,0,0,.06);color:var(--text)}
+.skeleton-tree{padding:10px 12px 16px;overflow:auto}
+.sk-node{display:flex;align-items:center;gap:7px;padding:5px 8px;border-radius:8px;cursor:pointer;font-size:13px;color:var(--text);transition:background .1s;border:1px solid transparent}
+.sk-node:hover{background:rgba(37,47,124,.07)}
+.sk-node.sk-current{background:rgba(43,177,230,.14);border-color:rgba(43,177,230,.35);font-weight:600}
+.sk-node.sk-board{font-weight:600}
+.sk-node.sk-list{color:var(--muted);font-size:12px}
+.sk-node.sk-sentinel{font-weight:700}
+.sk-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;background:var(--lg-blue,#252f7c)}
+.sk-node.sk-list .sk-dot{width:5px;height:5px;background:var(--muted)}
+.sk-children{margin-left:14px;border-left:1px dashed var(--border-strong,rgba(0,0,0,.14));padding-left:8px}
+body[data-skin="dark-neon"] .skeleton-panel{background:#0b1226;border:1px solid rgba(255,75,216,.25)}
+body[data-skin="dark-neon"] .skeleton-title,body[data-skin="dark-neon"] .sk-node{color:#f8fafc}
+body[data-skin="dark-neon"] .sk-node:hover{background:rgba(255,75,216,.10)}
+body[data-skin="dark-neon"] #skeletonBtn{color:#9ba8bf}
+body[data-skin="dark-neon"] #skeletonBtn:hover{color:#f8fafc;background:rgba(255,75,216,.08)}
 .board-up-btn{font-size:12px;font-weight:600;color:var(--lg-blue);background:rgba(37,47,124,.07);border:1px solid rgba(37,47,124,.14);cursor:pointer;font-family:inherit;padding:4px 10px;border-radius:7px;white-space:nowrap;margin-right:2px}
 .board-up-btn:hover{background:rgba(37,47,124,.13)}
 body[data-skin="dark-neon"] .board-up-btn{color:#00f5ff;background:rgba(0,245,255,.08);border-color:rgba(0,245,255,.25)}
@@ -1534,6 +1559,18 @@ document.getElementById('lgSignInBtn').addEventListener('click', () => {
   <span id="boardCrumbs" class="board-crumbs"></span>
   <button class="title board-switcher" id="boardSwitcher" type="button"></button>
   <button id="matryoshkaHomeBtn" type="button" title="Sentinel — all boards at a glance" style="display:none">Sentinel</button>
+  <button id="skeletonBtn" type="button" title="Full Matryoshka map — jump to any board or list" onclick="openSkeleton()">🪆 Map</button>
+</div>
+
+<!-- Full Matryoshka skeleton / map -->
+<div class="skeleton-overlay" id="skeletonOverlay" onclick="if(event.target===this)closeSkeleton()">
+  <div class="skeleton-panel" role="dialog" aria-label="Matryoshka map">
+    <div class="skeleton-head">
+      <span class="skeleton-title">🪆 Matryoshka map</span>
+      <button class="skeleton-close" type="button" onclick="closeSkeleton()" title="Close">✕</button>
+    </div>
+    <div class="skeleton-tree" id="skeletonTree"></div>
+  </div>
 </div>
 
 <!-- Sync status pinned to the top-right corner -->
@@ -4161,6 +4198,77 @@ function enterSentinel(){
   pruneEmptyNestedBoard(leaving);
   state.viewingMatryoshkaHome = true;
   save(); render();
+}
+
+// ── Full Matryoshka map (skeleton) ──────────────────────────────────────────
+// A clickable tree of every board, its lists, and its nested sub-boards. Click a
+// board to open it, a list to open that board on that list.
+function boardListsOf(id){
+  const b = state.boards && state.boards[id];
+  if(!b) return [];
+  const order = (id === state.activeBoardId) ? (state.boardOrder || []) : ((b.data && b.data.boardOrder) || []);
+  const titles = (id === state.activeBoardId) ? (state.titles || {}) : ((b.data && b.data.titles) || {});
+  return order.map(k => ({ key: k, title: titles[k] || (SCHEMAS[k] && SCHEMAS[k].label) || k }));
+}
+function childBoardsOf(id){
+  return Object.keys(state.boards || {}).filter(cid => {
+    const p = state.boards[cid].parent;
+    return p && p.boardId === id;
+  });
+}
+function openBoardOnList(boardId, listKey){
+  closeSkeleton();
+  if(boardId !== state.activeBoardId) switchBoard(boardId);
+  state.viewingMatryoshkaHome = false;
+  if(listKey) state.activeTab = listKey;
+  save(); render();
+}
+function renderSkeletonNode(boardId, container, depth){
+  if(depth > 8) return; // guard against cycles
+  const node = document.createElement('div');
+  node.className = 'sk-node sk-board' + (boardId === state.activeBoardId && !state.viewingMatryoshkaHome ? ' sk-current' : '');
+  node.innerHTML = `<span class="sk-dot"></span><span>${escapeHtml(boardDisplayTitle(boardId) || 'Untitled')}</span>`;
+  node.addEventListener('click', () => openBoardOnList(boardId, null));
+  container.appendChild(node);
+  const kids = document.createElement('div');
+  kids.className = 'sk-children';
+  // Lists (sections) of this board
+  boardListsOf(boardId).forEach(l => {
+    const ln = document.createElement('div');
+    ln.className = 'sk-node sk-list';
+    ln.innerHTML = `<span class="sk-dot"></span><span>${escapeHtml(l.title)}</span>`;
+    ln.addEventListener('click', () => openBoardOnList(boardId, l.key));
+    kids.appendChild(ln);
+  });
+  // Nested sub-boards
+  childBoardsOf(boardId).forEach(cid => renderSkeletonNode(cid, kids, depth + 1));
+  if(kids.children.length) container.appendChild(kids);
+}
+function renderSkeletonTree(){
+  const tree = document.getElementById('skeletonTree');
+  if(!tree) return;
+  tree.innerHTML = '';
+  const sentinel = document.createElement('div');
+  sentinel.className = 'sk-node sk-sentinel' + (state.viewingMatryoshkaHome ? ' sk-current' : '');
+  sentinel.innerHTML = `<span class="sk-dot" style="background:var(--lg-cyan,#2bb1e6)"></span><span>Sentinel — all boards</span>`;
+  sentinel.addEventListener('click', () => { closeSkeleton(); enterSentinel(); });
+  tree.appendChild(sentinel);
+  const wrap = document.createElement('div');
+  wrap.className = 'sk-children';
+  const topLevel = Object.keys(state.boards || {}).filter(id => !state.boards[id].parent);
+  topLevel.forEach(id => renderSkeletonNode(id, wrap, 0));
+  tree.appendChild(wrap);
+}
+function openSkeleton(){
+  // Snapshot live rows so the map reflects the current board too.
+  if(state.activeBoardId && state.boards[state.activeBoardId]) state.boards[state.activeBoardId].data = snapshotBoardFields(state);
+  renderSkeletonTree();
+  const ov = document.getElementById('skeletonOverlay');
+  if(ov) ov.classList.add('open');
+}
+function closeSkeleton(){
+  const ov = document.getElementById('skeletonOverlay');
+  if(ov) ov.classList.remove('open');
 }
 
 function switchBoard(id){
