@@ -461,14 +461,31 @@ body.lg-gated #syncStatus{display:none}
 body.lg-gated .corner-tools-br{display:none}
 .corner-tools-br button{font-size:11px;font-weight:600;padding:5px 9px;border-radius:8px;border:1px solid var(--border-strong,rgba(37,47,124,.16));background:var(--card,#fff);color:var(--muted);cursor:pointer;font-family:inherit;white-space:nowrap;box-shadow:0 2px 8px rgba(37,47,124,.10)}
 .corner-tools-br button:hover{color:var(--text);border-color:var(--lg-blue)}
+.hmt-priority.active{background:#f5b301 !important;color:#3a2f00 !important;border-color:#f5b301 !important}
+/* Sentinel Priority view */
+.sentinel-priority{max-width:640px;margin:8px auto 0;padding:8px 4px 40px}
+.sp-head{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:700;color:var(--text);padding:6px 10px 12px}
+.sp-star{color:#f5b301}
+.sp-group{margin-bottom:14px}
+.sp-group-head{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);padding:4px 10px}
+.sp-item{display:flex;align-items:center;gap:10px;padding:9px 12px;margin:4px 0;background:var(--card,#fff);border:1px solid var(--border,rgba(0,0,0,.08));border-radius:10px;cursor:pointer;transition:background .1s,transform .1s;box-shadow:0 1px 3px rgba(37,47,124,.05)}
+.sp-item:hover{background:rgba(245,179,1,.08);transform:translateX(2px)}
+.sp-label{flex:1;font-size:14px;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sp-list{font-size:11px;color:var(--muted);background:rgba(0,0,0,.05);padding:2px 8px;border-radius:8px;white-space:nowrap;flex-shrink:0}
+.sp-empty{text-align:center;color:var(--muted);font-size:14px;padding:60px 20px;line-height:1.7}
+.sp-empty span{font-size:12px}
+body[data-skin="dark-neon"] .sp-item{background:rgba(6,16,38,.9);border-color:rgba(255,75,216,.18)}
+body[data-skin="dark-neon"] .sp-label,body[data-skin="dark-neon"] .sp-head{color:#f8fafc}
 body[data-skin="dark-neon"] .corner-tools-br button{background:rgba(6,16,38,.9);color:#9ba8bf;border-color:rgba(255,75,216,.22)}
 body[data-skin="dark-neon"] .corner-tools-br button:hover{color:#f8fafc;border-color:#ff4bd8}
 /* Full Matryoshka map (skeleton) */
 #skeletonBtn{font-size:12px;font-weight:600;color:var(--muted);background:transparent;border:1px solid transparent;cursor:pointer;font-family:inherit;padding:5px 10px;border-radius:7px;white-space:nowrap}
 #skeletonBtn:hover{color:var(--text);background:rgba(37,47,124,.06)}
-.skeleton-overlay{position:fixed;inset:0;z-index:400;background:rgba(20,22,40,.42);backdrop-filter:blur(2px);display:none;align-items:flex-start;justify-content:center;padding:64px 16px}
-.skeleton-overlay.open{display:flex}
-.skeleton-panel{background:var(--card,#fff);border-radius:14px;box-shadow:0 24px 70px rgba(37,47,124,.30);width:min(460px,94vw);max-height:80vh;display:flex;flex-direction:column;overflow:hidden}
+/* Transparent, non-blocking layer — the map pops up from the bottom-right and
+   does NOT black out the background. */
+.skeleton-overlay{position:fixed;inset:0;z-index:400;display:none;pointer-events:none;background:transparent}
+.skeleton-overlay.open{display:block}
+.skeleton-panel{position:fixed;right:16px;bottom:92px;pointer-events:auto;background:var(--card,#fff);border:1px solid var(--border-strong,rgba(37,47,124,.16));border-radius:14px;box-shadow:0 18px 50px rgba(37,47,124,.28);width:min(380px,90vw);max-height:70vh;display:flex;flex-direction:column;overflow:hidden}
 .skeleton-head{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--border,rgba(0,0,0,.08))}
 .skeleton-title{font-size:14px;font-weight:700;color:var(--text)}
 .skeleton-close{background:transparent;border:none;font-size:15px;color:var(--muted);cursor:pointer;border-radius:6px;padding:2px 7px;line-height:1;font-family:inherit}
@@ -1556,7 +1573,6 @@ document.getElementById('lgSignInBtn').addEventListener('click', () => {
   <span id="boardCrumbs" class="board-crumbs"></span>
   <button class="title board-switcher" id="boardSwitcher" type="button"></button>
   <button id="matryoshkaHomeBtn" type="button" title="Sentinel — all boards at a glance" style="display:none">Sentinel</button>
-  <button id="skeletonBtn" type="button" title="Full Matryoshka map — jump to any board or list" onclick="openSkeleton()">🪆 Map</button>
 </div>
 
 <!-- Full Matryoshka skeleton / map -->
@@ -1580,6 +1596,7 @@ document.getElementById('lgSignInBtn').addEventListener('click', () => {
 
 <!-- Shortcuts + Skins tucked into the bottom-right corner (above the brand corner) -->
 <div class="corner-tools-br" id="cornerToolsBR">
+  <button id="skeletonBtn" type="button" title="Full Matryoshka map — jump to any board or list" onclick="toggleSkeleton()">🪆 Map</button>
   <button id="shortcutsBtn" type="button" title="Keyboard shortcuts (or press ?)" onclick="_kbToggleHelp()">Shortcuts</button>
   <button id="skinPickerBtn" type="button" title="Change skin">Skins</button>
 </div>
@@ -4258,16 +4275,29 @@ function renderSkeletonTree(){
   topLevel.forEach(id => renderSkeletonNode(id, wrap, 0));
   tree.appendChild(wrap);
 }
+function _skeletonOutside(e){
+  const panel = document.querySelector('.skeleton-panel');
+  const btn = document.getElementById('skeletonBtn');
+  if(panel && !panel.contains(e.target) && btn && !btn.contains(e.target)) closeSkeleton();
+}
 function openSkeleton(){
   // Snapshot live rows so the map reflects the current board too.
   if(state.activeBoardId && state.boards[state.activeBoardId]) state.boards[state.activeBoardId].data = snapshotBoardFields(state);
   renderSkeletonTree();
   const ov = document.getElementById('skeletonOverlay');
   if(ov) ov.classList.add('open');
+  // Close when clicking anywhere outside the popup (added next tick so this
+  // same click doesn't immediately close it).
+  setTimeout(() => document.addEventListener('mousedown', _skeletonOutside), 0);
 }
 function closeSkeleton(){
   const ov = document.getElementById('skeletonOverlay');
   if(ov) ov.classList.remove('open');
+  document.removeEventListener('mousedown', _skeletonOutside);
+}
+function toggleSkeleton(){
+  const ov = document.getElementById('skeletonOverlay');
+  if(ov && ov.classList.contains('open')) closeSkeleton(); else openSkeleton();
 }
 
 function switchBoard(id){
@@ -5358,7 +5388,18 @@ function applyBgColor(){
   }
 }
 
+// Top-left header logo: use the exact image the user uploaded (state.brandImage),
+// falling back to main's uploaded image, then assets/logo.png, then the wordmark.
+function renderHeaderLogo(){
+  const img = document.querySelector('.logo .logo-img');
+  if(!img) return;
+  const mainImg = state.boards && state.boards.main && state.boards.main.data && state.boards.main.data.brandImage;
+  const src = state.brandImage || mainImg || 'assets/logo.png';
+  if(src){ img.src = src; img.style.display = ''; }
+}
+
 function renderBrandCorner(){
+  renderHeaderLogo();
   const imgWrap = document.getElementById('brandImage');
   if(!imgWrap) return;
   if(state.brandImage){
@@ -6236,8 +6277,76 @@ function autoFitBoards(){
   save(); render();
 }
 
+// Gather every starred (priority) row across all boards, for the Sentinel
+// Priority view. Reads live rows for the active board, snapshots for the rest.
+function collectStarredRows(){
+  const out = [];
+  Object.keys(state.boards || {}).forEach(bid => {
+    const b = state.boards[bid];
+    const isActive = bid === state.activeBoardId;
+    const rowsObj = isActive ? (state.rows || {}) : ((b.data && b.data.rows) || {});
+    const titles  = isActive ? (state.titles || {}) : ((b.data && b.data.titles) || {});
+    const ub      = isActive ? (state.userBoards || {}) : ((b.data && b.data.userBoards) || {});
+    Object.keys(rowsObj).forEach(lk => {
+      (rowsObj[lk] || []).forEach(r => {
+        if(!r.priority) return;
+        const cols = (ub[lk] && ub[lk].columns) || (SCHEMAS[lk] && SCHEMAS[lk].columns) || [];
+        const k0 = cols[0] && cols[0].key;
+        const k1 = (cols.slice(1).find(c => !c.type || c.type === 'text') || {}).key;
+        const tmp = document.createElement('div'); tmp.innerHTML = (k0 ? r[k0] : '') || '';
+        const a = (tmp.textContent || '').trim();
+        tmp.innerHTML = (k1 ? r[k1] : '') || ''; const bx = (tmp.textContent || '').trim();
+        out.push({
+          boardId: bid, listKey: lk, rowId: r.id,
+          boardTitle: boardDisplayTitle(bid) || 'Untitled',
+          listTitle: titles[lk] || lk,
+          label: [a, bx].filter(Boolean).join(' - ') || '(untitled)',
+        });
+      });
+    });
+  });
+  return out;
+}
+function renderSentinelPriority(canvas){
+  canvas.innerHTML = '';
+  const items = collectStarredRows();
+  const panel = document.createElement('div');
+  panel.className = 'sentinel-priority';
+  if(!items.length){
+    panel.innerHTML = `<div class="sp-empty"><span class="sp-star">★</span> No priority items yet.<br><span>Star a row (the ☆ at the end of any row) and it shows up here.</span></div>`;
+    canvas.appendChild(panel);
+    return;
+  }
+  // Group by board.
+  const byBoard = {};
+  items.forEach(it => { (byBoard[it.boardId] = byBoard[it.boardId] || []).push(it); });
+  const head = document.createElement('div');
+  head.className = 'sp-head';
+  head.innerHTML = `<span class="sp-star">★</span> Priority — ${items.length} starred item${items.length===1?'':'s'}`;
+  panel.appendChild(head);
+  Object.keys(byBoard).forEach(bid => {
+    const group = byBoard[bid];
+    const g = document.createElement('div');
+    g.className = 'sp-group';
+    const gh = document.createElement('div');
+    gh.className = 'sp-group-head';
+    gh.textContent = group[0].boardTitle;
+    g.appendChild(gh);
+    group.forEach(it => {
+      const row = document.createElement('div');
+      row.className = 'sp-item';
+      row.innerHTML = `<span class="sp-star">★</span><span class="sp-label">${escapeHtml(it.label)}</span><span class="sp-list">${escapeHtml(it.listTitle)}</span>`;
+      row.addEventListener('click', () => openBoardOnList(it.boardId, it.listKey));
+      g.appendChild(row);
+    });
+    panel.appendChild(g);
+  });
+  canvas.appendChild(panel);
+}
+
 function renderMatryoshkaHome(canvas){
   canvas.innerHTML = '';
+  if(state.sentinelPriority){ renderSentinelPriority(canvas); return; }
   const homeOpts = state.matryoshkaHome || {};
   const mode = canvas.classList.contains('mhome-free') ? 'free' : 'grid';
   const allBoardIds = Object.keys(state.boards || {});
@@ -6488,7 +6597,10 @@ function ensureMatryoshkaHomeToolbar(){
   const homeOpts = state.matryoshkaHome || {};
   const pinnedIds = Object.keys(state.boards || {}).filter(id => homeOpts[id] && homeOpts[id].pinned);
   const anyCollapsed = pinnedIds.some(id => homeOpts[id] && homeOpts[id].collapsed);
+  const pri = !!state.sentinelPriority;
   bar.innerHTML = `
+    <button data-act="priority" class="hmt-action hmt-priority${pri ? ' active' : ''}" title="Show every starred item across all boards">★ Priority</button>
+    ${pri ? '' : `
     <div class="hmt-toggle">
       <button data-mode="free">Free</button>
       <button data-mode="grid">Grid</button>
@@ -6502,6 +6614,7 @@ function ensureMatryoshkaHomeToolbar(){
       <button data-act="auto-fit" class="hmt-action" title="Tile boards to fit on screen">↔ Auto-fit</button>
     ` : ''}
     <button data-act="toggle-all" class="hmt-action">${anyCollapsed ? '▴ Max all' : '▾ Min all'}</button>
+    `}
   `;
   bar.querySelectorAll('[data-mode]').forEach(b => {
     b.classList.toggle('active', b.dataset.mode === mode);
@@ -6515,6 +6628,7 @@ function ensureMatryoshkaHomeToolbar(){
     else if(act === 'zoom-in')    { state.matryoshkaHomeZoom = +(Math.min(2, z + 0.1)).toFixed(2); save(); render(); }
     else if(act === 'zoom-reset') { state.matryoshkaHomeZoom = 1; save(); render(); }
     else if(act === 'auto-fit')   mhomeAutoFit();
+    else if(act === 'priority')   { state.sentinelPriority = !state.sentinelPriority; save(); render(); }
     else if(act === 'toggle-all') {
       const opts = state.matryoshkaHome || {};
       const ids = Object.keys(state.boards || {}).filter(id => opts[id] && opts[id].pinned);
