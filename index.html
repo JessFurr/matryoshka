@@ -465,7 +465,8 @@ body.lg-gated #syncStatus{display:none}
 .corner-dock{position:fixed;right:16px;bottom:16px;z-index:95;display:flex;gap:8px;align-items:flex-end}
 body.lg-gated .corner-dock{display:none}
 /* Zoom control, lower-left corner */
-.zoom-dock{position:fixed;left:16px;bottom:16px;z-index:95;display:flex;background:var(--card,#fff);border:1px solid var(--border-strong,rgba(37,47,124,.16));border-radius:999px;padding:2px;box-shadow:0 2px 8px rgba(37,47,124,.12)}
+/* Sits just to the right of the 92px sidebar so it never covers Share board / New list. */
+.zoom-dock{position:fixed;left:104px;bottom:16px;z-index:95;display:flex;background:var(--card,#fff);border:1px solid var(--border-strong,rgba(37,47,124,.16));border-radius:999px;padding:2px;box-shadow:0 2px 8px rgba(37,47,124,.12)}
 body.lg-gated .zoom-dock{display:none}
 .zoom-dock button{border:none;background:transparent;color:var(--muted);cursor:pointer;font-family:inherit;font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px;line-height:1;min-width:30px}
 .zoom-dock button:hover{color:var(--text);background:rgba(37,47,124,.07)}
@@ -634,7 +635,7 @@ body.view-home .board-canvas{min-height:calc(100vh - 47px)}
 .section-icon.c-bd{background:var(--lg-cyan)}
 .section-icon.c-navy{background:var(--lg-blue)}
 .section-icon.c-white{background:#fff;box-shadow:0 0 0 1.5px var(--lg-blue) inset}
-.section-title{font-size:18px;font-weight:600;color:var(--text);letter-spacing:.1px;flex:0 1 auto;max-width:60%;outline:none;border-radius:4px;padding:1px 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border-bottom:none}
+.section-title{font-size:28px;font-weight:700;color:var(--text);letter-spacing:.1px;flex:0 1 auto;max-width:60%;outline:none;border-radius:4px;padding:1px 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border-bottom:none}
 .section-title:hover{background:rgba(37,47,124,.04)}
 .section-title:focus{background:rgba(255,255,255,.9);box-shadow:inset 0 0 0 1px var(--lg-cyan);border-bottom:none}
 .section-actions{margin-left:auto;display:flex;gap:8px;opacity:1}
@@ -1095,6 +1096,7 @@ body:not(.view-home) .home-mode-toggle{display:none}
 .bcb-pop{position:fixed;background:#fff;border:1px solid var(--border-strong);border-radius:9px;box-shadow:0 8px 24px rgba(37,47,124,.16);padding:5px;z-index:90;min-width:160px;font-family:inherit}
 .bcb-pop-item{display:block;width:100%;text-align:left;padding:8px 11px;border:none;background:transparent;cursor:pointer;font-family:inherit;font-size:13px;color:var(--text);border-radius:6px}
 .bcb-pop-item:hover{background:rgba(43,177,230,.12)}
+.bcb-pop-sep{height:1px;background:var(--border,rgba(0,0,0,.08));margin:4px 6px}
 
 /* ── DASHBOARD (top-level shell) ── */
 body.view-dashboard .header,
@@ -1629,10 +1631,7 @@ document.getElementById('lgSignInBtn').addEventListener('click', () => {
 <div class="corner-dock" id="cornerDock">
   <button id="skeletonBtn" type="button" title="Full Matryoshka map — jump to any board or list" onclick="toggleSkeleton()">🪆 Map</button>
   <button id="shortcutsBtn" class="ct-symbol" type="button" title="Keyboard shortcuts (or press ?)" onclick="_kbToggleHelp()">⌨️</button>
-  <div class="paint-stack">
-    <button class="bcb" id="bgColorBtn" title="Background color">🎨</button>
-    <button id="skinPickerBtn" class="skins-btn" type="button" title="Change skin">Skins</button>
-  </div>
+  <button class="bcb" id="bgColorBtn" title="Background &amp; skins">🎨</button>
   <div class="brand-image" id="brandImage"></div>
   <input type="color" id="bgColorInput" hidden>
   <input type="file" id="brandImageInput" accept="image/*" hidden>
@@ -5512,6 +5511,8 @@ function renderBrandCorner(){
       <button data-act="default" class="bcb-pop-item">${check('default')}↺ Default page</button>
       <button data-act="pick"    class="bcb-pop-item">${check('color')}🎨 Pick a color</button>
       <button data-act="gug"     class="bcb-pop-item">${check('gug')}🖼 Guggenheim artwork</button>
+      <div class="bcb-pop-sep"></div>
+      <button data-act="skins"   class="bcb-pop-item">   🎭 Skins…</button>
     `;
     document.body.appendChild(pop);
     const r = colorBtn.getBoundingClientRect();
@@ -5544,6 +5545,10 @@ function renderBrandCorner(){
       applyGuggenheim();
       save();
       pop.remove();
+    });
+    pop.querySelector('[data-act="skins"]').addEventListener('click', () => {
+      pop.remove();
+      openSkinMenu(colorBtn);
     });
     setTimeout(() => {
       const close = ev => {
@@ -7799,7 +7804,12 @@ function openMultiOwnerPopover(anchor, currentOwners, onClose){
       del.textContent = '×';
       del.addEventListener('click', ev => {
         ev.stopPropagation();
+        // Remove from the roster AND from this row's current selection, otherwise
+        // buildRows() re-adds it from currentOwners and it looks stuck.
         state.assignees = assigneeRoster().filter(a => a !== name);
+        selected.delete(name);
+        const i = currentOwners.indexOf(name);
+        if (i >= 0) currentOwners.splice(i, 1);
         save();
         buildRows();
       });
