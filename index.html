@@ -76,15 +76,8 @@ body[data-skin="dark-neon"] .header{
   border-bottom:1px solid rgba(255,75,216,.28);
   box-shadow:0 1px 24px rgba(255,75,216,.10);
 }
-body[data-skin="dark-neon"] .logo{
-  background:url('assets/logo-dark-neon.png') left center / contain no-repeat;
-  width:160px;
-  height:38px;
-  color:transparent;
-  text-shadow:none;
-  letter-spacing:0;
-  flex-shrink:0;
-}
+body[data-skin="dark-neon"] .logo{background:none;width:auto;height:auto;}
+body[data-skin="dark-neon"] .logo-word{color:#f8fafc;-webkit-text-fill-color:#f8fafc;text-shadow:0 0 10px rgba(255,75,216,.45)}
 body[data-skin="dark-neon"] .logo .doll{display:none}
 body[data-skin="dark-neon"] .board-switcher{color:#f8fafc}
 body[data-skin="dark-neon"] .board-switcher:hover{background:rgba(255,75,216,.08)}
@@ -333,12 +326,14 @@ body[data-skin="80s-lite"]::before{
   background-color:#fefefe;
 }
 /* Gradient logo text */
-body[data-skin="80s-lite"] .logo{
+body[data-skin="80s-lite"] .logo-word{
   background:linear-gradient(120deg,#f97316 0%,#ec4899 50%,#8b5cf6 100%);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
   background-clip:text;
-  filter:drop-shadow(0 0 10px rgba(236,72,153,.55)) drop-shadow(0 0 18px rgba(139,92,246,.35));
+}
+body[data-skin="80s-lite"] .logo-svg{
+  filter:drop-shadow(0 0 6px rgba(236,72,153,.35)) drop-shadow(0 0 11px rgba(139,92,246,.20));
 }
 body[data-skin="80s-lite"] .logo .doll{
   -webkit-text-fill-color:initial;
@@ -351,12 +346,12 @@ body[data-skin="80s-lite"] .board-card{
   border-left:none;
   box-shadow:0 0 0 1px rgba(236,72,153,.10),0 0 24px rgba(236,72,153,.20),0 10px 34px rgba(139,92,246,.14);
 }
-body[data-skin="80s-lite"] .board-card.bc-internal{border:3px solid #f97316;box-shadow:0 0 0 1px rgba(249,115,22,.30),0 0 18px rgba(249,115,22,.65),0 0 40px rgba(249,115,22,.45),0 0 80px rgba(249,115,22,.28),0 10px 34px rgba(0,0,0,.10);}
-body[data-skin="80s-lite"] .board-card.bc-client  {border:3px solid #06b6d4;box-shadow:0 0 0 1px rgba(6,182,212,.30),0 0 18px rgba(6,182,212,.65),0 0 40px rgba(6,182,212,.45),0 0 80px rgba(6,182,212,.28),0 10px 34px rgba(0,0,0,.10);}
-body[data-skin="80s-lite"] .board-card.bc-bd      {border:3px solid #8b5cf6;box-shadow:0 0 0 1px rgba(139,92,246,.30),0 0 18px rgba(139,92,246,.65),0 0 40px rgba(139,92,246,.45),0 0 80px rgba(139,92,246,.28),0 10px 34px rgba(0,0,0,.10);}
-body[data-skin="80s-lite"] .board-card.bc-navy    {border:3px solid #ec4899;box-shadow:0 0 0 1px rgba(236,72,153,.30),0 0 18px rgba(236,72,153,.65),0 0 40px rgba(236,72,153,.45),0 0 80px rgba(236,72,153,.28),0 10px 34px rgba(0,0,0,.10);}
+body[data-skin="80s-lite"] .board-card.bc-internal{border:3px solid #f97316;box-shadow:0 0 0 1px rgba(249,115,22,.22),0 0 13px rgba(249,115,22,.42),0 0 30px rgba(249,115,22,.24),0 10px 34px rgba(0,0,0,.10);}
+body[data-skin="80s-lite"] .board-card.bc-client  {border:3px solid #06b6d4;box-shadow:0 0 0 1px rgba(6,182,212,.22),0 0 13px rgba(6,182,212,.42),0 0 30px rgba(6,182,212,.24),0 10px 34px rgba(0,0,0,.10);}
+body[data-skin="80s-lite"] .board-card.bc-bd      {border:3px solid #8b5cf6;box-shadow:0 0 0 1px rgba(139,92,246,.22),0 0 13px rgba(139,92,246,.42),0 0 30px rgba(139,92,246,.24),0 10px 34px rgba(0,0,0,.10);}
+body[data-skin="80s-lite"] .board-card.bc-navy    {border:3px solid #ec4899;box-shadow:0 0 0 1px rgba(236,72,153,.22),0 0 13px rgba(236,72,153,.42),0 0 30px rgba(236,72,153,.24),0 10px 34px rgba(0,0,0,.10);}
 /* Section cards — soft neon glow */
-body[data-skin="80s-lite"] .section-card{background:#ffffff;border-color:rgba(0,0,0,.08);box-shadow:0 0 22px rgba(236,72,153,.18),0 0 44px rgba(139,92,246,.12),0 10px 30px rgba(0,0,0,.08);}
+body[data-skin="80s-lite"] .section-card{background:#ffffff;border-color:rgba(0,0,0,.08);box-shadow:0 0 16px rgba(236,72,153,.12),0 0 32px rgba(139,92,246,.08),0 10px 30px rgba(0,0,0,.08);}
 /* Sidebar active item — orange highlight */
 body[data-skin="80s-lite"] .tab-btn.active{
   background:rgba(249,115,22,.10);
@@ -376,7 +371,7 @@ body[data-skin="80s-lite"] #matryoshkaHomeBtn:hover{
   background:rgba(139,92,246,.08);
 }
 /* Matryoshka home cards — soft neon glow */
-body[data-skin="80s-lite"] .matryoshka-card{background:#ffffff;border-color:rgba(0,0,0,.08);box-shadow:0 0 20px rgba(236,72,153,.20),0 0 40px rgba(139,92,246,.12),0 8px 26px rgba(0,0,0,.08);}
+body[data-skin="80s-lite"] .matryoshka-card{background:#ffffff;border-color:rgba(0,0,0,.08);box-shadow:0 0 14px rgba(236,72,153,.13),0 0 30px rgba(139,92,246,.08),0 8px 26px rgba(0,0,0,.08);}
 body[data-skin="80s-lite"] #matryoshkaHomeBtn{box-shadow:0 0 12px rgba(139,92,246,.30);}
 body[data-skin="80s-lite"] #matryoshkaHomeBtn.active{box-shadow:0 0 16px rgba(139,92,246,.55);}
 /* Active tab pill glows orange */
@@ -446,7 +441,9 @@ body{
 .brand-icon{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:8px;cursor:pointer;transition:background .15s,transform .15s;text-decoration:none;background:transparent;border:none;padding:4px}
 .brand-icon:hover{background:rgba(0,0,0,.05);transform:translateY(-1px)}
 .brand-icon img{width:100%;height:100%;object-fit:contain}
-.logo{font-size:13px;font-weight:700;color:var(--lg-blue);letter-spacing:1.2px;text-transform:uppercase;white-space:nowrap}
+.logo{display:inline-flex;align-items:center;gap:8px;font-weight:700;color:var(--lg-blue);white-space:nowrap}
+.logo-svg{height:40px;width:auto;display:block;flex-shrink:0}
+.logo-word{font-size:17px;letter-spacing:1px;text-transform:uppercase}
 .logo .doll{font-size:16px;margin-right:6px;vertical-align:middle}
 .title{font-size:14px;font-weight:600;color:var(--text);flex:1}
 .sync-status{display:inline-flex;align-items:center;gap:6px;font-size:11px;letter-spacing:.2px;color:var(--muted);background:transparent;border:1px solid transparent;padding:4px 9px;border-radius:7px;cursor:pointer;font-family:inherit;flex-shrink:0;transition:all .12s}
@@ -456,6 +453,13 @@ body{
 .sync-status.syncing .sync-dot{background:var(--lg-cyan);animation:sync-pulse 1s ease-in-out infinite}
 .sync-status.error .sync-dot{background:var(--lg-pink)}
 @keyframes sync-pulse{0%,100%{opacity:.3}50%{opacity:1}}
+/* Sync status pinned to the top-right corner, out of the header flow. */
+#syncStatus{position:fixed;top:9px;right:14px;z-index:120;background:var(--header-bg,#fff)}
+body.lg-gated #syncStatus{display:none}
+/* Shortcuts + Skins at the bottom-left, in the sidebar foot. */
+.corner-tools-bl{display:flex;gap:4px;align-items:center;justify-content:center;margin-top:2px}
+.corner-tools-bl button{font-size:11px;padding:5px 8px;border-radius:7px;border:none;background:transparent;color:var(--muted);cursor:pointer;font-family:inherit;white-space:nowrap;flex:1}
+.corner-tools-bl button:hover{color:var(--text);background:rgba(0,0,0,.05)}
 .board-up-btn{font-size:12px;font-weight:600;color:var(--lg-blue);background:rgba(37,47,124,.07);border:1px solid rgba(37,47,124,.14);cursor:pointer;font-family:inherit;padding:4px 10px;border-radius:7px;white-space:nowrap;margin-right:2px}
 .board-up-btn:hover{background:rgba(37,47,124,.13)}
 body[data-skin="dark-neon"] .board-up-btn{color:#00f5ff;background:rgba(0,245,255,.08);border-color:rgba(0,245,255,.25)}
@@ -981,7 +985,7 @@ body[data-skin="dark-neon"] .tbl tbody td{background:rgba(255,255,255,.03);borde
 .board-canvas.grid .board-card.card-drop-after{box-shadow:inset -4px 0 0 0 var(--lg-cyan)}
 
 /* Home view-mode toggle pill (top-right of the canvas area) */
-.home-mode-toggle{position:fixed;top:10px;right:95px;z-index:115;display:flex;align-items:center;gap:6px;font-family:inherit}
+.home-mode-toggle{position:fixed;top:10px;right:132px;z-index:115;display:flex;align-items:center;gap:6px;font-family:inherit}
 .home-mode-toggle .hmt-toggle{display:flex;background:#fff;border:1px solid var(--border-strong,rgba(37,47,124,.22));border-radius:999px;padding:2px;box-shadow:0 2px 8px rgba(37,47,124,.10)}
 .home-mode-toggle .hmt-toggle button{border:none;background:transparent;padding:5px 12px;border-radius:999px;font-size:11.5px;font-weight:600;color:var(--muted,#6b6f86);cursor:pointer;letter-spacing:.2px;transition:all .12s}
 .home-mode-toggle .hmt-toggle button:hover{color:var(--text,#252f7c)}
@@ -1513,18 +1517,30 @@ document.getElementById('lgSignInBtn').addEventListener('click', () => {
 
 <div class="header-zone" id="headerZone"></div>
 <div class="header">
-  <span class="logo"><span class="doll">🪆</span>Matryoshka</span>
+  <span class="logo">
+    <svg class="logo-svg" viewBox="0 0 100 150" xmlns="http://www.w3.org/2000/svg" fill="none" aria-hidden="true">
+      <g stroke-linejoin="round" stroke-linecap="round">
+        <path d="M50 6 C78 6 86 34 84 60 C83 86 88 118 76 138 C68 146 58 147 50 147 C42 147 32 146 24 138 C12 118 17 86 16 60 C14 34 22 6 50 6 Z" stroke="#e5342b" stroke-width="3.4"/>
+        <path d="M50 42 C69 42 74 61 73 79 C72 97 76 120 66 133 C60 139 55 140 50 140 C45 140 40 139 34 133 C24 120 28 97 27 79 C26 61 31 42 50 42 Z" stroke="#f5a800" stroke-width="3.2"/>
+        <path d="M50 74 C63 74 66 88 65 101 C64 114 67 128 60 135 C56 138 53 138 50 138 C47 138 44 138 40 135 C33 128 36 114 35 101 C34 88 37 74 50 74 Z" stroke="#29a3dd" stroke-width="3"/>
+        <circle cx="45" cy="96" r="2.4" fill="#29a3dd"/>
+        <path d="M53 95.5 q2.3 1.7 4.6 0" stroke="#29a3dd" stroke-width="2.4"/>
+        <path d="M43 104 q7 6 14 0" stroke="#29a3dd" stroke-width="2.4"/>
+      </g>
+    </svg>
+    <span class="logo-word">Matryoshka</span>
+  </span>
   <button id="boardUpBtn" type="button" class="board-up-btn" style="display:none">↑ Up</button>
   <span id="boardCrumbs" class="board-crumbs"></span>
   <button class="title board-switcher" id="boardSwitcher" type="button"></button>
   <button id="matryoshkaHomeBtn" type="button" title="Sentinel — all boards at a glance" style="display:none">Sentinel</button>
-  <button id="shortcutsBtn" type="button" title="Keyboard shortcuts (or press ?)" onclick="_kbToggleHelp()">Shortcuts</button>
-  <button id="skinPickerBtn" type="button" title="Change skin">Skins</button>
-  <button class="sync-status" id="syncStatus" type="button" title="Click to pull the latest from the cloud">
-    <span class="sync-dot"></span>
-    <span class="sync-label">syncing…</span>
-  </button>
 </div>
+
+<!-- Sync status pinned to the top-right corner -->
+<button class="sync-status" id="syncStatus" type="button" title="Click to pull the latest from the cloud">
+  <span class="sync-dot"></span>
+  <span class="sync-label">syncing…</span>
+</button>
 
 <div id="dashboardView"></div>
 
@@ -1543,6 +1559,10 @@ document.getElementById('lgSignInBtn').addEventListener('click', () => {
     <div class="sidebar-foot">
       <button class="sidebar-share-board" onclick="openBoardShareModal()" title="Invite someone to collaborate on this entire board">⇧ Share board</button>
       <button class="btn-primary sidebar-add-list" onclick="addNewList()">+ New list</button>
+      <div class="corner-tools-bl">
+        <button id="shortcutsBtn" type="button" title="Keyboard shortcuts (or press ?)" onclick="_kbToggleHelp()">Shortcuts</button>
+        <button id="skinPickerBtn" type="button" title="Change skin">Skins</button>
+      </div>
     </div>
   </aside>
 
