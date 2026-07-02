@@ -462,10 +462,10 @@ body{
 #syncStatus{position:fixed;top:9px;right:14px;z-index:120;background:var(--header-bg,#fff)}
 body.lg-gated #syncStatus{display:none}
 /* Shortcuts + Skins pinned to the bottom-right corner, above the brand corner. */
-.corner-tools-br{position:fixed;right:16px;bottom:56px;z-index:95;display:flex;gap:6px;align-items:center}
-body.lg-gated .corner-tools-br{display:none}
-.corner-tools-br button{font-size:11px;font-weight:600;padding:5px 9px;border-radius:8px;border:1px solid var(--border-strong,rgba(37,47,124,.16));background:var(--card,#fff);color:var(--muted);cursor:pointer;font-family:inherit;white-space:nowrap;box-shadow:0 2px 8px rgba(37,47,124,.10)}
-.corner-tools-br button:hover{color:var(--text);border-color:var(--lg-blue)}
+.corner-dock{position:fixed;right:16px;bottom:16px;z-index:95;display:flex;gap:8px;align-items:flex-end}
+body.lg-gated .corner-dock{display:none}
+.corner-dock > button{font-size:11px;font-weight:600;padding:5px 9px;border-radius:8px;border:1px solid var(--border-strong,rgba(37,47,124,.16));background:var(--card,#fff);color:var(--muted);cursor:pointer;font-family:inherit;white-space:nowrap;box-shadow:0 2px 8px rgba(37,47,124,.10)}
+.corner-dock > button:hover{color:var(--text);border-color:var(--lg-blue)}
 .hmt-priority.active{background:#f5b301 !important;color:#3a2f00 !important;border-color:#f5b301 !important}
 /* Sentinel Priority view */
 .sentinel-priority{max-width:640px;margin:8px auto 0;padding:8px 4px 40px}
@@ -481,10 +481,10 @@ body.lg-gated .corner-tools-br{display:none}
 .sp-empty span{font-size:12px}
 body[data-skin="dark-neon"] .sp-item{background:rgba(6,16,38,.9);border-color:rgba(255,75,216,.18)}
 body[data-skin="dark-neon"] .sp-label,body[data-skin="dark-neon"] .sp-head{color:#f8fafc}
-body[data-skin="dark-neon"] .corner-tools-br button{background:rgba(6,16,38,.9);color:#9ba8bf;border-color:rgba(255,75,216,.22)}
-body[data-skin="dark-neon"] .corner-tools-br button:hover{color:#f8fafc;border-color:#ff4bd8}
+body[data-skin="dark-neon"] .corner-dock > button{background:rgba(6,16,38,.9);color:#9ba8bf;border-color:rgba(255,75,216,.22)}
+body[data-skin="dark-neon"] .corner-dock > button:hover{color:#f8fafc;border-color:#ff4bd8}
 /* Shortcuts as a symbol button */
-.corner-tools-br button.ct-symbol{font-size:15px;padding:5px 9px;line-height:1}
+.corner-dock > button.ct-symbol{font-size:15px;padding:5px 9px;line-height:1}
 /* Skins stacked directly under the paint palette 🎨 */
 .paint-stack{display:flex;flex-direction:column;align-items:center;gap:6px}
 .skins-btn{font-size:10px;font-weight:600;padding:4px 8px;border-radius:8px;border:1px solid var(--border-strong,rgba(37,47,124,.16));background:var(--card,#fff);color:var(--muted);cursor:pointer;font-family:inherit;white-space:nowrap;box-shadow:0 2px 8px rgba(37,47,124,.10)}
@@ -1076,9 +1076,8 @@ body:not(.view-home) .home-mode-toggle{display:none}
 .tbl tbody td:has(> .due){text-align:center}
 
 /* ── BRAND CORNER (bottom-right: BG color picker + uploaded logo) ── */
-.brand-corner{position:fixed;bottom:18px;right:18px;z-index:90;display:flex;align-items:flex-end;gap:8px;font-family:inherit}
-.brand-corner .bcb{width:30px;height:30px;border-radius:50%;border:1px solid var(--border-strong);background:#fff;cursor:pointer;font-size:14px;line-height:1;padding:0;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(37,47,124,.10)}
-.brand-corner .bcb:hover{border-color:var(--lg-blue)}
+.corner-dock .bcb{width:30px;height:30px;border-radius:50%;border:1px solid var(--border-strong);background:#fff;cursor:pointer;font-size:14px;line-height:1;padding:0;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(37,47,124,.10)}
+.corner-dock .bcb:hover{border-color:var(--lg-blue)}
 .brand-image{cursor:pointer;border-radius:8px;background:transparent;display:flex;align-items:center;justify-content:center}
 .brand-image img{max-width:140px;max-height:90px;object-fit:contain;display:block}
 .brand-image-empty{padding:6px 12px;font-size:11px;color:var(--muted);background:rgba(255,255,255,.85);border:1px dashed var(--border-strong);border-radius:8px;letter-spacing:.3px;cursor:pointer;font-weight:600}
@@ -1616,20 +1615,17 @@ document.getElementById('lgSignInBtn').addEventListener('click', () => {
 
 <div id="dashboardView"></div>
 
-<!-- Shortcuts + Skins tucked into the bottom-right corner (above the brand corner) -->
-<div class="corner-tools-br" id="cornerToolsBR">
+<!-- Single bottom-right dock: map, shortcuts, background color, skins, logo.
+     One container so the controls never overlap each other. -->
+<div class="corner-dock" id="cornerDock">
   <button id="skeletonBtn" type="button" title="Full Matryoshka map — jump to any board or list" onclick="toggleSkeleton()">🪆 Map</button>
-  <button id="shortcutsBtn" class="ct-symbol" type="button" title="Keyboard shortcuts (or press ?)" onclick="_kbToggleHelp()">⌨</button>
-</div>
-
-<!-- Brand corner: background color picker + uploaded logo image, bottom-right -->
-<div class="brand-corner" id="brandCorner">
+  <button id="shortcutsBtn" class="ct-symbol" type="button" title="Keyboard shortcuts (or press ?)" onclick="_kbToggleHelp()">⌨️</button>
   <div class="paint-stack">
     <button class="bcb" id="bgColorBtn" title="Background color">🎨</button>
     <button id="skinPickerBtn" class="skins-btn" type="button" title="Change skin">Skins</button>
   </div>
-  <input type="color" id="bgColorInput" hidden>
   <div class="brand-image" id="brandImage"></div>
+  <input type="color" id="bgColorInput" hidden>
   <input type="file" id="brandImageInput" accept="image/*" hidden>
 </div>
 
@@ -6767,6 +6763,10 @@ function renderHome(host){
     : '';
   const canvasMode = mode === 'stacked' ? 'stacked' : '';
   host.innerHTML = `<div class="board-canvas ${canvasMode}" id="boardCanvas"${zoomStyle}></div>`;
+  // Remove the Sentinel-only toolbar so it doesn't linger over the board toolbar
+  // (mirror of the Sentinel path, which removes #homeModeToggle).
+  const _mhomeBar = document.getElementById('mhomeToolbar');
+  if(_mhomeBar) _mhomeBar.remove();
   ensureHomeModeToggle();
   const canvas = document.getElementById('boardCanvas');
   state.boardOrder.forEach(tabKey => {
