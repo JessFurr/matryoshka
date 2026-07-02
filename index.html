@@ -902,6 +902,9 @@ body[data-skin="dark-neon"] .tbl tbody td{background:rgba(255,255,255,.03);borde
 .row-notes-btn{background:transparent;border:none;color:var(--muted);font-size:12px;line-height:1;cursor:pointer;padding:0 2px;border-radius:4px;height:14px;vertical-align:middle;opacity:.7;filter:grayscale(1);transition:opacity .12s,filter .12s}
 .row-notes-btn:hover{opacity:1;filter:none;background:rgba(43,177,230,.10)}
 .row-notes-btn.has-notes{opacity:1;filter:none}
+/* Owner + Status pills relocated to the end of the row. Always visible. */
+.row-endmeta{display:inline-flex;align-items:center;gap:6px;margin-right:6px;vertical-align:middle}
+.tbl tbody tr td.cell-actions:has(.row-endmeta){opacity:1}
 .row-star-btn{background:transparent;border:none;color:var(--muted);font-size:15px;line-height:1;cursor:pointer;padding:0 2px;border-radius:4px;height:16px;vertical-align:middle;transition:transform .12s,color .12s;font-family:inherit}
 .row-star-btn:hover{transform:scale(1.2);color:#f5b301}
 .row-star-btn.is-priority{color:#f5b301}
@@ -6698,8 +6701,13 @@ function renderHome(host){
 
 // Lists render all columns (task + status/who/due/date + any custom columns like
 // Assignee). Kept as helpers so the row and header builds stay in sync.
-function listDisplayColumns(tab){ return getColumns(tab); }
-function listHeadHtml(tab){ return getColumns(tab).map(col => renderColHeader(tab, col)).join(''); }
+// Owner (who) and Status/Stage no longer get their own columns — they render as
+// buttons at the end of each row. So exclude them from the table columns; the
+// header and body both derive from this, staying in sync.
+function isEndMetaCol(c){ return c.kind === 'who' || c.kind === 'status'; }
+function endMetaColumns(tab){ return getColumns(tab).filter(isEndMetaCol); }
+function listDisplayColumns(tab){ return getColumns(tab).filter(c => !isEndMetaCol(c)); }
+function listHeadHtml(tab){ return listDisplayColumns(tab).map(col => renderColHeader(tab, col)).join(''); }
 
 function renderRow(tab, row){
   const cols = listDisplayColumns(tab);
@@ -6751,7 +6759,7 @@ function renderRow(tab, row){
   const cb = document.createElement('input');
   cb.type = 'checkbox';
   cb.className = 'row-check';
-  const statusCol = cols.find(c => c.kind === 'status');
+  const statusCol = getColumns(tab).find(c => c.kind === 'status');
   const statusKey = statusCol ? statusCol.key : null;
   cb.checked = statusKey ? (row[statusKey] === 'Done') : !!row.__done;
   if(cb.checked) tr.classList.add('row-done');
@@ -6871,6 +6879,20 @@ function renderRow(tab, row){
       openNotesDrawer(tab, row);
     });
     actTd.appendChild(notesBtn);
+  }
+  // Owner + Status/Stage render as buttons at the end of the row (no columns).
+  // Same interactive pills as before (open the owner / status pickers on click),
+  // just relocated. Always visible (not tied to the hover-only actions fade).
+  const endCols = endMetaColumns(tab);
+  if (endCols.length){
+    const meta = document.createElement('span');
+    meta.className = 'row-endmeta';
+    endCols.forEach(col => {
+      const v = row[col.key] ?? '';
+      meta.appendChild(col.kind === 'status' ? renderStatus(tab, row, col.key, v)
+                                             : renderWho(tab, row, col.key, v));
+    });
+    actTd.appendChild(meta);
   }
   // Priority star — an end-of-row icon (no dedicated column). Click toggles it;
   // a set star stays gold and keeps the actions cell visible, off is a faint
