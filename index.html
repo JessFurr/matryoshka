@@ -464,6 +464,15 @@ body.lg-gated #syncStatus{display:none}
 /* Shortcuts + Skins pinned to the bottom-right corner, above the brand corner. */
 .corner-dock{position:fixed;right:16px;bottom:16px;z-index:95;display:flex;gap:8px;align-items:flex-end}
 body.lg-gated .corner-dock{display:none}
+/* Zoom control, lower-left corner */
+.zoom-dock{position:fixed;left:16px;bottom:16px;z-index:95;display:flex;background:var(--card,#fff);border:1px solid var(--border-strong,rgba(37,47,124,.16));border-radius:999px;padding:2px;box-shadow:0 2px 8px rgba(37,47,124,.12)}
+body.lg-gated .zoom-dock{display:none}
+.zoom-dock button{border:none;background:transparent;color:var(--muted);cursor:pointer;font-family:inherit;font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px;line-height:1;min-width:30px}
+.zoom-dock button:hover{color:var(--text);background:rgba(37,47,124,.07)}
+.zoom-dock button[data-z="reset"]{font-variant-numeric:tabular-nums;min-width:46px}
+body[data-skin="dark-neon"] .zoom-dock{background:rgba(6,16,38,.9);border-color:rgba(255,75,216,.22)}
+body[data-skin="dark-neon"] .zoom-dock button{color:#9ba8bf}
+body[data-skin="dark-neon"] .zoom-dock button:hover{color:#f8fafc;background:rgba(255,75,216,.10)}
 .corner-dock > button{font-size:11px;font-weight:600;padding:5px 9px;border-radius:8px;border:1px solid var(--border-strong,rgba(37,47,124,.16));background:var(--card,#fff);color:var(--muted);cursor:pointer;font-family:inherit;white-space:nowrap;box-shadow:0 2px 8px rgba(37,47,124,.10)}
 .corner-dock > button:hover{color:var(--text);border-color:var(--lg-blue)}
 .hmt-priority.active{background:#f5b301 !important;color:#3a2f00 !important;border-color:#f5b301 !important}
@@ -1627,6 +1636,13 @@ document.getElementById('lgSignInBtn').addEventListener('click', () => {
   <div class="brand-image" id="brandImage"></div>
   <input type="color" id="bgColorInput" hidden>
   <input type="file" id="brandImageInput" accept="image/*" hidden>
+</div>
+
+<!-- Zoom control, pinned to the lower-left corner. Controls the current view. -->
+<div class="zoom-dock" id="zoomDock">
+  <button data-z="out" type="button" title="Zoom out">−</button>
+  <button data-z="reset" type="button" title="Reset to 100%">100%</button>
+  <button data-z="in" type="button" title="Zoom in">+</button>
 </div>
 
 <div class="layout">
@@ -6285,6 +6301,28 @@ function setBoardZoom(z){
   state.boardZoom = Math.max(0.4, Math.min(2, +(+z).toFixed(2)));
   save(); render();
 }
+// The lower-left zoom control drives whichever view is showing: the Sentinel
+// canvas when in Sentinel, otherwise the board canvas.
+function currentZoomVar(){ return state.viewingMatryoshkaHome ? 'matryoshkaHomeZoom' : 'boardZoom'; }
+function ensureZoomDock(){
+  const d = document.getElementById('zoomDock');
+  if(!d) return;
+  if(!d.dataset.wired){
+    d.dataset.wired = '1';
+    d.addEventListener('click', e => {
+      const b = e.target.closest('button'); if(!b) return;
+      const v = currentZoomVar();
+      let z = Math.max(0.4, Math.min(2, +state[v] || 1));
+      if(b.dataset.z === 'out') z = Math.max(0.4, +(z - 0.1).toFixed(2));
+      else if(b.dataset.z === 'in') z = Math.min(2, +(z + 0.1).toFixed(2));
+      else z = 1;
+      state[v] = z; save(); render();
+    });
+  }
+  const z = Math.max(0.4, Math.min(2, +state[currentZoomVar()] || 1));
+  const lbl = d.querySelector('[data-z="reset"]');
+  if(lbl) lbl.textContent = Math.round(z * 100) + '%';
+}
 function savePreferredLayout(){
   state.preferredLayout = {
     boardPos:  JSON.parse(JSON.stringify(state.boardPos  || {})),
@@ -6660,11 +6698,6 @@ function ensureMatryoshkaHomeToolbar(){
       <button data-mode="grid">Grid</button>
     </div>
     ${mode === 'free' ? `
-      <div class="hmt-zoom">
-        <button data-act="zoom-out" title="Zoom out">−</button>
-        <button data-act="zoom-reset" title="Reset to 100%">${zoomPct}%</button>
-        <button data-act="zoom-in" title="Zoom in">+</button>
-      </div>
       <button data-act="auto-fit" class="hmt-action" title="Tile boards to fit on screen">↔ Auto-fit</button>
     ` : ''}
     <button data-act="toggle-all" class="hmt-action">${anyCollapsed ? '▴ Max all' : '▾ Min all'}</button>
@@ -6760,9 +6793,9 @@ function renderHome(host){
   const mode = state.homeViewMode === 'stacked' ? 'stacked' : 'free';
 
   const zoom = Math.max(0.4, Math.min(2, +state.boardZoom || 1));
-  // In free mode at non-100% zoom, scale the whole canvas. Compensate width so the
-  // scaled content still fills the wrapper horizontally (otherwise it leaves whitespace).
-  const zoomStyle = (mode === 'free' && zoom !== 1)
+  // At non-100% zoom, scale the whole canvas (both free and stacked). Compensate
+  // width so the scaled content still fills the wrapper horizontally.
+  const zoomStyle = (zoom !== 1)
     ? ` style="transform:scale(${zoom});transform-origin:top left;width:${(100/zoom).toFixed(2)}%"`
     : '';
   const canvasMode = mode === 'stacked' ? 'stacked' : '';
@@ -7556,7 +7589,7 @@ function observeBoardCardResizes(){
 
 if (typeof render === 'function' && !render.__kbWrapped){
   const _origRender = render;
-  render = function(){ const out = _origRender.apply(this, arguments); try { fitBoardTableWidths(); } catch(_){} try { applyKbCursor(); } catch(_){} try { sizeColResizeGrips(); } catch(_){} try { observeBoardCardResizes(); } catch(_){} return out; };
+  render = function(){ const out = _origRender.apply(this, arguments); try { fitBoardTableWidths(); } catch(_){} try { applyKbCursor(); } catch(_){} try { sizeColResizeGrips(); } catch(_){} try { observeBoardCardResizes(); } catch(_){} try { ensureZoomDock(); } catch(_){} return out; };
   render.__kbWrapped = true;
 }
 
